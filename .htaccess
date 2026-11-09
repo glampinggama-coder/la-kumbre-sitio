@@ -1,0 +1,6 @@
+# Redirecciones de las rutas del sitio anterior (WordPress)
+RewriteEngine On
+RewriteRule ^comidas/?$ /carta.html [R=301,L]
+RewriteRule ^guia-turistica/?$ /guia.html [R=301,L]
+RewriteRule ^glamping/?$ /index.html#glampings [R=301,NE,L]
+RewriteRule ^actividades/?$ /index.html#un-dia [R=301,NE,L]
