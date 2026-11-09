@@ -7,7 +7,7 @@
 <meta name="description" content="Cuatro glampings de madera con desayuno, baño privado y la cordillera enfrente, a 3 horas de Bogotá. Planes en pareja, estadías entre semana y experiencias.">
 <meta property="og:title" content="Glamping La Kumbre · Glampings de montaña en Gama, Cundinamarca">
 <meta property="og:description" content="Cuatro glampings de madera con desayuno, baño privado y la cordillera enfrente, a 3 horas de Bogotá. Planes en pareja, estadías entre semana y experiencias.">
-<meta property="og:image" content="img/veterano-hora-azul-1200.webp">
+<meta property="og:image" content="img/glampings/veterano/portada.webp">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/svg+xml" href="img/logo-bosque-v2.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +20,31 @@ summary::-webkit-details-marker{display:none}
 details[open] .faq-plus{transform:rotate(45deg)}
 :focus-visible{outline:2px solid #A6533D;outline-offset:2px}
 </style>
-<style>html{scroll-behavior:smooth}img{max-width:100%}@media (max-width:760px){header nav{flex-wrap:nowrap!important;overflow-x:auto;width:100%;order:3;gap:20px!important;padding-bottom:4px}header nav a,header nav button{white-space:nowrap;flex:0 0 auto}h1{font-size:38px!important;line-height:42px!important}}</style>
+<style>
+html{scroll-behavior:smooth;scroll-padding-top:80px}img{max-width:100%}
+.lk-menu{display:none}
+.lk-menu summary{list-style:none;cursor:pointer;width:44px;height:44px;border:1px solid rgba(246,241,232,.5);border-radius:999px;display:flex;align-items:center;justify-content:center;color:#F6F1E8;box-sizing:border-box;flex:0 0 44px}
+.lk-menu summary::-webkit-details-marker{display:none}
+.lk-menu .lk-x{display:none}
+.lk-menu[open] .lk-x{display:block}
+.lk-menu[open] .lk-bars{display:none}
+.lk-panel{position:absolute;left:0;right:0;top:100%;background:#344536;border-top:1px solid rgba(215,196,165,.25);padding:6px 16px 14px;box-shadow:0 14px 24px rgba(37,42,38,.3);display:flex;flex-direction:column}
+.lk-panel a{color:#F6F1E8;text-decoration:none;font-size:17px;font-weight:500;padding:14px 8px;border-bottom:1px solid rgba(215,196,165,.18)}
+.lk-panel a:last-child{border-bottom:0}
+.lk-faq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:40px;align-items:start}
+.lk-faq summary{padding:14px 0!important;font-size:16px!important;line-height:22px!important}
+.lk-faq .faq-plus{font-size:20px!important}
+.lk-faq details p{margin:0 0 14px!important;font-size:14px!important;line-height:21px!important}
+@media (max-width:1015px){.lk-llegar>.lk-mapa{order:2}}
+@media (max-width:760px){
+header>div{flex-wrap:nowrap!important;gap:10px!important;padding:10px 16px!important}
+header .lk-nav{display:none!important}
+header .lk-menu{display:block}
+header .lk-reservar{margin-left:auto;padding:10px 18px!important}
+.lk-faq{grid-template-columns:1fr}
+h1{font-size:38px!important;line-height:42px!important}
+}
+</style>
 </head>
 <body>
 <div id="app">
@@ -31,7 +55,7 @@ details[open] .faq-plus{transform:rotate(45deg)}
 <header style="position: sticky; top: 0; z-index: 30; background: #344536; border-bottom: 1px solid rgba(215,196,165,0.25)">
 <div style="max-width: 1240px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
 <a href="#top" aria-label="La Kumbre, inicio" style="display: flex; align-items: center; background: #F6F1E8; border-radius: 6px; padding: 6px 14px"><img src="img/logo-bosque-v2.svg" alt="La Kumbre" style="height: 36px; width: auto; display: block"></a>
-<nav aria-label="Principal" style="display: flex; flex-wrap: wrap; gap: 28px; font-size: 15px; font-weight: 500">
+<nav class="lk-nav" aria-label="Principal" style="display: flex; flex-wrap: wrap; gap: 28px; font-size: 15px; font-weight: 500">
 <a href="#glampings" style="color: #F6F1E8; text-decoration: none">Glampings</a>
 <a href="#un-dia" style="color: #F6F1E8; text-decoration: none">Un día</a>
 <a href="#precios" style="color: #F6F1E8; text-decoration: none">Precios</a>
@@ -40,7 +64,8 @@ details[open] .faq-plus{transform:rotate(45deg)}
 <a href="#llegar" style="color: #F6F1E8; text-decoration: none">Cómo llegar</a>
 <a href="#preguntas" style="color: #F6F1E8; text-decoration: none">Preguntas</a>
 </nav>
-<button type="button" style="font-family: Raleway, sans-serif; font-size: 15px; line-height: 20px; font-weight: 500; color: #344536; background: #F6F1E8; border: 0; border-radius: 999px; padding: 12px 24px; min-height: 44px; cursor: pointer; display: flex; align-items: center; gap: 8px">Reservar <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+<button type="button" class="lk-reservar" style="font-family: Raleway, sans-serif; font-size: 15px; line-height: 20px; font-weight: 500; color: #344536; background: #F6F1E8; border: 0; border-radius: 999px; padding: 12px 24px; min-height: 44px; cursor: pointer; display: flex; align-items: center; gap: 8px">Reservar <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+<details class="lk-menu"><summary aria-label="Menú"><svg class="lk-bars" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg><svg class="lk-x" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg></summary><nav class="lk-panel" aria-label="Menú de secciones"><a href="#glampings">Glampings</a><a href="#un-dia">Un día</a><a href="#precios">Precios</a><a href="carta.html">Carta</a><a href="guia.html">Explorar</a><a href="#llegar">Cómo llegar</a><a href="#preguntas">Preguntas</a></nav></details>
 </div>
 </header>
 
@@ -63,7 +88,7 @@ details[open] .faq-plus{transform:rotate(45deg)}
 <article style="display: flex; flex-direction: column; gap: 12px">
 <button type="button" aria-label="Fotos y detalles de El Veterano" style="padding: 0; border: 0; background: transparent; cursor: pointer; display: block">
 <div style="background: #D7C4A5; padding: 6px; clip-path: polygon(0% 40%, 80% 0%, 100% 11%, 100% 100%, 0% 100%)">
-<img src="img/veterano-hora-azul-1200.webp" alt="Glamping El Veterano al anochecer" style="width: 100%; height: 340px; object-fit: cover; display: block; clip-path: polygon(0% 40%, 80% 0%, 100% 11%, 100% 100%, 0% 100%)">
+<img src="img/glampings/veterano/portada.webp" alt="Glamping El Veterano al anochecer" style="width: 100%; height: 340px; object-fit: cover; display: block; clip-path: polygon(0% 40%, 80% 0%, 100% 11%, 100% 100%, 0% 100%)">
 </div>
 </button>
 <h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 22px; line-height: 28px; font-weight: 600; color: #344536">El Veterano</h3>
@@ -77,11 +102,11 @@ details[open] .faq-plus{transform:rotate(45deg)}
 <article style="display: flex; flex-direction: column; gap: 12px">
 <button type="button" aria-label="Fotos y detalles de El Colorado" style="padding: 0; border: 0; background: transparent; cursor: pointer; display: block">
 <div style="background: #D7C4A5; padding: 6px; clip-path: polygon(0% 40%, 80% 0%, 100% 11%, 100% 100%, 0% 100%)">
-<img src="img/colorado-exterior-640.webp" alt="Glamping El Colorado entre árboles" style="width: 100%; height: 340px; object-fit: cover; display: block; clip-path: polygon(0% 40%, 80% 0%, 100% 11%, 100% 100%, 0% 100%)">
+<img src="img/glampings/colorado/portada.webp" alt="Glamping El Colorado entre árboles" style="width: 100%; height: 340px; object-fit: cover; display: block; clip-path: polygon(0% 40%, 80% 0%, 100% 11%, 100% 100%, 0% 100%)">
 </div>
 </button>
 <h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 22px; line-height: 28px; font-weight: 600; color: #344536">El Colorado</h3>
-<p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">Cama tallada en la madera de un árbol Colorado caído</p>
+<p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">Cama tallada en la madera de un árbol Colorado, nativo de la región y de nuestra misma finca</p>
 <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap">
 <a href="https://wa.me/573222070120?text=%C2%A1Hola!%20Vengo%20del%20sitio%20web.%20Quisiera%20informaci%C3%B3n%20sobre%20fechas%20disponibles%20en%20El%20Colorado" target="_blank" rel="noopener" style="font-size: 15px; font-weight: 500; color: #F6F1E8; background: #344536; text-decoration: none; border-radius: 999px; padding: 12px 20px; min-height: 44px; box-sizing: border-box; display: flex; align-items: center">Ver fechas</a>
 <button type="button" style="font-family: Raleway, sans-serif; font-size: 14px; color: #344536; background: transparent; border: 0; padding: 12px 4px; min-height: 44px; text-decoration: underline; cursor: pointer">Fotos y detalles</button>
@@ -91,7 +116,7 @@ details[open] .faq-plus{transform:rotate(45deg)}
 <article style="display: flex; flex-direction: column; gap: 12px">
 <button type="button" aria-label="Fotos y detalles de La Piedra" style="padding: 0; border: 0; background: transparent; cursor: pointer; display: block">
 <div style="background: #D7C4A5; padding: 6px; clip-path: polygon(0% 40%, 80% 0%, 100% 11%, 100% 100%, 0% 100%)">
-<img src="img/piedra-exterior-640.webp" alt="Glamping La Piedra sobre la roca, entre pinos" style="width: 100%; height: 340px; object-fit: cover; display: block; clip-path: polygon(0% 40%, 80% 0%, 100% 11%, 100% 100%, 0% 100%)">
+<img src="img/glampings/piedra/portada.webp" alt="Glamping La Piedra sobre la roca, entre pinos" style="width: 100%; height: 340px; object-fit: cover; display: block; clip-path: polygon(0% 40%, 80% 0%, 100% 11%, 100% 100%, 0% 100%)">
 </div>
 </button>
 <h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 22px; line-height: 28px; font-weight: 600; color: #344536">La Piedra</h3>
@@ -105,11 +130,11 @@ details[open] .faq-plus{transform:rotate(45deg)}
 <article style="display: flex; flex-direction: column; gap: 12px">
 <button type="button" aria-label="Fotos y detalles de El Tomate" style="padding: 0; border: 0; background: transparent; cursor: pointer; display: block">
 <div style="background: #D7C4A5; padding: 6px; clip-path: polygon(0% 40%, 80% 0%, 100% 11%, 100% 100%, 0% 100%)">
-<img src="img/tomate-exterior-640.webp" alt="Glamping El Tomate con vista abierta" style="width: 100%; height: 340px; object-fit: cover; display: block; clip-path: polygon(0% 40%, 80% 0%, 100% 11%, 100% 100%, 0% 100%)">
+<img src="img/glampings/tomate/portada.webp" alt="Glamping El Tomate con vista abierta" style="width: 100%; height: 340px; object-fit: cover; display: block; clip-path: polygon(0% 40%, 80% 0%, 100% 11%, 100% 100%, 0% 100%)">
 </div>
 </button>
 <h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 22px; line-height: 28px; font-weight: 600; color: #344536">El Tomate</h3>
-<p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">Entre tomate de árbol, con vista abierta</p>
+<p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">Con cultivos alrededor y vista abierta</p>
 <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap">
 <a href="https://wa.me/573222070120?text=%C2%A1Hola!%20Vengo%20del%20sitio%20web.%20Quisiera%20informaci%C3%B3n%20sobre%20fechas%20disponibles%20en%20El%20Tomate" target="_blank" rel="noopener" style="font-size: 15px; font-weight: 500; color: #F6F1E8; background: #344536; text-decoration: none; border-radius: 999px; padding: 12px 20px; min-height: 44px; box-sizing: border-box; display: flex; align-items: center">Ver fechas</a>
 <button type="button" style="font-family: Raleway, sans-serif; font-size: 14px; color: #344536; background: transparent; border: 0; padding: 12px 4px; min-height: 44px; text-decoration: underline; cursor: pointer">Fotos y detalles</button>
@@ -140,8 +165,8 @@ details[open] .faq-plus{transform:rotate(45deg)}
 </div>
 </div>
 <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
-<img src="img/veterano-interior-640.webp" alt="Interior de El Veterano con cama tendida y duvet" style="width: 100%; height: 420px; object-fit: cover; border-radius: 12px; display: block">
-<img src="img/colorado-desayuno-640.webp" alt="Desayuno servido en El Colorado" style="width: 100%; height: 420px; object-fit: cover; border-radius: 12px; display: block; margin-top: 48px">
+<img src="img/alojamiento/interior-veterano.webp" alt="Interior de El Veterano con cama tendida y duvet" style="width: 100%; height: 420px; object-fit: cover; border-radius: 12px; display: block">
+<img src="img/alojamiento/desayuno-colorado.webp" alt="Desayuno servido en El Colorado" style="width: 100%; height: 420px; object-fit: cover; border-radius: 12px; display: block; margin-top: 48px">
 </div>
 </div>
 <div style="display: flex; flex-direction: column; gap: 24px; padding-top: 48px; border-top: 1px solid #D7C4A5">
@@ -151,13 +176,13 @@ details[open] .faq-plus{transform:rotate(45deg)}
 </div>
 <ul style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px">
 
-<li style="display: flex; flex-direction: column; gap: 12px"><img src="img/malla-catamaran-640.webp" alt="Malla catamarán" style="width: 100%; height: 220px; object-fit: cover; border-radius: 12px; display: block"><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 20px; line-height: 26px; font-weight: 600; color: #344536">Malla catamarán</h3><p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">3 m² colgados frente a la cordillera para leer o no hacer nada.</p></li>
+<li style="display: flex; flex-direction: column; gap: 12px"><img src="img/zonas/malla-catamaran.webp" alt="Malla catamarán" style="width: 100%; height: 220px; object-fit: cover; border-radius: 12px; display: block"><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 20px; line-height: 26px; font-weight: 600; color: #344536">Malla catamarán</h3><p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">3 m² colgados frente a la cordillera para leer o no hacer nada.</p></li>
 
-<li style="display: flex; flex-direction: column; gap: 12px"><img src="img/zona-fogatas-640.webp" alt="Zona de fogatas" style="width: 100%; height: 220px; object-fit: cover; border-radius: 12px; display: block"><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 20px; line-height: 26px; font-weight: 600; color: #344536">Zona de fogatas</h3><p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">Dos fogatas al aire libre para la noche.</p></li>
+<li style="display: flex; flex-direction: column; gap: 12px"><img src="img/zonas/fogatas.webp" alt="Zona de fogatas" style="width: 100%; height: 220px; object-fit: cover; border-radius: 12px; display: block"><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 20px; line-height: 26px; font-weight: 600; color: #344536">Zona de fogatas</h3><p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">Tres fogatas al aire libre para la noche.</p></li>
 
-<li style="display: flex; flex-direction: column; gap: 12px"><img src="img/zona-bbq-640.webp" alt="Zona BBQ" style="width: 100%; height: 220px; object-fit: cover; border-radius: 12px; display: block"><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 20px; line-height: 26px; font-weight: 600; color: #344536">Zona BBQ</h3><p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">Estufa a leña y mesas al aire libre.</p></li>
+<li style="display: flex; flex-direction: column; gap: 12px"><img src="img/zonas/bbq.webp" alt="Zona BBQ" style="width: 100%; height: 220px; object-fit: cover; border-radius: 12px; display: block"><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 20px; line-height: 26px; font-weight: 600; color: #344536">Zona BBQ</h3><p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">Estufa a leña y mesas al aire libre.</p></li>
 
-<li style="display: flex; flex-direction: column; gap: 12px"><img src="img/senderos-640.webp" alt="Senderos y miradores" style="width: 100%; height: 220px; object-fit: cover; border-radius: 12px; display: block"><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 20px; line-height: 26px; font-weight: 600; color: #344536">Senderos y miradores</h3><p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">Caminos por la montaña y cuatro miradores.</p></li>
+<li style="display: flex; flex-direction: column; gap: 12px"><img src="img/zonas/senderos.webp" alt="Senderos y miradores" style="width: 100%; height: 220px; object-fit: cover; border-radius: 12px; display: block"><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 20px; line-height: 26px; font-weight: 600; color: #344536">Senderos y miradores</h3><p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">Caminos por la montaña y cuatro miradores.</p></li>
 
 </ul>
 </div>
@@ -173,13 +198,13 @@ details[open] .faq-plus{transform:rotate(45deg)}
 </div>
 <p style="margin: 0; display: flex; align-items: center; gap: 12px; padding: 12px 12px 12px 22px; border-radius: 999px; background: #344536; color: #F6F1E8; font-size: 16px; line-height: 22px; font-weight: 600">Desliza para ver el día completo <span aria-hidden="true" style="width: 36px; height: 36px; border-radius: 999px; background: #F6F1E8; color: #344536; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></p>
 </div>
-<div data-keep-scroll="" style="margin-top: 40px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 24px 16px">
+<div data-keep-scroll="" style="margin-top: 40px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 24px; padding: 0 24px 16px">
 <ol style="margin: 0 auto; padding: 0; list-style: none; display: flex; gap: 20px; width: max-content; max-width: none">
 
 <li style="scroll-snap-align: start; width: 340px; flex: 0 0 340px; background: #F6F1E8; color: #252A26; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column">
-<div style="position: relative"><img src="img/masajes.webp" alt="Soltar la ciudad" style="width: 100%; height: 220px; object-fit: cover; display: block"></div>
+<div style="position: relative"><img src="img/experiencias/masajes.webp" alt="Soltar la ciudad" style="width: 100%; height: 220px; object-fit: cover; display: block"></div>
 <div style="padding: 24px; display: flex; flex-direction: column; gap: 16px; flex-grow: 1">
-<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: #5C5F58">2:00 pm · Llegada</span><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 24px; line-height: 30px; font-weight: 600; color: #344536">Soltar la ciudad</h3><p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">Suelta el caos de la ciudad sin salir de tu glamping: masaje en camilla, aceite esencial y aromaterapia.</p></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 24px; line-height: 30px; font-weight: 600; color: #344536">Soltar la ciudad</h3><p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">Suelta el caos de la ciudad sin salir de tu glamping: masaje en camilla, aceite esencial y aromaterapia.</p></div>
 <ul style="margin: auto 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; border-top: 1px solid #D7C4A5">
 
 <li style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid #D7C4A5">
@@ -197,24 +222,9 @@ details[open] .faq-plus{transform:rotate(45deg)}
 </li>
 
 <li style="scroll-snap-align: start; width: 340px; flex: 0 0 340px; background: #F6F1E8; color: #252A26; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column">
-<div style="position: relative"><img src="img/alto-virgen-543.webp" alt="Afuera, en la naturaleza" style="width: 100%; height: 220px; object-fit: cover; display: block"></div>
+<div style="position: relative"><img src="img/experiencias/cena-romantica.webp" alt="Cena a la luz de las velas" style="width: 100%; height: 220px; object-fit: cover; display: block"></div>
 <div style="padding: 24px; display: flex; flex-direction: column; gap: 16px; flex-grow: 1">
-<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: #5C5F58">Atardecer</span><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 24px; line-height: 30px; font-weight: 600; color: #344536">Afuera, en la naturaleza</h3><p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">La tarde se va lenta, con la montaña cambiando de color.</p></div>
-<ul style="margin: auto 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; border-top: 1px solid #D7C4A5">
-
-<li style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid #D7C4A5">
-<span style="display: flex; flex-direction: column; gap: 2px"><b style="font-size: 15px; line-height: 20px">Picnic en la naturaleza</b><span style="font-size: 13px; line-height: 18px; color: #5C5F58">$ 60.000</span></span>
-<a href="https://wa.me/573222070120?text=%C2%A1Hola!%20Vengo%20del%20sitio%20web.%20Quisiera%20informaci%C3%B3n%20sobre%20Picnic%20en%20la%20naturaleza" target="_blank" rel="noopener" aria-label="Agregar Picnic en la naturaleza por WhatsApp" style="flex: 0 0 auto; padding: 8px 16px; min-height: 36px; border-radius: 999px; background: #344536; color: #F6F1E8; text-decoration: none; font-size: 14px; font-weight: 500; display: flex; align-items: center">Agregar</a>
-</li>
-
-</ul>
-</div>
-</li>
-
-<li style="scroll-snap-align: start; width: 340px; flex: 0 0 340px; background: #F6F1E8; color: #252A26; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column">
-<div style="position: relative"><img src="img/cena-romantica.webp" alt="Cena a la luz de las velas" style="width: 100%; height: 220px; object-fit: cover; display: block"></div>
-<div style="padding: 24px; display: flex; flex-direction: column; gap: 16px; flex-grow: 1">
-<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: #5C5F58">Hora azul</span><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 24px; line-height: 30px; font-weight: 600; color: #344536">Cena a la luz de las velas</h3><p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">Platos especiales para una velada inolvidable. Y si tienes una pregunta importante, este es el momento.</p></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 24px; line-height: 30px; font-weight: 600; color: #344536">Cena a la luz de las velas</h3><p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">Platos especiales para una velada inolvidable. Y si tienes una pregunta importante, este es el momento.</p></div>
 <ul style="margin: auto 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; border-top: 1px solid #D7C4A5">
 
 <li style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid #D7C4A5">
@@ -232,9 +242,9 @@ details[open] .faq-plus{transform:rotate(45deg)}
 </li>
 
 <li style="scroll-snap-align: start; width: 340px; flex: 0 0 340px; background: #F6F1E8; color: #252A26; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column">
-<div style="position: relative"><img src="img/zona-fogatas-640.webp" alt="Fuego y estrellas" style="width: 100%; height: 220px; object-fit: cover; display: block"></div>
+<div style="position: relative"><img src="img/experiencias/fogata.webp" alt="Fuego y estrellas" style="width: 100%; height: 220px; object-fit: cover; display: block"></div>
 <div style="padding: 24px; display: flex; flex-direction: column; gap: 16px; flex-grow: 1">
-<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: #5C5F58">Noche</span><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 24px; line-height: 30px; font-weight: 600; color: #344536">Fuego y estrellas</h3><p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">Fogata al aire libre, conversación y cielo abierto.</p></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 24px; line-height: 30px; font-weight: 600; color: #344536">Fuego y estrellas</h3><p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">Fogata al aire libre, conversación y cielo abierto.</p></div>
 <ul style="margin: auto 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; border-top: 1px solid #D7C4A5">
 
 <li style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid #D7C4A5">
@@ -252,9 +262,9 @@ details[open] .faq-plus{transform:rotate(45deg)}
 </li>
 
 <li style="scroll-snap-align: start; width: 340px; flex: 0 0 340px; background: #F6F1E8; color: #252A26; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column">
-<div style="position: relative"><img src="img/mirador-siatala-543.webp" alt="Aves entre la niebla" style="width: 100%; height: 220px; object-fit: cover; display: block"></div>
+<div style="position: relative"><img src="img/experiencias/birding.webp" alt="Aves entre la niebla" style="width: 100%; height: 220px; object-fit: cover; display: block"></div>
 <div style="padding: 24px; display: flex; flex-direction: column; gap: 16px; flex-grow: 1">
-<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: #5C5F58">Amanecer</span><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 24px; line-height: 30px; font-weight: 600; color: #344536">Aves entre la niebla</h3><p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">Madrugar vale la pena: la montaña se despierta con cantos.</p></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 24px; line-height: 30px; font-weight: 600; color: #344536">Aves entre la niebla</h3><p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">Madrugar vale la pena: la montaña se despierta con cantos.</p></div>
 <ul style="margin: auto 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; border-top: 1px solid #D7C4A5">
 
 <li style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid #D7C4A5">
@@ -267,9 +277,9 @@ details[open] .faq-plus{transform:rotate(45deg)}
 </li>
 
 <li style="scroll-snap-align: start; width: 340px; flex: 0 0 340px; background: #F6F1E8; color: #252A26; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column">
-<div style="position: relative"><img src="img/desayuno-vista.webp" alt="Desayuno y camino" style="width: 100%; height: 220px; object-fit: cover; display: block"></div>
+<div style="position: relative"><img src="img/experiencias/desayuno-camino.webp" alt="Desayuno y camino" style="width: 100%; height: 220px; object-fit: cover; display: block"></div>
 <div style="padding: 24px; display: flex; flex-direction: column; gap: 16px; flex-grow: 1">
-<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: #5C5F58">Mañana · hasta 12:00 m</span><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 24px; line-height: 30px; font-weight: 600; color: #344536">Desayuno y camino</h3><p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">Desayuno incluido en tu terraza y, si quieres, a recorrer la montaña.</p></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 24px; line-height: 30px; font-weight: 600; color: #344536">Desayuno y camino</h3><p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">Desayuno incluido en tu terraza y, si quieres, a recorrer la montaña.</p></div>
 <ul style="margin: auto 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; border-top: 1px solid #D7C4A5">
 
 <li style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid #D7C4A5">
@@ -280,6 +290,21 @@ details[open] .faq-plus{transform:rotate(45deg)}
 <li style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid #D7C4A5">
 <span style="display: flex; flex-direction: column; gap: 2px"><b style="font-size: 15px; line-height: 20px">Cabalgata por la montaña</b><span style="font-size: 13px; line-height: 18px; color: #5C5F58">$ 130.000</span></span>
 <a href="https://wa.me/573222070120?text=%C2%A1Hola!%20Vengo%20del%20sitio%20web.%20Quisiera%20informaci%C3%B3n%20sobre%20Cabalgata%20por%20la%20monta%C3%B1a" target="_blank" rel="noopener" aria-label="Agregar Cabalgata por la montaña por WhatsApp" style="flex: 0 0 auto; padding: 8px 16px; min-height: 36px; border-radius: 999px; background: #344536; color: #F6F1E8; text-decoration: none; font-size: 14px; font-weight: 500; display: flex; align-items: center">Agregar</a>
+</li>
+
+</ul>
+</div>
+</li>
+
+<li style="scroll-snap-align: start; width: 340px; flex: 0 0 340px; background: #F6F1E8; color: #252A26; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column">
+<div style="position: relative"><img src="img/experiencias/picnic.webp" alt="Afuera, en la naturaleza" style="width: 100%; height: 220px; object-fit: cover; display: block"></div>
+<div style="padding: 24px; display: flex; flex-direction: column; gap: 16px; flex-grow: 1">
+<div style="display: flex; flex-direction: column; gap: 4px"><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 24px; line-height: 30px; font-weight: 600; color: #344536">Afuera, en la naturaleza</h3><p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">A media mañana, entre el desayuno y el almuerzo, un picnic al aire libre con la montaña de fondo.</p></div>
+<ul style="margin: auto 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; border-top: 1px solid #D7C4A5">
+
+<li style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid #D7C4A5">
+<span style="display: flex; flex-direction: column; gap: 2px"><b style="font-size: 15px; line-height: 20px">Picnic en la naturaleza</b><span style="font-size: 13px; line-height: 18px; color: #5C5F58">$ 60.000</span></span>
+<a href="https://wa.me/573222070120?text=%C2%A1Hola!%20Vengo%20del%20sitio%20web.%20Quisiera%20informaci%C3%B3n%20sobre%20Picnic%20en%20la%20naturaleza" target="_blank" rel="noopener" aria-label="Agregar Picnic en la naturaleza por WhatsApp" style="flex: 0 0 auto; padding: 8px 16px; min-height: 36px; border-radius: 999px; background: #344536; color: #F6F1E8; text-decoration: none; font-size: 14px; font-weight: 500; display: flex; align-items: center">Agregar</a>
 </li>
 
 </ul>
@@ -300,7 +325,7 @@ details[open] .faq-plus{transform:rotate(45deg)}
 </div>
 
 <div style="display: flex; flex-wrap: wrap; border: 2px solid #344536; border-radius: 12px; overflow: hidden; background: #FFFFFF">
-<img src="img/senderos-640.webp" alt="Sendero entre la montaña" style="flex: 1 1 320px; min-width: 0; min-height: 280px; object-fit: cover; display: block">
+<img src="img/precios/entre-semana.webp" alt="Sendero entre la montaña" style="flex: 1 1 320px; min-width: 0; min-height: 280px; object-fit: cover; display: block">
 <div style="flex: 2 1 480px; padding: 32px; display: flex; flex-direction: column; gap: 20px">
 <span style="align-self: flex-start; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: #A6533D">Entre semana · domingo a jueves</span>
 <h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 28px; line-height: 34px; font-weight: 600; color: #344536">El desayuno que nadie interrumpe</h3>
@@ -339,7 +364,7 @@ details[open] .faq-plus{transform:rotate(45deg)}
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; align-items: start">
 
 <article style="background: #FFFFFF; border: 1px solid #D7C4A5; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column">
-<img src="img/veterano-interior-640.webp" alt="Interior de un glamping con cama tendida" style="width: 100%; height: 160px; object-fit: cover; display: block">
+<img src="img/planes/plan-pareja.webp" alt="Interior de un glamping con cama tendida" style="width: 100%; height: 160px; object-fit: cover; display: block">
 <div style="padding: 20px 24px 24px; display: flex; flex-direction: column; gap: 12px">
 <div style="display: flex; flex-direction: column; gap: 4px"><h4 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 20px; line-height: 26px; font-weight: 600; color: #344536">Plan Pareja</h4><p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">Una escapada solo para ustedes.</p></div>
 
@@ -358,7 +383,7 @@ details[open] .faq-plus{transform:rotate(45deg)}
 </article>
 
 <article style="background: #FFFFFF; border: 1px solid #D7C4A5; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column">
-<img src="img/cena-mojarra.webp" alt="Cena con vino y copas decoradas en el glamping" style="width: 100%; height: 160px; object-fit: cover; display: block">
+<img src="img/planes/noche-romantica.webp" alt="Cena con vino y copas decoradas en el glamping" style="width: 100%; height: 160px; object-fit: cover; display: block">
 <div style="padding: 20px 24px 24px; display: flex; flex-direction: column; gap: 12px">
 <div style="display: flex; flex-direction: column; gap: 4px"><h4 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 20px; line-height: 26px; font-weight: 600; color: #344536">Noche romántica</h4><p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">Una noche pensada para ustedes dos.</p></div>
 
@@ -384,7 +409,7 @@ details[open] .faq-plus{transform:rotate(45deg)}
 </article>
 
 <article style="background: #FFFFFF; border: 1px solid #D7C4A5; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column">
-<img src="img/descanso.webp" alt="Masaje relajante" style="width: 100%; height: 160px; object-fit: cover; display: block">
+<img src="img/planes/descanso-profundo.webp" alt="Masaje relajante" style="width: 100%; height: 160px; object-fit: cover; display: block">
 <div style="padding: 20px 24px 24px; display: flex; flex-direction: column; gap: 12px">
 <div style="display: flex; flex-direction: column; gap: 4px"><h4 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 20px; line-height: 26px; font-weight: 600; color: #344536">Descanso profundo</h4><p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">Hay noches que no se planean, se disfrutan.</p></div>
 
@@ -433,14 +458,14 @@ details[open] .faq-plus{transform:rotate(45deg)}
 <a href="guia.html" style="display: flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 999px; border: 1px solid #344536; color: #344536; text-decoration: none; font-size: 15px; font-weight: 500">Ver la guía completa <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px">
-<article style="position: relative; display: flex; flex-direction: column; gap: 12px"><img src="img/mirador-siatala-543.webp" alt="Mirador Siatala" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px; display: block"><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 600; color: #344536">Mirador Siatala</h3><p style="margin: 0; font-size: 14px; color: #5C5F58">20 min en carro · Gama</p></article>
-<article style="position: relative; display: flex; flex-direction: column; gap: 12px"><img src="img/embalse-guavio-543.webp" alt="Embalse del Guavio" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px; display: block"><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 600; color: #344536">Embalse del Guavio</h3><p style="margin: 0; font-size: 14px; color: #5C5F58">50 min en carro · Gachalá</p></article>
+<article style="position: relative; display: flex; flex-direction: column; gap: 12px"><img src="img/explorar/mirador-siatala.webp" alt="Mirador Siatala" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px; display: block"><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 600; color: #344536">Mirador Siatala</h3><p style="margin: 0; font-size: 14px; color: #5C5F58">20 min en carro · Gama</p></article>
+<article style="position: relative; display: flex; flex-direction: column; gap: 12px"><img src="img/explorar/embalse-guavio.webp" alt="Embalse del Guavio" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px; display: block"><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 600; color: #344536">Embalse del Guavio</h3><p style="margin: 0; font-size: 14px; color: #5C5F58">50 min en carro · Gachalá</p></article>
 </div>
 </section>
 
 
-<section id="llegar" style="max-width: 1240px; margin: 0 auto; padding: 48px 24px; display: flex; flex-wrap: wrap; gap: 48px; align-items: center">
-<figure style="flex: 1 1 520px; min-width: 0; margin: 0; display: flex; flex-direction: column; gap: 8px">
+<section id="llegar" class="lk-llegar" style="max-width: 1240px; margin: 0 auto; padding: 48px 24px; display: flex; flex-wrap: wrap; gap: 48px; align-items: center">
+<figure class="lk-mapa" style="flex: 1 1 520px; min-width: 0; margin: 0; display: flex; flex-direction: column; gap: 8px">
 <svg role="img" aria-label="Esquema del trayecto: Bogotá, La Calera, Guasca, Gachetá, Gama y La Kumbre" viewBox="0 0 640 420" style="width: 100%; height: auto; display: block; border-radius: 12px; background: #344536">
 <g stroke="#D7C4A5" stroke-opacity="0.25" stroke-width="1" fill="none"><path d="M0 340 C120 310 200 360 320 320 S520 300 640 330"></path><path d="M0 280 C140 250 220 300 340 260 S540 230 640 260"></path><path d="M0 220 C150 190 240 230 360 200 S560 170 640 200"></path><path d="M0 160 C160 140 260 170 380 140 S580 110 640 140"></path></g>
 <path d="M0 420 L0 380 C140 350 260 390 400 360 S560 340 640 356 L640 420Z" fill="#D7C4A5" opacity="0.3"></path>
@@ -451,7 +476,7 @@ details[open] .faq-plus{transform:rotate(45deg)}
 <g font-family="Raleway, system-ui, sans-serif" font-size="14" font-weight="600" fill="#F6F1E8"><text x="80" y="372" text-anchor="middle">Bogotá</text><text x="190" y="322" text-anchor="middle">La Calera</text><text x="290" y="282" text-anchor="middle">Guasca</text><text x="400" y="222" text-anchor="middle">Gachetá</text><text x="472" y="150" text-anchor="middle">Gama</text><text x="548" y="50" text-anchor="middle">La Kumbre</text></g>
 <g font-family="Raleway, system-ui, sans-serif" font-size="13" fill="#D7C4A5"><text x="32" y="48">Unas 3 horas, según tráfico y clima</text><text x="580" y="116" text-anchor="middle">Km 1</text></g>
 </svg>
-<figcaption style="display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 14px; line-height: 20px; color: #5C5F58"><span>Esquema ilustrativo, no a escala.</span><span>Km 1 vía La Meseta, Gama</span></figcaption>
+<figcaption style="display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 14px; line-height: 20px; color: #5C5F58"><span>Km 1 vía La Meseta, Gama</span></figcaption>
 </figure>
 <div style="flex: 1 1 400px; min-width: 0; display: flex; flex-direction: column; gap: 32px">
 <div style="display: flex; flex-direction: column; gap: 8px">
@@ -461,7 +486,7 @@ details[open] .faq-plus{transform:rotate(45deg)}
 </div>
 <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 24px">
 <li style="display: flex; gap: 16px"><span style="flex: 0 0 40px; height: 40px; border-radius: 999px; border: 1px solid #344536; color: #344536; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', Georgia, serif; font-size: 18px">1</span><span style="display: flex; flex-direction: column; gap: 4px"><b style="font-size: 16px">Bogotá → La Calera → Guasca → Gachetá → Gama</b><span style="font-size: 14px; line-height: 20px; color: #5C5F58">Unas 3 horas, según tráfico y clima.</span></span></li>
-<li style="display: flex; gap: 16px"><span style="flex: 0 0 40px; height: 40px; border-radius: 999px; border: 1px solid #344536; color: #344536; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', Georgia, serif; font-size: 18px">2</span><span style="display: flex; flex-direction: column; gap: 4px"><b style="font-size: 16px">Gama → La Kumbre</b><span style="font-size: 14px; line-height: 20px; color: #5C5F58">Km 1 de la vía a La Meseta, por el Monasterio de La Candelaria. Vía pavimentada, de tráfico medio, con algunos defectos en el recorrido.</span></span></li>
+<li style="display: flex; gap: 16px"><span style="flex: 0 0 40px; height: 40px; border-radius: 999px; border: 1px solid #344536; color: #344536; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', Georgia, serif; font-size: 18px">2</span><span style="display: flex; flex-direction: column; gap: 4px"><b style="font-size: 16px">Gama → La Kumbre</b><span style="font-size: 14px; line-height: 20px; color: #5C5F58">Km 1 de la vía a La Meseta. Vía destapada y de tráfico bajo.</span></span></li>
 <li style="display: flex; gap: 16px"><span style="flex: 0 0 40px; height: 40px; border-radius: 999px; border: 1px solid #344536; color: #344536; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', Georgia, serif; font-size: 18px">3</span><span style="display: flex; flex-direction: column; gap: 4px"><b style="font-size: 16px">Parqueadero y llegada</b><span style="font-size: 14px; line-height: 20px; color: #5C5F58">Parqueadero con monitoreo, cerca de los glampings. Te recibimos ahí. La Piedra tiene una subida a pie de 130 m.</span></span></li>
 </ol>
 <div style="display: flex; gap: 12px; flex-wrap: wrap">
@@ -490,24 +515,24 @@ details[open] .faq-plus{transform:rotate(45deg)}
 <figure style="margin: 0; padding: 24px; border-top: 1px solid #D7C4A5; display: flex; flex-direction: column; gap: 16px"><span aria-hidden="true" style="font-family: 'Playfair Display', Georgia, serif; font-size: 56px; line-height: 32px; color: #D7C4A5">“</span><blockquote style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: 18px; line-height: 28px">El lugar es simplemente maravilloso, lo recomiendo 100%. Se ha convertido en mi lugar favorito.</blockquote><figcaption style="font-size: 14px; color: #5C5F58"><b style="color: #252A26">Rafael</b>, Bogotá</figcaption></figure>
 </div>
 <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap">
-<a href="https://es-l.airbnb.com/rooms/625951668159277666" target="_blank" rel="noopener" style="padding: 12px 24px; border-radius: 999px; border: 1px solid #344536; color: #344536; text-decoration: none; font-size: 15px; font-weight: 500">Reseñas en Airbnb</a>
-<a href="https://www.booking.com/hotel/co/glamping-con-vista-a-las-montanas-la-kumbre-gama.es.html" target="_blank" rel="noopener" style="padding: 12px 24px; border-radius: 999px; border: 1px solid #344536; color: #344536; text-decoration: none; font-size: 15px; font-weight: 500">Reseñas en Booking</a>
-<a href="https://share.google/OUoYTMzpTiCMUzrWc" target="_blank" rel="noopener" style="padding: 12px 24px; border-radius: 999px; border: 1px solid #344536; color: #344536; text-decoration: none; font-size: 15px; font-weight: 500">Reseñas en Google</a>
+<a href="https://es-l.airbnb.com/rooms/625951668159277666" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 10px; padding: 10px 22px; min-height: 44px; box-sizing: border-box; border-radius: 999px; border: 1px solid #344536; color: #344536; text-decoration: none; font-size: 15px; font-weight: 500"><img src="img/logos/airbnb.svg" alt="" width="22" height="22" style="display: block; width: 22px; height: 22px">Reseñas en Airbnb</a>
+<a href="https://www.booking.com/hotel/co/glamping-con-vista-a-las-montanas-la-kumbre-gama.es.html" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 10px; padding: 10px 22px; min-height: 44px; box-sizing: border-box; border-radius: 999px; border: 1px solid #344536; color: #344536; text-decoration: none; font-size: 15px; font-weight: 500"><img src="img/logos/booking.svg" alt="" width="22" height="22" style="display: block; width: 22px; height: 22px">Reseñas en Booking</a>
+<a href="https://share.google/OUoYTMzpTiCMUzrWc" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 10px; padding: 10px 22px; min-height: 44px; box-sizing: border-box; border-radius: 999px; border: 1px solid #344536; color: #344536; text-decoration: none; font-size: 15px; font-weight: 500"><img src="img/logos/google.svg" alt="" width="22" height="22" style="display: block; width: 22px; height: 22px">Reseñas en Google</a>
 </div>
 </section>
 
 
-<section id="preguntas" style="max-width: 880px; margin: 0 auto; padding: 48px 24px 96px; display: flex; flex-direction: column; gap: 24px">
+<section id="preguntas" style="max-width: 1160px; margin: 0 auto; padding: 40px 24px 72px; display: flex; flex-direction: column; gap: 20px">
 <div style="display: flex; flex-direction: column; gap: 8px">
 <p style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: #5C5F58">Preguntas</p>
 <h2 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 32px; line-height: 38px; font-weight: 600; color: #344536">Antes de decidir</h2>
 <p style="margin: 0; font-size: 16px; line-height: 24px; color: #5C5F58">Si algo no está aquí, escríbenos y te respondemos con tus fechas.</p>
 </div>
-<div style="border-top: 1px solid #D7C4A5">
+<div class="lk-faq" style="border-top: 1px solid #D7C4A5">
 
 <details style="border-bottom: 1px solid #D7C4A5"><summary style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; font-family: 'Playfair Display', Georgia, serif; font-size: 18px; line-height: 26px; font-weight: 600; color: #344536">¿Cuánto cuesta?<span class="faq-plus" aria-hidden="true" style="font-family: Raleway, sans-serif; font-size: 24px; font-weight: 400; transition: transform .2s">+</span></summary><p style="margin: 0 0 20px; font-size: 16px; line-height: 24px">Los planes en pareja cuestan $ 260.000 (Plan Pareja), $ 320.000 (Noche romántica) y $ 380.000 (Descanso profundo), la noche para dos con desayuno. Si vienes solo o a trabajar, de domingo a jueves la noche va desde $ 100.000, según cuántas noches te quedes. Para reservar, abono desde $ 70.000.</p></details>
 
-<details style="border-bottom: 1px solid #D7C4A5"><summary style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; font-family: 'Playfair Display', Georgia, serif; font-size: 18px; line-height: 26px; font-weight: 600; color: #344536">¿A cuánto queda de Bogotá?<span class="faq-plus" aria-hidden="true" style="font-family: Raleway, sans-serif; font-size: 24px; font-weight: 400; transition: transform .2s">+</span></summary><p style="margin: 0 0 20px; font-size: 16px; line-height: 24px">A unas 3 horas en carro, según tráfico y clima. Sales por La Calera y sigues por Guasca y Gachetá hasta Gama. La Kumbre está en el km 1 de la vía a La Meseta. La vía es pavimentada, de tráfico medio, con algunos defectos en el recorrido.</p></details>
+<details style="border-bottom: 1px solid #D7C4A5"><summary style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; font-family: 'Playfair Display', Georgia, serif; font-size: 18px; line-height: 26px; font-weight: 600; color: #344536">¿A cuánto queda de Bogotá?<span class="faq-plus" aria-hidden="true" style="font-family: Raleway, sans-serif; font-size: 24px; font-weight: 400; transition: transform .2s">+</span></summary><p style="margin: 0 0 20px; font-size: 16px; line-height: 24px">A unas 3 horas en carro, según tráfico y clima. Sales por La Calera y sigues por Guasca y Gachetá hasta Gama. La Kumbre está en el km 1 de la vía a La Meseta, una vía destapada y de tráfico bajo.</p></details>
 
 <details style="border-bottom: 1px solid #D7C4A5"><summary style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; font-family: 'Playfair Display', Georgia, serif; font-size: 18px; line-height: 26px; font-weight: 600; color: #344536">¿Qué incluye la noche?<span class="faq-plus" aria-hidden="true" style="font-family: Raleway, sans-serif; font-size: 24px; font-weight: 400; transition: transform .2s">+</span></summary><p style="margin: 0 0 20px; font-size: 16px; line-height: 24px">Desayuno, baño privado, cama king y sofá cama, ropa de cama y duvet, cocineta, minibar, calefactor, WiFi y parqueadero. Las zonas de fogata, BBQ, malla catamarán y senderos son para todos los huéspedes.</p></details>
 
@@ -545,7 +570,7 @@ details[open] .faq-plus{transform:rotate(45deg)}
 
 <footer style="background: #D7C4A5; color: #252A26">
 <div style="max-width: 1240px; margin: 0 auto; padding: 32px 24px 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; font-size: 14px; line-height: 22px">
-<div style="display: flex; flex-direction: column; gap: 12px"><img src="img/logo-bosque-v2.svg" alt="La Kumbre" style="height: 44px; width: auto; align-self: flex-start"><p style="margin: 0">Glampings de montaña en Gama, Cundinamarca. Km 1 vía La Meseta, Monasterio de La Candelaria.</p></div>
+<div style="display: flex; flex-direction: column; gap: 12px"><img src="img/logo-bosque-v2.svg" alt="La Kumbre" style="height: 44px; width: auto; align-self: flex-start"><p style="margin: 0">Glampings de montaña en Gama, Cundinamarca. Km 1 vía La Meseta.</p></div>
 <div><p style="margin: 0 0 8px; font-size: 12px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase">Explora</p><ul style="margin: 0; padding: 0; list-style: none"><li><a href="#glampings">Glampings</a></li><li><a href="#un-dia">Un día en La Kumbre</a></li><li><a href="#precios">Precios</a></li><li><a href="carta.html">Carta</a></li><li><a href="guia.html">Guía para explorar</a></li></ul></div>
 <div><p style="margin: 0 0 8px; font-size: 12px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase">Contacto</p><ul style="margin: 0; padding: 0; list-style: none"><li><a href="https://wa.me/573222070120">WhatsApp (+57) 322 207 0120</a></li><li><a href="mailto:glampingLaKumbre@gmail.com">glampingLaKumbre@gmail.com</a></li><li><a href="https://www.instagram.com/glamping.la.kumbre">Instagram @glamping.la.kumbre</a></li><li><a href="https://www.tiktok.com/@glampinglakumbre">TikTok @glampinglakumbre</a></li></ul></div>
 <div><p style="margin: 0 0 8px; font-size: 12px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase">Legal</p><ul style="margin: 0; padding: 0; list-style: none"><li>RNT No. 150017</li><li><a href="#preguntas">Política de cancelación</a></li></ul></div>
@@ -572,7 +597,7 @@ details[open] .faq-plus{transform:rotate(45deg)}
 <header style="position: sticky; top: 0; z-index: 30; background: #344536; border-bottom: 1px solid rgba(215,196,165,0.25)">
 <div style="max-width: 1240px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
 <a href="#top" aria-label="La Kumbre, inicio" style="display: flex; align-items: center; background: #F6F1E8; border-radius: 6px; padding: 6px 14px"><img src="img/logo-bosque-v2.svg" alt="La Kumbre" style="height: 36px; width: auto; display: block"></a>
-<nav aria-label="Principal" style="display: flex; flex-wrap: wrap; gap: 28px; font-size: 15px; font-weight: 500">
+<nav class="lk-nav" aria-label="Principal" style="display: flex; flex-wrap: wrap; gap: 28px; font-size: 15px; font-weight: 500">
 <a href="#glampings" style="color: #F6F1E8; text-decoration: none">Glampings</a>
 <a href="#un-dia" style="color: #F6F1E8; text-decoration: none">Un día</a>
 <a href="#precios" style="color: #F6F1E8; text-decoration: none">Precios</a>
@@ -581,7 +606,8 @@ details[open] .faq-plus{transform:rotate(45deg)}
 <a href="#llegar" style="color: #F6F1E8; text-decoration: none">Cómo llegar</a>
 <a href="#preguntas" style="color: #F6F1E8; text-decoration: none">Preguntas</a>
 </nav>
-<button type="button" onClick="{{abrir}}" style="font-family: Raleway, sans-serif; font-size: 15px; line-height: 20px; font-weight: 500; color: #344536; background: #F6F1E8; border: 0; border-radius: 999px; padding: 12px 24px; min-height: 44px; cursor: pointer; display: flex; align-items: center; gap: 8px">Reservar <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+<button type="button" class="lk-reservar" onClick="{{abrir}}" style="font-family: Raleway, sans-serif; font-size: 15px; line-height: 20px; font-weight: 500; color: #344536; background: #F6F1E8; border: 0; border-radius: 999px; padding: 12px 24px; min-height: 44px; cursor: pointer; display: flex; align-items: center; gap: 8px">Reservar <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+<details class="lk-menu"><summary aria-label="Menú"><svg class="lk-bars" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg><svg class="lk-x" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg></summary><nav class="lk-panel" aria-label="Menú de secciones"><a href="#glampings">Glampings</a><a href="#un-dia">Un día</a><a href="#precios">Precios</a><a href="carta.html">Carta</a><a href="guia.html">Explorar</a><a href="#llegar">Cómo llegar</a><a href="#preguntas">Preguntas</a></nav></details>
 </div>
 </header>
 
@@ -639,8 +665,8 @@ details[open] .faq-plus{transform:rotate(45deg)}
 </div>
 </div>
 <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
-<img src="img/veterano-interior-640.webp" alt="Interior de El Veterano con cama tendida y duvet" style="width: 100%; height: 420px; object-fit: cover; border-radius: 12px; display: block">
-<img src="img/colorado-desayuno-640.webp" alt="Desayuno servido en El Colorado" style="width: 100%; height: 420px; object-fit: cover; border-radius: 12px; display: block; margin-top: 48px">
+<img src="img/alojamiento/interior-veterano.webp" alt="Interior de El Veterano con cama tendida y duvet" style="width: 100%; height: 420px; object-fit: cover; border-radius: 12px; display: block">
+<img src="img/alojamiento/desayuno-colorado.webp" alt="Desayuno servido en El Colorado" style="width: 100%; height: 420px; object-fit: cover; border-radius: 12px; display: block; margin-top: 48px">
 </div>
 </div>
 <div style="display: flex; flex-direction: column; gap: 24px; padding-top: 48px; border-top: 1px solid #D7C4A5">
@@ -666,13 +692,13 @@ details[open] .faq-plus{transform:rotate(45deg)}
 </div>
 <p style="margin: 0; display: flex; align-items: center; gap: 12px; padding: 12px 12px 12px 22px; border-radius: 999px; background: #344536; color: #F6F1E8; font-size: 16px; line-height: 22px; font-weight: 600">Desliza para ver el día completo <span aria-hidden="true" style="width: 36px; height: 36px; border-radius: 999px; background: #F6F1E8; color: #344536; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></p>
 </div>
-<div data-keep-scroll style="margin-top: 40px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 24px 16px">
+<div data-keep-scroll style="margin-top: 40px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 24px; padding: 0 24px 16px">
 <ol style="margin: 0 auto; padding: 0; list-style: none; display: flex; gap: 20px; width: max-content; max-width: none">
 <sc-for list="{{momentos}}" as="m" hint-placeholder-count="6">
 <li style="scroll-snap-align: start; width: 340px; flex: 0 0 340px; background: #F6F1E8; color: #252A26; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column">
 <div style="position: relative"><img src="{{m.img}}" alt="{{m.titulo}}" style="width: 100%; height: 220px; object-fit: cover; display: block"></div>
 <div style="padding: 24px; display: flex; flex-direction: column; gap: 16px; flex-grow: 1">
-<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: #5C5F58">{{m.hora}}</span><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 24px; line-height: 30px; font-weight: 600; color: #344536">{{m.titulo}}</h3><p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">{{m.desc}}</p></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 24px; line-height: 30px; font-weight: 600; color: #344536">{{m.titulo}}</h3><p style="margin: 0; font-size: 14px; line-height: 20px; color: #5C5F58">{{m.desc}}</p></div>
 <ul style="margin: auto 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; border-top: 1px solid #D7C4A5">
 <sc-for list="{{m.exps}}" as="e" hint-placeholder-count="2">
 <li style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid #D7C4A5">
@@ -698,7 +724,7 @@ details[open] .faq-plus{transform:rotate(45deg)}
 </div>
 <!-- Destacado entre semana -->
 <div style="display: flex; flex-wrap: wrap; border: 2px solid #344536; border-radius: 12px; overflow: hidden; background: #FFFFFF">
-<img src="img/senderos-640.webp" alt="Sendero entre la montaña" style="flex: 1 1 320px; min-width: 0; min-height: 280px; object-fit: cover; display: block">
+<img src="img/precios/entre-semana.webp" alt="Sendero entre la montaña" style="flex: 1 1 320px; min-width: 0; min-height: 280px; object-fit: cover; display: block">
 <div style="flex: 2 1 480px; padding: 32px; display: flex; flex-direction: column; gap: 20px">
 <span style="align-self: flex-start; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: #A6533D">Entre semana · domingo a jueves</span>
 <h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 28px; line-height: 34px; font-weight: 600; color: #344536">El desayuno que nadie interrumpe</h3>
@@ -778,14 +804,14 @@ details[open] .faq-plus{transform:rotate(45deg)}
 <a href="guia.html" style="display: flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 999px; border: 1px solid #344536; color: #344536; text-decoration: none; font-size: 15px; font-weight: 500">Ver la guía completa <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px">
-<article style="position: relative; display: flex; flex-direction: column; gap: 12px"><img src="img/mirador-siatala-543.webp" alt="Mirador Siatala" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px; display: block"><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 600; color: #344536">Mirador Siatala</h3><p style="margin: 0; font-size: 14px; color: #5C5F58">20 min en carro · Gama</p></article>
-<article style="position: relative; display: flex; flex-direction: column; gap: 12px"><img src="img/embalse-guavio-543.webp" alt="Embalse del Guavio" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px; display: block"><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 600; color: #344536">Embalse del Guavio</h3><p style="margin: 0; font-size: 14px; color: #5C5F58">50 min en carro · Gachalá</p></article>
+<article style="position: relative; display: flex; flex-direction: column; gap: 12px"><img src="img/explorar/mirador-siatala.webp" alt="Mirador Siatala" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px; display: block"><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 600; color: #344536">Mirador Siatala</h3><p style="margin: 0; font-size: 14px; color: #5C5F58">20 min en carro · Gama</p></article>
+<article style="position: relative; display: flex; flex-direction: column; gap: 12px"><img src="img/explorar/embalse-guavio.webp" alt="Embalse del Guavio" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px; display: block"><h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 600; color: #344536">Embalse del Guavio</h3><p style="margin: 0; font-size: 14px; color: #5C5F58">50 min en carro · Gachalá</p></article>
 </div>
 </section>
 
 <!-- 5. EL CAMINO -->
-<section id="llegar" style="max-width: 1240px; margin: 0 auto; padding: 48px 24px; display: flex; flex-wrap: wrap; gap: 48px; align-items: center">
-<figure style="flex: 1 1 520px; min-width: 0; margin: 0; display: flex; flex-direction: column; gap: 8px">
+<section id="llegar" class="lk-llegar" style="max-width: 1240px; margin: 0 auto; padding: 48px 24px; display: flex; flex-wrap: wrap; gap: 48px; align-items: center">
+<figure class="lk-mapa" style="flex: 1 1 520px; min-width: 0; margin: 0; display: flex; flex-direction: column; gap: 8px">
 <svg role="img" aria-label="Esquema del trayecto: Bogotá, La Calera, Guasca, Gachetá, Gama y La Kumbre" viewBox="0 0 640 420" style="width: 100%; height: auto; display: block; border-radius: 12px; background: #344536">
 <g stroke="#D7C4A5" stroke-opacity="0.25" stroke-width="1" fill="none"><path d="M0 340 C120 310 200 360 320 320 S520 300 640 330"></path><path d="M0 280 C140 250 220 300 340 260 S540 230 640 260"></path><path d="M0 220 C150 190 240 230 360 200 S560 170 640 200"></path><path d="M0 160 C160 140 260 170 380 140 S580 110 640 140"></path></g>
 <path d="M0 420 L0 380 C140 350 260 390 400 360 S560 340 640 356 L640 420Z" fill="#D7C4A5" opacity="0.3"></path>
@@ -796,7 +822,7 @@ details[open] .faq-plus{transform:rotate(45deg)}
 <g font-family="Raleway, system-ui, sans-serif" font-size="14" font-weight="600" fill="#F6F1E8"><text x="80" y="372" text-anchor="middle">Bogotá</text><text x="190" y="322" text-anchor="middle">La Calera</text><text x="290" y="282" text-anchor="middle">Guasca</text><text x="400" y="222" text-anchor="middle">Gachetá</text><text x="472" y="150" text-anchor="middle">Gama</text><text x="548" y="50" text-anchor="middle">La Kumbre</text></g>
 <g font-family="Raleway, system-ui, sans-serif" font-size="13" fill="#D7C4A5"><text x="32" y="48">Unas 3 horas, según tráfico y clima</text><text x="580" y="116" text-anchor="middle">Km 1</text></g>
 </svg>
-<figcaption style="display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 14px; line-height: 20px; color: #5C5F58"><span>Esquema ilustrativo, no a escala.</span><span>Km 1 vía La Meseta, Gama</span></figcaption>
+<figcaption style="display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 14px; line-height: 20px; color: #5C5F58"><span>Km 1 vía La Meseta, Gama</span></figcaption>
 </figure>
 <div style="flex: 1 1 400px; min-width: 0; display: flex; flex-direction: column; gap: 32px">
 <div style="display: flex; flex-direction: column; gap: 8px">
@@ -806,7 +832,7 @@ details[open] .faq-plus{transform:rotate(45deg)}
 </div>
 <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 24px">
 <li style="display: flex; gap: 16px"><span style="flex: 0 0 40px; height: 40px; border-radius: 999px; border: 1px solid #344536; color: #344536; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', Georgia, serif; font-size: 18px">1</span><span style="display: flex; flex-direction: column; gap: 4px"><b style="font-size: 16px">Bogotá → La Calera → Guasca → Gachetá → Gama</b><span style="font-size: 14px; line-height: 20px; color: #5C5F58">Unas 3 horas, según tráfico y clima.</span></span></li>
-<li style="display: flex; gap: 16px"><span style="flex: 0 0 40px; height: 40px; border-radius: 999px; border: 1px solid #344536; color: #344536; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', Georgia, serif; font-size: 18px">2</span><span style="display: flex; flex-direction: column; gap: 4px"><b style="font-size: 16px">Gama → La Kumbre</b><span style="font-size: 14px; line-height: 20px; color: #5C5F58">Km 1 de la vía a La Meseta, por el Monasterio de La Candelaria. Vía pavimentada, de tráfico medio, con algunos defectos en el recorrido.</span></span></li>
+<li style="display: flex; gap: 16px"><span style="flex: 0 0 40px; height: 40px; border-radius: 999px; border: 1px solid #344536; color: #344536; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', Georgia, serif; font-size: 18px">2</span><span style="display: flex; flex-direction: column; gap: 4px"><b style="font-size: 16px">Gama → La Kumbre</b><span style="font-size: 14px; line-height: 20px; color: #5C5F58">Km 1 de la vía a La Meseta. Vía destapada y de tráfico bajo.</span></span></li>
 <li style="display: flex; gap: 16px"><span style="flex: 0 0 40px; height: 40px; border-radius: 999px; border: 1px solid #344536; color: #344536; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', Georgia, serif; font-size: 18px">3</span><span style="display: flex; flex-direction: column; gap: 4px"><b style="font-size: 16px">Parqueadero y llegada</b><span style="font-size: 14px; line-height: 20px; color: #5C5F58">Parqueadero con monitoreo, cerca de los glampings. Te recibimos ahí. La Piedra tiene una subida a pie de 130 m.</span></span></li>
 </ol>
 <div style="display: flex; gap: 12px; flex-wrap: wrap">
@@ -835,20 +861,20 @@ details[open] .faq-plus{transform:rotate(45deg)}
 <figure style="margin: 0; padding: 24px; border-top: 1px solid #D7C4A5; display: flex; flex-direction: column; gap: 16px"><span aria-hidden="true" style="font-family: 'Playfair Display', Georgia, serif; font-size: 56px; line-height: 32px; color: #D7C4A5">“</span><blockquote style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: 18px; line-height: 28px">El lugar es simplemente maravilloso, lo recomiendo 100%. Se ha convertido en mi lugar favorito.</blockquote><figcaption style="font-size: 14px; color: #5C5F58"><b style="color: #252A26">Rafael</b>, Bogotá</figcaption></figure>
 </div>
 <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap">
-<a href="https://es-l.airbnb.com/rooms/625951668159277666" target="_blank" rel="noopener" style="padding: 12px 24px; border-radius: 999px; border: 1px solid #344536; color: #344536; text-decoration: none; font-size: 15px; font-weight: 500">Reseñas en Airbnb</a>
-<a href="https://www.booking.com/hotel/co/glamping-con-vista-a-las-montanas-la-kumbre-gama.es.html" target="_blank" rel="noopener" style="padding: 12px 24px; border-radius: 999px; border: 1px solid #344536; color: #344536; text-decoration: none; font-size: 15px; font-weight: 500">Reseñas en Booking</a>
-<a href="https://share.google/OUoYTMzpTiCMUzrWc" target="_blank" rel="noopener" style="padding: 12px 24px; border-radius: 999px; border: 1px solid #344536; color: #344536; text-decoration: none; font-size: 15px; font-weight: 500">Reseñas en Google</a>
+<a href="https://es-l.airbnb.com/rooms/625951668159277666" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 10px; padding: 10px 22px; min-height: 44px; box-sizing: border-box; border-radius: 999px; border: 1px solid #344536; color: #344536; text-decoration: none; font-size: 15px; font-weight: 500"><img src="img/logos/airbnb.svg" alt="" width="22" height="22" style="display: block; width: 22px; height: 22px">Reseñas en Airbnb</a>
+<a href="https://www.booking.com/hotel/co/glamping-con-vista-a-las-montanas-la-kumbre-gama.es.html" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 10px; padding: 10px 22px; min-height: 44px; box-sizing: border-box; border-radius: 999px; border: 1px solid #344536; color: #344536; text-decoration: none; font-size: 15px; font-weight: 500"><img src="img/logos/booking.svg" alt="" width="22" height="22" style="display: block; width: 22px; height: 22px">Reseñas en Booking</a>
+<a href="https://share.google/OUoYTMzpTiCMUzrWc" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 10px; padding: 10px 22px; min-height: 44px; box-sizing: border-box; border-radius: 999px; border: 1px solid #344536; color: #344536; text-decoration: none; font-size: 15px; font-weight: 500"><img src="img/logos/google.svg" alt="" width="22" height="22" style="display: block; width: 22px; height: 22px">Reseñas en Google</a>
 </div>
 </section>
 
 <!-- 7. PREGUNTAS -->
-<section id="preguntas" style="max-width: 880px; margin: 0 auto; padding: 48px 24px 96px; display: flex; flex-direction: column; gap: 24px">
+<section id="preguntas" style="max-width: 1160px; margin: 0 auto; padding: 40px 24px 72px; display: flex; flex-direction: column; gap: 20px">
 <div style="display: flex; flex-direction: column; gap: 8px">
 <p style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: #5C5F58">Preguntas</p>
 <h2 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 32px; line-height: 38px; font-weight: 600; color: #344536">Antes de decidir</h2>
 <p style="margin: 0; font-size: 16px; line-height: 24px; color: #5C5F58">Si algo no está aquí, escríbenos y te respondemos con tus fechas.</p>
 </div>
-<div style="border-top: 1px solid #D7C4A5">
+<div class="lk-faq" style="border-top: 1px solid #D7C4A5">
 <sc-for list="{{faqs}}" as="f" hint-placeholder-count="7">
 <details style="border-bottom: 1px solid #D7C4A5"><summary style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; font-family: 'Playfair Display', Georgia, serif; font-size: 18px; line-height: 26px; font-weight: 600; color: #344536">{{f.q}}<span class="faq-plus" aria-hidden="true" style="font-family: Raleway, sans-serif; font-size: 24px; font-weight: 400; transition: transform .2s">+</span></summary><p style="margin: 0 0 20px; font-size: 16px; line-height: 24px">{{f.a}}</p></details>
 </sc-for>
@@ -872,7 +898,7 @@ details[open] .faq-plus{transform:rotate(45deg)}
 <!-- Pie -->
 <footer style="background: #D7C4A5; color: #252A26">
 <div style="max-width: 1240px; margin: 0 auto; padding: 32px 24px 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; font-size: 14px; line-height: 22px">
-<div style="display: flex; flex-direction: column; gap: 12px"><img src="img/logo-bosque-v2.svg" alt="La Kumbre" style="height: 44px; width: auto; align-self: flex-start"><p style="margin: 0">Glampings de montaña en Gama, Cundinamarca. Km 1 vía La Meseta, Monasterio de La Candelaria.</p></div>
+<div style="display: flex; flex-direction: column; gap: 12px"><img src="img/logo-bosque-v2.svg" alt="La Kumbre" style="height: 44px; width: auto; align-self: flex-start"><p style="margin: 0">Glampings de montaña en Gama, Cundinamarca. Km 1 vía La Meseta.</p></div>
 <div><p style="margin: 0 0 8px; font-size: 12px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase">Explora</p><ul style="margin: 0; padding: 0; list-style: none"><li><a href="#glampings">Glampings</a></li><li><a href="#un-dia">Un día en La Kumbre</a></li><li><a href="#precios">Precios</a></li><li><a href="carta.html">Carta</a></li><li><a href="guia.html">Guía para explorar</a></li></ul></div>
 <div><p style="margin: 0 0 8px; font-size: 12px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase">Contacto</p><ul style="margin: 0; padding: 0; list-style: none"><li><a href="https://wa.me/573222070120">WhatsApp (+57) 322 207 0120</a></li><li><a href="mailto:glampingLaKumbre@gmail.com">glampingLaKumbre@gmail.com</a></li><li><a href="https://www.instagram.com/glamping.la.kumbre">Instagram @glamping.la.kumbre</a></li><li><a href="https://www.tiktok.com/@glampinglakumbre">TikTok @glampinglakumbre</a></li></ul></div>
 <div><p style="margin: 0 0 8px; font-size: 12px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase">Legal</p><ul style="margin: 0; padding: 0; list-style: none"><li>RNT No. 150017</li><li><a href="#preguntas">Política de cancelación</a></li></ul></div>
@@ -910,9 +936,8 @@ details[open] .faq-plus{transform:rotate(45deg)}
 <sc-if value="{{det}}" hint-placeholder-val="{{ false }}">
 <div onClick="{{cerrarDet}}" style="position: fixed; inset: 0; z-index: 60; background: rgba(37,42,38,0.7); display: flex; align-items: center; justify-content: center; padding: 16px">
 <div role="dialog" aria-modal="true" aria-labelledby="det-t" onClick="{{stop}}" style="width: 100%; max-width: 920px; max-height: calc(100vh - 32px); overflow-y: auto; background: #F6F1E8; border-radius: 12px; box-shadow: 0 24px 64px rgba(37,42,38,0.35)">
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 8px; padding: 8px">
-<img src="{{det.img1}}" alt="{{det.name}}, exterior" style="width: 100%; height: 320px; object-fit: cover; border-radius: 6px; display: block">
-<img src="{{det.img2}}" alt="{{det.name}}, detalle" style="width: 100%; height: 320px; object-fit: cover; border-radius: 6px; display: block">
+<div style="display: flex; gap: 8px; padding: 8px; overflow-x: auto; scroll-snap-type: x mandatory">
+<sc-for list="{{det.fotos}}" as="f" hint-placeholder-count="6"><img src="{{f.src}}" alt="{{f.alt}}" loading="lazy" style="flex: 0 0 auto; width: min(78%, 340px); aspect-ratio: 4 / 5; object-fit: cover; border-radius: 6px; display: block; scroll-snap-align: start; background: #D7C4A5"></sc-for>
 </div>
 <div style="padding: 24px 32px 32px; display: flex; flex-direction: column; gap: 20px">
 <div style="display: flex; justify-content: space-between; gap: 16px; align-items: flex-start">
@@ -925,7 +950,6 @@ details[open] .faq-plus{transform:rotate(45deg)}
 <p style="margin: 0; padding-top: 16px; border-top: 1px solid #D7C4A5; font-size: 14px; line-height: 22px; color: #5C5F58">Incluye desayuno, baño privado con agua caliente, cama king y sofá cama, ropa de cama y duvet, cocineta, minibar, calefactor, WiFi y parqueadero.</p>
 <div style="display: flex; gap: 16px; flex-wrap: wrap; align-items: center">
 <a href="{{det.wa}}" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 8px; padding: 12px 24px; min-height: 48px; box-sizing: border-box; border-radius: 999px; background: #344536; color: #F6F1E8; text-decoration: none; font-size: 15px; font-weight: 500">Ver fechas por WhatsApp <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-<a href="{{det.link}}" target="_blank" rel="noopener" style="font-size: 15px">Más fotos</a>
 </div>
 </div>
 </div>
@@ -944,20 +968,22 @@ class Component extends DCLogic {
     var setV = function (k) { return function (e) { var o = {}; o[k] = e.target.value; self.setState(o); }; };
     var exp = function (name, price) { return { name: name, price: price, url: wa(name) }; };
 
-    var cab = function (name, slug, img, alt, desc, img2, extra) {
-      var c = { name: name, img: img, alt: alt, desc: desc, img1: img, img2: img2,
+    var LKF = (typeof LK_FOTOS !== 'undefined' && LK_FOTOS) || {};
+    var cab = function (name, slug, img, alt, desc, extra) {
+      var n = (LKF.galerias && LKF.galerias[slug]) || 0, fotos = [];
+      for (var i = 1; i <= n; i++) fotos.push({ src: 'img/glampings/' + slug + '/' + (i < 10 ? '0' : '') + i + '.webp', alt: name + ', foto ' + i });
+      var c = { name: name, img: img, alt: alt, desc: desc, fotos: fotos,
         chips: ['3 personas', 'King + sofá cama', '24 m²', extra],
-        link: 'https://glampinglakumbre.com/glamping/#' + slug,
         wa: wa('fechas disponibles en ' + name) };
       c.detalles = function () { self.setState({ detalle: slug }); };
       c.slug = slug;
       return c;
     };
     var cabanas = [
-      cab('El Veterano', 'veterano', 'img/veterano-hora-azul-1200.webp', 'Glamping El Veterano al anochecer', 'La primera, abierta en abril de 2022, con BBQ y fogata propios', 'img/veterano-interior-640.webp', 'BBQ y fogata'),
-      cab('El Colorado', 'colorado', 'img/colorado-exterior-640.webp', 'Glamping El Colorado entre árboles', 'Cama tallada en la madera de un árbol Colorado caído', 'img/colorado-desayuno-640.webp', 'TV y streaming'),
-      cab('La Piedra', 'piedra', 'img/piedra-exterior-640.webp', 'Glamping La Piedra sobre la roca, entre pinos', 'Sobre una roca, en lo más alto, entre pinos', 'img/piedra-ventanal-640.webp', '130 m a pie'),
-      cab('El Tomate', 'tomate', 'img/tomate-exterior-640.webp', 'Glamping El Tomate con vista abierta', 'Entre tomate de árbol, con vista abierta', 'img/tomate-mirador-640.webp', 'TV y streaming')
+      cab('El Veterano', 'veterano', 'img/glampings/veterano/portada.webp', 'Glamping El Veterano al anochecer', 'La primera, abierta en abril de 2022, con BBQ y fogata propios', 'BBQ y fogata'),
+      cab('El Colorado', 'colorado', 'img/glampings/colorado/portada.webp', 'Glamping El Colorado entre árboles', 'Cama tallada en la madera de un árbol Colorado, nativo de la región y de nuestra misma finca', 'TV y streaming'),
+      cab('La Piedra', 'piedra', 'img/glampings/piedra/portada.webp', 'Glamping La Piedra sobre la roca, entre pinos', 'Sobre una roca, en lo más alto, entre pinos', '130 m a pie'),
+      cab('El Tomate', 'tomate', 'img/glampings/tomate/portada.webp', 'Glamping El Tomate con vista abierta', 'Con cultivos alrededor y vista abierta', 'TV y streaming')
     ];
     var det = cabanas.filter(function (c) { return c.slug === (self.state && self.state.detalle); })[0] || false;
     var msg = 'Hola, quiero reservar en La Kumbre.\nLlegada: ' + (s.llegada || '[por definir]') + '\nSalida: ' + (s.salida || '[por definir]') + '\nHuéspedes: ' + s.huespedes + '\nGlamping: ' + s.cabana;
@@ -975,18 +1001,18 @@ class Component extends DCLogic {
       det: det,
       cerrarDet: function () { self.setState({ detalle: null }); },
       actividades: [
-        { name: 'Malla catamarán', img: 'img/malla-catamaran-640.webp', desc: '3 m² colgados frente a la cordillera para leer o no hacer nada.' },
-        { name: 'Zona de fogatas', img: 'img/zona-fogatas-640.webp', desc: 'Dos fogatas al aire libre para la noche.' },
-        { name: 'Zona BBQ', img: 'img/zona-bbq-640.webp', desc: 'Estufa a leña y mesas al aire libre.' },
-        { name: 'Senderos y miradores', img: 'img/senderos-640.webp', desc: 'Caminos por la montaña y cuatro miradores.' }
+        { name: 'Malla catamarán', img: 'img/zonas/malla-catamaran.webp', desc: '3 m² colgados frente a la cordillera para leer o no hacer nada.' },
+        { name: 'Zona de fogatas', img: 'img/zonas/fogatas.webp', desc: 'Tres fogatas al aire libre para la noche.' },
+        { name: 'Zona BBQ', img: 'img/zonas/bbq.webp', desc: 'Estufa a leña y mesas al aire libre.' },
+        { name: 'Senderos y miradores', img: 'img/zonas/senderos.webp', desc: 'Caminos por la montaña y cuatro miradores.' }
       ],
       momentos: [
-        { hora: '2:00 pm · Llegada', titulo: 'Soltar la ciudad', img: 'img/masajes.webp', desc: 'Suelta el caos de la ciudad sin salir de tu glamping: masaje en camilla, aceite esencial y aromaterapia.', exps: [exp('Masaje solo espalda', 'Aprox. 45 min · $ 50.000 por persona'), exp('Masaje cuerpo completo', 'Aprox. 1 hora · $ 90.000 por persona')] },
-        { hora: 'Atardecer', titulo: 'Afuera, en la naturaleza', img: 'img/alto-virgen-543.webp', desc: 'La tarde se va lenta, con la montaña cambiando de color.', exps: [exp('Picnic en la naturaleza', '$ 60.000')] },
-        { hora: 'Hora azul', titulo: 'Cena a la luz de las velas', img: 'img/cena-romantica.webp', desc: 'Platos especiales para una velada inolvidable. Y si tienes una pregunta importante, este es el momento.', exps: [exp('Cena romántica', '$ 80.000'), exp('Pedida de mano en tu cabaña', '$ 50.000')] },
-        { hora: 'Noche', titulo: 'Fuego y estrellas', img: 'img/zona-fogatas-640.webp', desc: 'Fogata al aire libre, conversación y cielo abierto.', exps: [exp('Fogata con maridaje', '$ 45.000'), exp('Serenata bajo las estrellas', '$ 200.000')] },
-        { hora: 'Amanecer', titulo: 'Aves entre la niebla', img: 'img/mirador-siatala-543.webp', desc: 'Madrugar vale la pena: la montaña se despierta con cantos.', exps: [exp('Desafío Birding', '$ 109.000')] },
-        { hora: 'Mañana · hasta 12:00 m', titulo: 'Desayuno y camino', img: 'img/desayuno-vista.webp', desc: 'Desayuno incluido en tu terraza y, si quieres, a recorrer la montaña.', exps: [exp('Trekking guiado', '$ 70.000'), exp('Cabalgata por la montaña', '$ 130.000')] }
+        { titulo: 'Soltar la ciudad', img: 'img/experiencias/masajes.webp', desc: 'Suelta el caos de la ciudad sin salir de tu glamping: masaje en camilla, aceite esencial y aromaterapia.', exps: [exp('Masaje solo espalda', 'Aprox. 45 min · $ 50.000 por persona'), exp('Masaje cuerpo completo', 'Aprox. 1 hora · $ 90.000 por persona')] },
+        { titulo: 'Cena a la luz de las velas', img: 'img/experiencias/cena-romantica.webp', desc: 'Platos especiales para una velada inolvidable. Y si tienes una pregunta importante, este es el momento.', exps: [exp('Cena romántica', '$ 80.000'), exp('Pedida de mano en tu cabaña', '$ 50.000')] },
+        { titulo: 'Fuego y estrellas', img: 'img/experiencias/fogata.webp', desc: 'Fogata al aire libre, conversación y cielo abierto.', exps: [exp('Fogata con maridaje', '$ 45.000'), exp('Serenata bajo las estrellas', '$ 200.000')] },
+        { titulo: 'Aves entre la niebla', img: 'img/experiencias/birding.webp', desc: 'Madrugar vale la pena: la montaña se despierta con cantos.', exps: [exp('Desafío Birding', '$ 109.000')] },
+        { titulo: 'Desayuno y camino', img: 'img/experiencias/desayuno-camino.webp', desc: 'Desayuno incluido en tu terraza y, si quieres, a recorrer la montaña.', exps: [exp('Trekking guiado', '$ 70.000'), exp('Cabalgata por la montaña', '$ 130.000')] },
+        { titulo: 'Afuera, en la naturaleza', img: 'img/experiencias/picnic.webp', desc: 'A media mañana, entre el desayuno y el almuerzo, un picnic al aire libre con la montaña de fondo.', exps: [exp('Picnic en la naturaleza', '$ 60.000')] }
       ],
       medias: [
         { name: 'Refugio La Kumbre', desc: 'Para quien viaja solo o sola y quiere quedarse unos días.', url: wa('las estadías medias: Refugio La Kumbre'),
@@ -996,16 +1022,16 @@ class Component extends DCLogic {
       ],
       base: ['Alojamiento en glamping', 'Desayuno para dos', 'Zona de fogata', 'Malla catamarán', 'Zonas de caminata y descanso', 'Parqueadero', 'WiFi personal', 'Calentador de agua', 'TV streaming y satelital', 'Cocineta interna', 'Zona BBQ'],
       pareja: [
-        { name: 'Plan Pareja', desc: 'Una escapada solo para ustedes.', price: '$ 260.000', url: wa('Plan Pareja'), img: 'img/veterano-interior-640.webp', alt: 'Interior de un glamping con cama tendida', hasExtra: false, extras: [], ocasiones: '' },
-        { name: 'Noche romántica', desc: 'Una noche pensada para ustedes dos.', price: '$ 320.000', url: wa('Noche romántica'), img: 'img/cena-mojarra.webp', alt: 'Cena con vino y copas decoradas en el glamping', hasExtra: true,
+        { name: 'Plan Pareja', desc: 'Una escapada solo para ustedes.', price: '$ 260.000', url: wa('Plan Pareja'), img: 'img/planes/plan-pareja.webp', alt: 'Interior de un glamping con cama tendida', hasExtra: false, extras: [], ocasiones: '' },
+        { name: 'Noche romántica', desc: 'Una noche pensada para ustedes dos.', price: '$ 320.000', url: wa('Noche romántica'), img: 'img/planes/noche-romantica.webp', alt: 'Cena con vino y copas decoradas en el glamping', hasExtra: true,
           extras: ['Habitación decorada', 'Vino 275 ml con copas decoradas', 'Aceite relajante con guía', 'Fogata y películas', 'Cápsula del tiempo'],
           ocasiones: 'cumpleaños, aniversario, pedida de mano, amor y amistad, una declaración o fortalecer la relación' },
-        { name: 'Descanso profundo', desc: 'Hay noches que no se planean, se disfrutan.', price: '$ 380.000', url: wa('Descanso profundo'), img: 'img/descanso.webp', alt: 'Masaje relajante', hasExtra: true,
+        { name: 'Descanso profundo', desc: 'Hay noches que no se planean, se disfrutan.', price: '$ 380.000', url: wa('Descanso profundo'), img: 'img/planes/descanso-profundo.webp', alt: 'Masaje relajante', hasExtra: true,
           extras: ['Masaje relajante para dos, en tu propio glamping'], ocasiones: '' }
       ],
       faqs: [
         { q: '¿Cuánto cuesta?', a: 'Los planes en pareja cuestan $ 260.000 (Plan Pareja), $ 320.000 (Noche romántica) y $ 380.000 (Descanso profundo), la noche para dos con desayuno. Si vienes solo o a trabajar, de domingo a jueves la noche va desde $ 100.000, según cuántas noches te quedes. Para reservar, abono desde $ 70.000.' },
-        { q: '¿A cuánto queda de Bogotá?', a: 'A unas 3 horas en carro, según tráfico y clima. Sales por La Calera y sigues por Guasca y Gachetá hasta Gama. La Kumbre está en el km 1 de la vía a La Meseta. La vía es pavimentada, de tráfico medio, con algunos defectos en el recorrido.' },
+        { q: '¿A cuánto queda de Bogotá?', a: 'A unas 3 horas en carro, según tráfico y clima. Sales por La Calera y sigues por Guasca y Gachetá hasta Gama. La Kumbre está en el km 1 de la vía a La Meseta, una vía destapada y de tráfico bajo.' },
         { q: '¿Qué incluye la noche?', a: 'Desayuno, baño privado, cama king y sofá cama, ropa de cama y duvet, cocineta, minibar, calefactor, WiFi y parqueadero. Las zonas de fogata, BBQ, malla catamarán y senderos son para todos los huéspedes.' },
         { q: '¿Cómo reservo y pago?', a: 'Tocas Reservar y te respondemos por WhatsApp con disponibilidad y total. Para reservar, abono desde $ 70.000. Puedes pagar a Bancolombia (cuenta de ahorros 23245812159, NIT 901662317), Nequi 320 974 3927, DaviPlata 320 303 7452, Llave Bre-B 0091821200 o con cualquier tarjeta por link de pago de Mercado Pago o PayPal. También puedes reservar por Airbnb o Booking.' },
         { q: '¿Hay tarifa entre semana?', a: 'Sí, de domingo a jueves. Refugio La Kumbre: $ 140.000 la noche (1 a 2 noches), $ 115.000 (3 a 5) y $ 100.000 (6 o más). Nómada digital: $ 150.000, $ 130.000 y $ 115.000. Para reservar, abono desde $ 70.000.' },
@@ -1019,6 +1045,8 @@ class Component extends DCLogic {
   }
 }
 </script>
+<script>document.addEventListener("click",function(e){var d=document.querySelector(".lk-menu[open]");if(d&&(!d.contains(e.target)||e.target.closest("a")))d.removeAttribute("open")});document.addEventListener("keydown",function(e){if(e.key==="Escape"){var d=document.querySelector(".lk-menu[open]");if(d)d.removeAttribute("open")}});</script>
+<script src="fotos.js"></script>
 <script src="lk-runtime.js"></script>
 </body>
 </html>
