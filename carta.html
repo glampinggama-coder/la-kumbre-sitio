@@ -240,11 +240,13 @@ Bar</button>
 </div>
 <p style="margin: 0; font-size: 12px; line-height: 16px; color: #5C5F58">Valores en pesos colombianos. Precios sujetos a cambio; te confirmamos al pedir.</p>
 </div>
+<sc-if value="{{sec.fotos.length}}" hint-placeholder-val="{{ true }}">
 <aside aria-label="Fotos" style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
 <sc-for list="{{sec.fotos}}" as="f" hint-placeholder-count="1">
 <figure style="margin: 0; display: flex; flex-direction: column; gap: 6px"><img src="{{f.src}}" alt="{{f.alt}}" style="width: 100%; height: {{sec.fotoAltura}}px; object-fit: cover; border-radius: 12px; display: block"><figcaption style="font-size: 13px; color: #5C5F58">{{f.alt}}</figcaption></figure>
 </sc-for>
 </aside>
+</sc-if>
 </main>
 
 <footer style="background: #D7C4A5">
@@ -294,7 +296,7 @@ class Component extends DCLogic {
         ] }] },
       rapidas: { label: 'Rápidas', sobre: 'Para la noche', titulo: 'Comidas rápidas', nota: 'Para después de la fogata.',
         fotoAltura: 280,
-        fotos: [{ src: 'img/carta/almuerzo-terraza.webp', alt: 'Almuerzo en la terraza' }],
+        fotos: [],
         grupos: [
           { nombre: 'Hamburguesas', items: [
             { n: 'Pollo', d: 'Pollo apanado, tomate, cebolla, salsas y queso', p: '$ 22.000', img: 'img/carta/icon-hamburguesa.svg' },
