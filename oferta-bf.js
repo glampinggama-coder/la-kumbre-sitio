@@ -172,6 +172,21 @@
     '@media (max-width:1440px){.bf-neon-titulo{font-size:78px}.bf-neon-pct{font-size:100px}.bf-neon-sello{flex-basis:104px;width:104px;height:104px}}' +
     '@media (max-width:1280px){.bf-neon-titulo{font-size:64px}.bf-neon-pct{font-size:82px}.bf-neon-marco{padding:16px 24px;gap:18px}.bf-neon-sello{display:none}}' +
     '@media (max-width:760px){.bf-neon{flex-direction:column;position:relative;min-height:0}.bf-neon-foto{flex:none}.bf-neon-foto img{min-height:0;height:190px}.bf-neon-marco{margin:12px;flex-direction:column;align-items:stretch;padding:18px;gap:14px}.bf-neon-titulo{font-size:54px}.bf-neon-pct{font-size:64px}.bf-neon-sub{font-size:15px;line-height:21px}.bf-neon-fila{flex-wrap:wrap}.bf-neon-cta{align-items:stretch}.bf-neon .bf-count{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}.bf-neon .bf-count div{min-width:0}.bf-neon .bf-count b{font-size:26px;line-height:30px}.bf-btn.bf-neon-btn{justify-content:center;font-size:18px}.bf-neon-nota{text-align:center}.bf-neon-sello{display:block;position:absolute;right:14px;top:142px;width:96px;height:96px}.bf-neon-sello b{font-size:28px}}' +
+    '.bf-neon-tag--ya{background:#E8318F}' +
+    '.bf-neon-chips{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 0;padding:0;list-style:none}' +
+    '.bf-neon-chips li{border:1.5px solid #C6FF3D;border-radius:999px;padding:4px 12px;font-size:13px;line-height:18px;font-weight:700;color:#F6F1E8;white-space:nowrap}' +
+    '.bf-neon-term{font-size:11px;font-weight:800;letter-spacing:.2em;color:#C6FF3D;margin:0}' +
+    '.bf-neon-meter{width:100%;display:flex;flex-direction:column;gap:5px;margin-top:6px}' +
+    '.bf-neon-meter i{display:block;height:8px;border-radius:99px;background:#2A2E2A;overflow:hidden}' +
+    '.bf-neon-meter i u{display:block;height:8px;border-radius:99px;background:#C6FF3D;box-shadow:0 0 10px rgba(198,255,61,.9)}' +
+    '.bf-neon-meter span{font-size:12px;line-height:16px;color:#BFC2B8;text-align:center}' +
+    '.bf-neon--oferta .bf-neon-sub{font-size:18px;white-space:nowrap}.bf-neon--oferta .bf-neon-titulo{font-size:84px}.bf-neon--oferta .bf-neon-pct{font-size:120px}' +
+    '.bf-neon--oferta .bf-count div{min-width:64px}.bf-neon--oferta .bf-count b{font-size:32px;line-height:36px}' +
+    '.bf-pill{background:#C6FF3D;color:#0E100E;font-weight:800;box-shadow:0 0 22px rgba(198,255,61,.6)}' +
+    '.bf-mh{background:#0E100E}.bf-mh p{color:#C6FF3D}' +
+    '@media (max-width:1440px){.bf-neon--oferta .bf-neon-titulo{font-size:70px}.bf-neon--oferta .bf-neon-pct{font-size:96px}.bf-neon--oferta .bf-neon-chips li{font-size:12px;padding:3px 10px}}' +
+    '@media (max-width:1280px){.bf-neon--oferta .bf-neon-sub{white-space:normal;font-size:16px}.bf-neon--oferta .bf-neon-titulo{font-size:58px}.bf-neon--oferta .bf-neon-pct{font-size:78px}.bf-neon--oferta .bf-neon-chips{display:none}}' +
+    '@media (max-width:760px){.bf-neon--oferta .bf-neon-sub{white-space:normal;font-size:15px}.bf-neon--oferta .bf-neon-titulo{font-size:46px}.bf-neon--oferta .bf-neon-pct{font-size:60px}.bf-neon--oferta .bf-neon-chips{display:flex}.bf-neon--oferta .bf-count b{font-size:24px;line-height:28px}}' +
     '@media (prefers-reduced-motion:reduce){.bf-neon *{animation:none!important}}' +
     '.bf-count{display:flex;gap:10px;margin:14px 0 0}' +
     '.bf-count div{min-width:64px;text-align:center;background:rgba(246,241,232,.16);border:1px solid rgba(246,241,232,.35);border-radius:12px;padding:8px 6px}' +
@@ -224,11 +239,18 @@
   // ---------- Banner ----------
   var host, bannerEl, pillEl, ovEl, lastFocus, tick;
 
-  function cuenta() {
-    var ms = Math.max(0, CFG.launch - Date.now());
+  function cuenta(destino) {
+    var ms = Math.max(0, (destino || CFG.launch) - Date.now());
     var dd = Math.floor(ms / 864e5), hh = Math.floor(ms % 864e5 / 36e5), mm = Math.floor(ms % 36e5 / 6e4), ss = Math.floor(ms % 6e4 / 1e3);
     return '<div class="bf-count" role="timer" aria-label="Falta para el lanzamiento">' +
       '<div><b>' + dd + '</b><span>días</span></div><div><b>' + pad(hh) + '</b><span>horas</span></div><div><b>' + pad(mm) + '</b><span>min</span></div><div><b>' + pad(ss) + '</b><span>seg</span></div></div>';
+  }
+
+  function cargarFuente() {
+    if (document.getElementById('bf-font-neon')) return;
+    var lf = document.createElement('link'); lf.id = 'bf-font-neon'; lf.rel = 'stylesheet';
+    lf.href = 'https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap';
+    document.head.appendChild(lf);
   }
 
   function pintarBanner() {
@@ -241,11 +263,7 @@
     }
     var html;
     if (f === 'expectativa') {
-      if (!document.getElementById('bf-font-neon')) {
-        var lf = document.createElement('link'); lf.id = 'bf-font-neon'; lf.rel = 'stylesheet';
-        lf.href = 'https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap';
-        document.head.appendChild(lf);
-      }
+      cargarFuente();
       var sello = '<span class="bf-neon-sello" aria-hidden="true"><svg viewBox="0 0 120 120"><defs><path id="bf-ca" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"></path></defs>' +
         '<circle cx="60" cy="60" r="58" fill="#E8318F"></circle><text font-family="Raleway, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF">' +
         '<textPath href="#bf-ca" textLength="286" lengthAdjust="spacing">SOLO ' + CFG.cupos + ' RESERVAS · BLACK FRIDAY ·</textPath></text></svg><b>' + CFG.cupos + '<i>CUPOS</i></b></span>';
@@ -258,17 +276,22 @@
         '<p class="bf-neon-nota">Te escribimos por WhatsApp · sin compromiso</p></div>' + sello + '</div></section>';
     } else {
       var ag = agotado();
-      html = '<section class="bf-banner" aria-label="Oferta Black Friday en La Kumbre"><div class="bf-wrap">' +
-        '<div class="bf-badge" aria-hidden="true"><b>25%</b><span>menos</span></div>' +
-        '<div class="bf-text"><p class="bf-kicker">Black Friday en La Kumbre</p>' +
-        '<h2 class="bf-title">Reserva ahora tu escapada <em>entre semana</em></h2>' +
-        '<p class="bf-sub">Noches de domingo a jueves, de enero a abril de 2027.</p>' +
-        '<ul class="bf-chips"><li>Solo ' + CFG.cupos + ' reservas</li><li>Abono del 40%</li><li>Hasta el lunes 30 de nov</li></ul></div>' +
-        '<div class="bf-cta-col">' +
-        (ag ? '<button type="button" class="bf-btn" data-bf="espera-agotado">Cupos agotados · avísame si se libera</button>'
-            : '<button type="button" class="bf-btn" data-bf="abrir">Simula tu reserva <span aria-hidden="true">→</span></button>' +
-              '<p class="bf-note">' + (quedan() <= 10 ? '<b>Quedan ' + quedan() + ' de ' + CFG.cupos + '</b> · ' : '') + 'Calcula tu valor en 20 segundos</p>') +
-        '</div></div></section>';
+      cargarFuente();
+      var selloO = '<span class="bf-neon-sello" aria-hidden="true"><svg viewBox="0 0 120 120"><defs><path id="bf-ca" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"></path></defs>' +
+        '<circle cx="60" cy="60" r="58" fill="#E8318F"></circle><text font-family="Raleway, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF">' +
+        '<textPath href="#bf-ca" textLength="286" lengthAdjust="spacing">ABIERTA · SOLO ' + CFG.cupos + ' CUPOS · </textPath></text></svg><b>' + quedan() + '<i>DE ' + CFG.cupos + '</i></b></span>';
+      var pctBarra = Math.round(100 * quedan() / CFG.cupos);
+      html = '<section class="bf-banner bf-neon bf-neon--oferta" aria-label="Oferta Black Friday en La Kumbre">' +
+        '<div class="bf-neon-foto"><img src="' + CFG.fotoExpectativa + '" alt="Glamping El Colorado con la cordillera de fondo"></div>' +
+        '<div class="bf-neon-marco"><div class="bf-neon-txt"><span class="bf-neon-tag bf-neon-tag--ya">' + (ag ? 'CUPOS AGOTADOS' : '¡YA ESTÁ ABIERTA!') + '</span>' +
+        '<div class="bf-neon-fila"><span class="bf-neon-titulo">BLACK<br>FRIDAY</span><span class="bf-neon-pct" aria-label="25 por ciento">25%</span></div>' +
+        '<p class="bf-neon-sub">Noches <b>entre semana</b> · domingo a jueves · enero a abril 2027</p>' +
+        '<ul class="bf-neon-chips"><li>Solo ' + CFG.cupos + ' reservas</li><li>Abono del 40%</li><li>Hasta el lunes 30 de nov</li></ul></div>' +
+        '<div class="bf-neon-cta"><p class="bf-neon-term">TERMINA EN</p>' + cuenta(CFG.end) +
+        (ag ? '<button type="button" class="bf-btn bf-neon-btn" data-bf="espera-agotado">Avísame si se libera <span aria-hidden="true">→</span></button>'
+            : '<button type="button" class="bf-btn bf-neon-btn" data-bf="abrir">Simula tu reserva <span aria-hidden="true">→</span></button>') +
+        '<div class="bf-neon-meter"><i><u style="width:' + pctBarra + '%"></u></i><span>' + quedan() + ' de ' + CFG.cupos + ' cupos disponibles</span></div></div>' +
+        selloO + '</div></section>';
     }
     host.innerHTML = '<style>' + CSS + '</style>' + html;
     bannerEl = $('.bf-banner', host);
@@ -439,7 +462,7 @@
   function ciclo() {
     var nf = fase();
     if (nf !== estado.fase) { estado.fase = nf; pintarBanner(); }
-    else if (nf === 'expectativa' && host) { var c = $('.bf-count', host); if (c) c.outerHTML = cuenta(); }
+    else if (host) { var c = $('.bf-count', host); if (c) c.outerHTML = cuenta(nf === 'oferta' ? CFG.end : CFG.launch); }
   }
 
   function iniciar() {
@@ -454,7 +477,7 @@
         if (typeof j.vendidos === 'number') { estado.vendidos = j.vendidos; pintarBanner(); }
       })
       .catch(function () {});
-    tick = setInterval(ciclo, estado.fase === 'expectativa' ? 1000 : 30000);
+    tick = setInterval(ciclo, 1000);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', iniciar);
