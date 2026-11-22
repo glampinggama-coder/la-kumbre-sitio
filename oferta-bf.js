@@ -28,7 +28,7 @@
     ultimaNoche: [2027, 4, 29],
     semanaSanta: [[2027, 3, 21], [2027, 3, 28]],
     foto: 'img/glampings/veterano/portada.webp',
-    fotoExpectativa: 'img/bf/expectativa.jpg',
+    fotoExpectativa: 'img/bf/colorado-vista.webp',
     glampings: ['Me da igual, el que haya', 'El Veterano', 'El Colorado', 'La Piedra', 'El Tomate']
   };
 
@@ -142,6 +142,37 @@
     '.bf-btn:focus-visible,.bf-pill:focus-visible,.bf-x:focus-visible,.bf-root input:focus-visible,.bf-root select:focus-visible{outline:3px solid #129FB6;outline-offset:2px}' +
     '.bf-btn[disabled]{background:#8B8F86;cursor:not-allowed;box-shadow:none}' +
     '.bf-note{margin:0;font-size:14px;line-height:20px;color:#F6F1E8}' +
+    '.bf-neon{background:#0E100E;color:#F6F1E8;display:flex;align-items:stretch;min-height:300px}' +
+    '.bf-neon:before,.bf-neon:after{content:none;display:none}' +
+    '.bf-neon-foto{position:relative;flex:0 0 290px}' +
+    '.bf-neon-foto img{width:100%;height:100%;min-height:300px;object-fit:cover;object-position:center 62%;display:block}' +
+    '.bf-neon-marco{flex:1 1 auto;margin:18px;border-radius:14px;display:flex;align-items:center;justify-content:space-between;gap:28px;padding:16px 36px;animation:bfGlow 1.6s ease-in-out infinite}' +
+    '.bf-neon-txt{display:flex;flex-direction:column;gap:10px;min-width:0}' +
+    '.bf-neon-tag{align-self:flex-start;padding:4px 14px;background:#E8318F;color:#fff;font-size:14px;font-weight:800;letter-spacing:.08em;transform:skew(-8deg)}' +
+    '.bf-neon-fila{display:flex;align-items:center;gap:22px;flex-wrap:nowrap}' +
+    '.bf-neon-titulo{font-family:"Permanent Marker",cursive;font-size:96px;line-height:.92;color:#C6FF3D;display:inline-block;transform:rotate(-4deg);animation:bfFlicker 3.2s infinite}' +
+    '.bf-neon-pct{font-family:Raleway,sans-serif;font-weight:900;font-size:128px;line-height:1;color:#C6FF3D;text-shadow:0 0 14px rgba(198,255,61,.7)}' +
+    '.bf-neon-sub{margin:0;font-size:19px;line-height:26px;font-weight:600;color:#F6F1E8}' +
+    '.bf-neon-cta{display:flex;flex-direction:column;align-items:center;gap:12px}' +
+    '.bf-neon .bf-count{margin:0;gap:6px}' +
+    '.bf-neon .bf-count div{min-width:74px;background:transparent;border:2px solid #C6FF3D;border-radius:8px;padding:6px 4px}' +
+    '.bf-neon .bf-count b{font-family:Raleway,sans-serif;font-weight:800;font-size:40px;line-height:44px;color:#C6FF3D;font-variant-numeric:tabular-nums}' +
+    '.bf-neon .bf-count span{font-size:10px;font-weight:700;letter-spacing:.14em}' +
+    '.bf-btn.bf-neon-btn{background:#C6FF3D;color:#0E100E;font-size:21px;font-weight:900;animation:bfPulse 1.4s ease-in-out infinite}' +
+    '.bf-btn.bf-neon-btn:hover{background:#B4F01F}' +
+    '.bf-neon-nota{margin:0;font-size:12px;line-height:16px;color:#BFC2B8}' +
+    '.bf-neon-sello{position:relative;flex:0 0 120px;width:120px;height:120px}' +
+    '.bf-neon-sello svg{position:absolute;inset:0;width:100%;height:100%;animation:bfSpin 12s linear infinite}' +
+    '.bf-neon-sello b{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:34px;line-height:1}' +
+    '.bf-neon-sello i{font-style:normal;font-size:11px;letter-spacing:.12em}' +
+    '@keyframes bfFlicker{0%,18%,22%,25%,53%,57%,100%{opacity:1;text-shadow:0 0 6px #C6FF3D,0 0 18px #C6FF3D,0 0 42px #8BD600}20%,24%,55%{opacity:.35;text-shadow:none}}' +
+    '@keyframes bfGlow{0%,100%{box-shadow:inset 0 0 0 2px #C6FF3D,0 0 18px rgba(198,255,61,.55),inset 0 0 22px rgba(198,255,61,.25)}50%{box-shadow:inset 0 0 0 2px #C6FF3D,0 0 34px rgba(198,255,61,.9),inset 0 0 34px rgba(198,255,61,.4)}}' +
+    '@keyframes bfPulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(198,255,61,.7)}50%{transform:scale(1.05);box-shadow:0 0 0 14px rgba(198,255,61,0)}}' +
+    '@keyframes bfSpin{to{transform:rotate(360deg)}}' +
+    '@media (max-width:1440px){.bf-neon-titulo{font-size:78px}.bf-neon-pct{font-size:100px}.bf-neon-sello{flex-basis:104px;width:104px;height:104px}}' +
+    '@media (max-width:1280px){.bf-neon-titulo{font-size:64px}.bf-neon-pct{font-size:82px}.bf-neon-marco{padding:16px 24px;gap:18px}.bf-neon-sello{display:none}}' +
+    '@media (max-width:760px){.bf-neon{flex-direction:column;position:relative;min-height:0}.bf-neon-foto{flex:none}.bf-neon-foto img{min-height:0;height:190px}.bf-neon-marco{margin:12px;flex-direction:column;align-items:stretch;padding:18px;gap:14px}.bf-neon-titulo{font-size:54px}.bf-neon-pct{font-size:64px}.bf-neon-sub{font-size:15px;line-height:21px}.bf-neon-fila{flex-wrap:wrap}.bf-neon-cta{align-items:stretch}.bf-neon .bf-count{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}.bf-neon .bf-count div{min-width:0}.bf-neon .bf-count b{font-size:26px;line-height:30px}.bf-btn.bf-neon-btn{justify-content:center;font-size:18px}.bf-neon-nota{text-align:center}.bf-neon-sello{display:block;position:absolute;right:14px;top:142px;width:96px;height:96px}.bf-neon-sello b{font-size:28px}}' +
+    '@media (prefers-reduced-motion:reduce){.bf-neon *{animation:none!important}}' +
     '.bf-count{display:flex;gap:10px;margin:14px 0 0}' +
     '.bf-count div{min-width:64px;text-align:center;background:rgba(246,241,232,.16);border:1px solid rgba(246,241,232,.35);border-radius:12px;padding:8px 6px}' +
     '.bf-count b{display:block;font-family:"Playfair Display",Georgia,serif;font-size:28px;line-height:30px}' +
@@ -195,9 +226,9 @@
 
   function cuenta() {
     var ms = Math.max(0, CFG.launch - Date.now());
-    var dd = Math.floor(ms / 864e5), hh = Math.floor(ms % 864e5 / 36e5), mm = Math.floor(ms % 36e5 / 6e4);
+    var dd = Math.floor(ms / 864e5), hh = Math.floor(ms % 864e5 / 36e5), mm = Math.floor(ms % 36e5 / 6e4), ss = Math.floor(ms % 6e4 / 1e3);
     return '<div class="bf-count" role="timer" aria-label="Falta para el lanzamiento">' +
-      '<div><b>' + dd + '</b><span>días</span></div><div><b>' + hh + '</b><span>horas</span></div><div><b>' + mm + '</b><span>min</span></div></div>';
+      '<div><b>' + dd + '</b><span>días</span></div><div><b>' + pad(hh) + '</b><span>horas</span></div><div><b>' + pad(mm) + '</b><span>min</span></div><div><b>' + pad(ss) + '</b><span>seg</span></div></div>';
   }
 
   function pintarBanner() {
@@ -210,12 +241,21 @@
     }
     var html;
     if (f === 'expectativa') {
-      html = '<section class="bf-banner bf-banner--expectativa" aria-label="Black Friday en La Kumbre"><div class="bf-wrap">' +
-        '<div class="bf-text"><p class="bf-kicker">Black Friday en La Kumbre</p>' +
-        '<h2 class="bf-title">Algo grande llega para tus <em>escapadas entre semana</em></h2>' +
-        '<p class="bf-sub">Se destapa el miércoles 25 de noviembre. Solo para quienes se enteren primero.</p>' + cuenta() + '</div>' +
-        '<div class="bf-cta-col"><button type="button" class="bf-btn" data-bf="espera">Avísame primero <span aria-hidden="true">→</span></button>' +
-        '<p class="bf-note">Te escribimos por WhatsApp, sin compromiso.</p></div></div></section>';
+      if (!document.getElementById('bf-font-neon')) {
+        var lf = document.createElement('link'); lf.id = 'bf-font-neon'; lf.rel = 'stylesheet';
+        lf.href = 'https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap';
+        document.head.appendChild(lf);
+      }
+      var sello = '<span class="bf-neon-sello" aria-hidden="true"><svg viewBox="0 0 120 120"><defs><path id="bf-ca" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"></path></defs>' +
+        '<circle cx="60" cy="60" r="58" fill="#E8318F"></circle><text font-family="Raleway, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF">' +
+        '<textPath href="#bf-ca" textLength="286" lengthAdjust="spacing">SOLO ' + CFG.cupos + ' RESERVAS · BLACK FRIDAY ·</textPath></text></svg><b>' + CFG.cupos + '<i>CUPOS</i></b></span>';
+      html = '<section class="bf-banner bf-banner--expectativa bf-neon" aria-label="Black Friday en La Kumbre">' +
+        '<div class="bf-neon-foto"><img src="' + CFG.fotoExpectativa + '" alt="Glamping El Colorado con la cordillera de fondo"></div>' +
+        '<div class="bf-neon-marco"><div class="bf-neon-txt"><span class="bf-neon-tag">GLAMPING LA KUMBRE</span>' +
+        '<div class="bf-neon-fila"><span class="bf-neon-titulo">BLACK<br>FRIDAY</span><span class="bf-neon-pct" aria-label="Hasta veinti-algo por ciento">2?%</span></div>' +
+        '<p class="bf-neon-sub">Noches de <b>domingo a jueves</b> · se destapa el <b>miércoles 25</b></p></div>' +
+        '<div class="bf-neon-cta">' + cuenta() + '<button type="button" class="bf-btn bf-neon-btn" data-bf="espera">Avísame primero <span aria-hidden="true">→</span></button>' +
+        '<p class="bf-neon-nota">Te escribimos por WhatsApp · sin compromiso</p></div>' + sello + '</div></section>';
     } else {
       var ag = agotado();
       html = '<section class="bf-banner" aria-label="Oferta Black Friday en La Kumbre"><div class="bf-wrap">' +
@@ -414,7 +454,7 @@
         if (typeof j.vendidos === 'number') { estado.vendidos = j.vendidos; pintarBanner(); }
       })
       .catch(function () {});
-    tick = setInterval(ciclo, 30000);
+    tick = setInterval(ciclo, estado.fase === 'expectativa' ? 1000 : 30000);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', iniciar);
