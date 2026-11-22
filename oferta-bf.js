@@ -28,6 +28,7 @@
     ultimaNoche: [2027, 4, 29],
     semanaSanta: [[2027, 3, 21], [2027, 3, 28]],
     foto: 'img/glampings/veterano/portada.webp',
+    fotoExpectativa: 'img/bf/expectativa.jpg',
     glampings: ['Me da igual, el que haya', 'El Veterano', 'El Colorado', 'La Piedra', 'El Tomate']
   };
 
@@ -122,6 +123,7 @@
     '.bf-serif{font-family:"Playfair Display",Georgia,serif}' +
     '.bf-banner{position:relative;overflow:hidden;background:#344536;color:#F6F1E8;isolation:isolate}' +
     '.bf-banner:before{content:"";position:absolute;inset:0;z-index:-2;background:url(' + CFG.foto + ') center 38%/cover no-repeat}' +
+    '.bf-banner--expectativa:before{background-image:url(' + CFG.fotoExpectativa + ')}' +
     '.bf-banner:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(37,42,38,.92) 0%,rgba(37,42,38,.72) 55%,rgba(37,42,38,.35) 100%)}' +
     '.bf-wrap{max-width:1240px;margin:0 auto;padding:28px 24px;display:flex;flex-wrap:wrap;align-items:center;gap:20px 32px}' +
     '.bf-badge{flex:0 0 auto;width:124px;height:124px;border-radius:50%;background:#C76B33;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 0 6px rgba(246,241,232,.22);transform:rotate(-6deg)}' +
@@ -208,7 +210,7 @@
     }
     var html;
     if (f === 'expectativa') {
-      html = '<section class="bf-banner" aria-label="Black Friday en La Kumbre"><div class="bf-wrap">' +
+      html = '<section class="bf-banner bf-banner--expectativa" aria-label="Black Friday en La Kumbre"><div class="bf-wrap">' +
         '<div class="bf-text"><p class="bf-kicker">Black Friday en La Kumbre</p>' +
         '<h2 class="bf-title">Algo grande llega para tus <em>escapadas entre semana</em></h2>' +
         '<p class="bf-sub">Se destapa el miércoles 25 de noviembre. Solo para quienes se enteren primero.</p>' + cuenta() + '</div>' +
