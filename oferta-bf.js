@@ -82,8 +82,11 @@
 
   function waUrl(texto) { return 'https://wa.me/' + CFG.wa + '?text=' + encodeURIComponent(texto); }
   function abrirWA(texto) {
-    var w = window.open(waUrl(texto), '_blank', 'noopener');
-    if (!w) location.href = waUrl(texto);
+    // Sin 'noopener' en las features: con él window.open devuelve siempre null y
+    // se navegaba también la pestaña original. Se corta el opener a mano.
+    var w = window.open(waUrl(texto), '_blank');
+    if (w) { try { w.opener = null; } catch (e) {} }
+    else location.href = waUrl(texto);
   }
 
   // ---------- Reglas de la oferta ----------
