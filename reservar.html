@@ -20,6 +20,9 @@
   .row > div{flex:1;min-width:140px}
   label{display:block;font-size:13px;font-weight:700;color:var(--verde);margin-bottom:6px}
   input,select{width:100%;border:1.5px solid var(--borde);border-radius:10px;padding:11px 12px;font-size:16px;background:#fff}
+  input[type=date]{background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="%23344536" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>');background-repeat:no-repeat;background-position:right 12px center;min-height:48px;padding-right:38px}
+  input[type=date]::-webkit-calendar-picker-indicator{opacity:0;position:absolute;right:0;width:40px;height:100%;cursor:pointer}
+  input[type=date]{position:relative}
   main{padding-bottom:calc(24px + env(safe-area-inset-bottom))}
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:16px;font-weight:600;color:var(--crema);background:var(--verde);border:none;border-radius:999px;padding:14px 26px;cursor:pointer}
   .btn:disabled{opacity:.5;cursor:not-allowed}
@@ -50,9 +53,9 @@
     <h1 style="font-size:28px">1 · Fechas y disponibilidad</h1>
     <div class="card">
       <div class="row">
-        <div><label>Llegada</label><input type="date" id="f_llegada"></div>
-        <div><label>Salida</label><input type="date" id="f_salida"></div>
-        <div><label>Personas</label><input type="number" id="f_personas" min="1" max="6" value="2"></div>
+        <div><label>Llegada</label><input type="date" id="f_llegada" autocomplete="off"></div>
+        <div><label>Salida</label><input type="date" id="f_salida" autocomplete="off"></div>
+        <div><label>Personas</label><input type="number" id="f_personas" min="1" max="6" value="2" inputmode="numeric" pattern="[0-9]*" autocomplete="off"></div>
         <div style="flex:0 0 auto;align-self:flex-end"><button class="btn" id="btn_buscar" type="button">Buscar disponibilidad</button></div>
       </div>
     </div>
@@ -67,11 +70,11 @@
     <h1 style="font-size:28px">2 · Tus datos</h1>
     <div class="card">
       <div class="row">
-        <div><label>Nombre completo</label><input type="text" id="d_nombre"></div>
-        <div><label>Correo</label><input type="email" id="d_correo"></div>
+        <div><label>Nombre completo</label><input type="text" id="d_nombre" autocomplete="name"></div>
+        <div><label>Correo</label><input type="email" id="d_correo" autocomplete="email" inputmode="email"></div>
       </div>
       <div class="row" style="margin-top:12px">
-        <div><label>WhatsApp</label><input type="tel" id="d_whatsapp" placeholder="3XXXXXXXXX"></div>
+        <div><label>WhatsApp</label><input type="tel" id="d_whatsapp" placeholder="3XXXXXXXXX" autocomplete="tel" inputmode="tel"></div>
         <div><label>Hora estimada de llegada</label><select id="d_hora"><option value="14:00">2:00 p.m.</option><option value="15:00">3:00 p.m.</option><option value="16:00">4:00 p.m.</option><option value="17:00">5:00 p.m.</option><option value="18:00">6:00 p.m.</option><option value="19:00">7:00 p.m.</option><option value="20:00">8:00 p.m.</option></select></div>
       </div>
     </div>
