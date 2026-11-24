@@ -41,8 +41,8 @@
 </style>
 </head>
 <body>
-<div class="qa-banner">Ambiente de pruebas QA — no es el sitio en producción</div>
-<header><b>Glamping La Kumbre</b><span style="font-size:13px">Reservar</span></header>
+<div class="qa-banner" id="qa_banner">Ambiente de pruebas QA — no es el sitio en producción</div>
+<header id="header_propio"><b>Glamping La Kumbre</b><span style="font-size:13px">Reservar</span></header>
 <main>
 
   <section class="paso activo" id="paso1">
@@ -105,6 +105,13 @@
 </main>
 
 <script>
+if (window.self !== window.top) {
+  // Dentro del popup flotante del home: el encabezado y el aviso de QA
+  // ya los da el contenedor que nos embebe, no hay que repetirlos.
+  document.getElementById("header_propio").style.display = "none";
+  document.getElementById("qa_banner").style.display = "none";
+}
+
 const API = "https://vjatjvkdxuagispadnkk.supabase.co/functions/v1";
 const estado = { disponibilidad: null, glamping: null, abono: 30, reserva: null };
 
