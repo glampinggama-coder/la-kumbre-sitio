@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Reservar — Glamping La Kumbre (QA)</title>
 <meta name="robots" content="noindex, nofollow">
+<script src="https://checkout.wompi.co/widget.js"></script>
 <style>
   :root{--verde:#344536;--crema:#F6F1E8;--borde:#D7C4A5;--texto:#252A26;--mut:#5C5F58;--rojo:#A6533D;--ok:#2F7A4B}
   *{box-sizing:border-box}
@@ -70,7 +71,7 @@
       </div>
       <div class="row" style="margin-top:12px">
         <div><label>WhatsApp</label><input type="tel" id="d_whatsapp" placeholder="3XXXXXXXXX"></div>
-        <div><label>Hora estimada de llegada</label><input type="time" id="d_hora"></div>
+        <div><label>Hora estimada de llegada</label><select id="d_hora"><option value="14:00">2:00 p.m.</option><option value="15:00">3:00 p.m.</option><option value="16:00">4:00 p.m.</option><option value="17:00">5:00 p.m.</option><option value="18:00">6:00 p.m.</option><option value="19:00">7:00 p.m.</option><option value="20:00">8:00 p.m.</option></select></div>
       </div>
     </div>
     <div style="display:flex;justify-content:space-between">
@@ -94,7 +95,7 @@
         <span style="font-size:14px">Acepto la política de cancelación y devolución: cancelar con 7 días o más de anticipación devuelve el abono menos comisión de Wompi, 4×1.000 y retención en la fuente. Con menos de 7 días no hay devolución.</span>
       </label>
       <div style="text-align:center;margin-top:16px" id="zona_pago">
-        <button class="btn" id="btn_pagar" type="button" style="font-size:17px;padding:16px 30px">Pagar abono →</button>
+        <button class="btn" id="btn_pagar" type="button" style="font-size:18px;padding:18px 36px;box-shadow:0 8px 20px rgba(52,69,54,0.35);width:100%">Pagar abono →</button>
       </div>
       <div id="msg_paso3"></div>
     </div>
@@ -113,6 +114,25 @@ function irA(paso){
   document.getElementById(paso).classList.add("activo");
 }
 
+// Bogotá es UTC-5 todo el año. Fecha mínima de llegada: mañana.
+function hoyBogota(){
+  const ahora = new Date(Date.now() - 5 * 60 * 60 * 1000);
+  return ahora.toISOString().slice(0, 10);
+}
+function sumarDias(fechaStr, dias){
+  const d = new Date(fechaStr + "T00:00:00Z");
+  d.setUTCDate(d.getUTCDate() + dias);
+  return d.toISOString().slice(0, 10);
+}
+const manana = sumarDias(hoyBogota(), 1);
+const elLlegada = document.getElementById("f_llegada");
+const elSalida = document.getElementById("f_salida");
+elLlegada.min = manana;
+elSalida.min = sumarDias(manana, 1);
+elLlegada.addEventListener("change", () => {
+  if (elLlegada.value) elSalida.min = sumarDias(elLlegada.value, 1);
+});
+
 document.getElementById("btn_buscar").addEventListener("click", async () => {
   const desde = document.getElementById("f_llegada").value;
   const hasta = document.getElementById("f_salida").value;
@@ -121,6 +141,10 @@ document.getElementById("btn_buscar").addEventListener("click", async () => {
   msg.innerHTML = "";
   if (!desde || !hasta || hasta <= desde) {
     msg.innerHTML = '<div class="msg err">Elige fechas válidas (salida después de llegada).</div>';
+    return;
+  }
+  if (desde <= hoyBogota()) {
+    msg.innerHTML = '<div class="msg err">La llegada debe ser mínimo mañana, no se admiten reservas para hoy.</div>';
     return;
   }
 
@@ -137,6 +161,7 @@ document.getElementById("btn_buscar").addEventListener("click", async () => {
     for (const [slug, info] of Object.entries(data.glampings)) {
       const bloqueado = info.fechas_bloqueadas_ical.length > 0 || info.reservas_propias.length > 0;
       const disponible = !bloqueado && personas <= info.capacidad_max;
+      const precioNoche = personas === 1 ? info.precio_noche_1persona_cop : info.precio_noche_cop;
       const div = document.createElement("div");
       div.className = "glamping " + (disponible ? "ok" : "no");
       div.innerHTML = `
@@ -145,15 +170,15 @@ document.getElementById("btn_buscar").addEventListener("click", async () => {
           <span class="chip ${disponible ? 'ok' : 'no'}">${disponible ? '● Disponible' : 'No disponible'}</span>
         </div>
         <div style="text-align:right">
-          <b>${fmtCOP(info.precio_noche_cop * noches)}</b>
-          <div><small class="mut">${noches} noche(s) · ${personas} personas</small></div>
+          <b>${fmtCOP(precioNoche * noches)}</b>
+          <div><small class="mut">${noches} noche(s) · ${personas} persona(s)${personas === 1 ? ' · tarifa individual' : ''}</small></div>
         </div>`;
       if (disponible) {
         div.addEventListener("click", () => {
           document.querySelectorAll(".glamping").forEach(g => g.classList.remove("sel"));
           div.classList.add("sel");
           estado.glamping = slug;
-          estado.precio_noche = info.precio_noche_cop;
+          estado.precio_noche = precioNoche;
           estado.noches = noches;
           document.getElementById("btn_a_datos").disabled = false;
         });
@@ -241,22 +266,31 @@ document.getElementById("btn_pagar").addEventListener("click", async () => {
     if (!res.ok) throw new Error(data.error || "No se pudo crear la reserva");
 
     estado.reserva = data;
-    msg.innerHTML = `<div class="msg ok">Reserva ${data.codigo} creada. Retenida hasta ${new Date(data.retenido_hasta).toLocaleTimeString('es-CO')}. Abriendo Wompi…</div>`;
+    msg.innerHTML = `<div class="msg ok">Reserva ${data.codigo} creada. Retenida hasta ${new Date(data.retenido_hasta).toLocaleTimeString('es-CO')}.</div>`;
+    btn.textContent = "Pagar abono →";
+    btn.disabled = false;
 
-    const zona = document.getElementById("zona_pago");
-    zona.innerHTML = "";
-    const form = document.createElement("form");
-    const script = document.createElement("script");
-    script.src = "https://checkout.wompi.co/widget.js";
-    script.setAttribute("data-render", "button");
-    script.setAttribute("data-public-key", data.wompi.public_key);
-    script.setAttribute("data-currency", data.wompi.currency);
-    script.setAttribute("data-amount-in-cents", data.wompi.amount_in_cents);
-    script.setAttribute("data-reference", data.wompi.reference);
-    script.setAttribute("data-signature:integrity", data.wompi.signature_integrity);
-    script.setAttribute("data-redirect-url", window.location.origin + "/reservar-confirmacion.html?codigo=" + data.codigo + "&token=" + data.token_gestion);
-    form.appendChild(script);
-    zona.appendChild(form);
+    if (typeof WidgetCheckout === "undefined") {
+      msg.innerHTML += '<div class="msg err">No se pudo cargar el widget de pago de Wompi (revisa tu conexión y vuelve a intentar).</div>';
+      return;
+    }
+
+    const checkout = new WidgetCheckout({
+      currency: data.wompi.currency,
+      amountInCents: data.wompi.amount_in_cents,
+      reference: data.wompi.reference,
+      publicKey: data.wompi.public_key,
+      signature: { integrity: data.wompi.signature_integrity },
+      redirectUrl: window.location.origin + "/reservar-confirmacion.html?codigo=" + encodeURIComponent(data.codigo) + "&token=" + encodeURIComponent(data.token_gestion),
+    });
+    checkout.open(function (result) {
+      const transaccion = result?.transaction;
+      if (transaccion?.status === "APPROVED") {
+        msg.innerHTML = `<div class="msg ok">¡Pago aprobado! Tu reserva ${data.codigo} quedó confirmada.</div>`;
+      } else if (transaccion?.status) {
+        msg.innerHTML = `<div class="msg err">El pago no se aprobó (estado: ${transaccion.status}). Puedes intentar de nuevo.</div>`;
+      }
+    });
   } catch (e) {
     msg.innerHTML = `<div class="msg err">${e.message}</div>`;
     btn.disabled = false;
