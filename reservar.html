@@ -20,10 +20,23 @@
   .row > div{flex:1;min-width:140px}
   label{display:block;font-size:13px;font-weight:700;color:var(--verde);margin-bottom:6px}
   input,select{width:100%;border:1.5px solid var(--borde);border-radius:10px;padding:11px 12px;font-size:16px;background:#fff}
-  input[type=date]{background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="%23344536" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>');background-repeat:no-repeat;background-position:right 12px center;min-height:48px;padding-right:38px}
-  input[type=date]::-webkit-calendar-picker-indicator{opacity:0;position:absolute;right:0;width:40px;height:100%;cursor:pointer}
-  input[type=date]{position:relative}
   main{padding-bottom:calc(24px + env(safe-area-inset-bottom))}
+  .fecha-btn{width:100%;border:1.5px solid var(--borde);border-radius:10px;padding:11px 12px;min-height:48px;font-size:16px;font-family:inherit;background:#fff;color:var(--texto);text-align:left;display:flex;align-items:center;justify-content:space-between;gap:8px;cursor:pointer}
+  .fecha-btn.vacio{color:#9B9B93}
+  .fecha-btn .ico{flex:0 0 auto;color:var(--verde)}
+  .cal-pop{position:absolute;top:calc(100% + 6px);left:0;z-index:40;background:#fff;border:1px solid var(--borde);border-radius:12px;box-shadow:0 12px 32px rgba(37,42,38,0.25);padding:14px;width:272px;display:none}
+  .cal-pop.abierto{display:block}
+  .cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+  .cal-head b{font-size:14px;color:var(--verde);text-transform:capitalize}
+  .cal-nav{border:0;background:transparent;color:var(--verde);font-size:18px;line-height:1;cursor:pointer;width:28px;height:28px;border-radius:6px}
+  .cal-nav:hover{background:#F1EADB}
+  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center}
+  .cal-grid .dow{font-size:11px;font-weight:700;color:var(--mut);padding:4px 0}
+  .cal-grid button{border:0;background:transparent;border-radius:8px;padding:8px 0;font-size:14px;font-family:inherit;cursor:pointer;color:var(--texto)}
+  .cal-grid button:hover:not(:disabled){background:#F1EADB}
+  .cal-grid button:disabled{color:#D2CFC4;cursor:not-allowed}
+  .cal-grid button.sel{background:var(--verde);color:#fff;font-weight:700}
+  .cal-grid button.vacia{visibility:hidden;cursor:default}
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:16px;font-weight:600;color:var(--crema);background:var(--verde);border:none;border-radius:999px;padding:14px 26px;cursor:pointer}
   .btn:disabled{opacity:.5;cursor:not-allowed}
   .glamping{display:flex;gap:14px;align-items:center;border:1px solid var(--borde);border-radius:12px;padding:12px;margin-bottom:10px}
@@ -53,8 +66,16 @@
     <h1 style="font-size:28px">1 · Fechas y disponibilidad</h1>
     <div class="card">
       <div class="row">
-        <div><label>Llegada</label><input type="date" id="f_llegada" autocomplete="off"></div>
-        <div><label>Salida</label><input type="date" id="f_salida" autocomplete="off"></div>
+        <div style="position:relative">
+          <label>Llegada</label>
+          <button type="button" class="fecha-btn vacio" id="f_llegada_btn"><span>Elegir fecha</span><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></button>
+          <input type="hidden" id="f_llegada">
+        </div>
+        <div style="position:relative">
+          <label>Salida</label>
+          <button type="button" class="fecha-btn vacio" id="f_salida_btn"><span>Elegir fecha</span><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></button>
+          <input type="hidden" id="f_salida">
+        </div>
         <div><label>Personas</label><input type="number" id="f_personas" min="1" max="6" value="2" inputmode="numeric" pattern="[0-9]*" autocomplete="off"></div>
         <div style="flex:0 0 auto;align-self:flex-end"><button class="btn" id="btn_buscar" type="button">Buscar disponibilidad</button></div>
       </div>
@@ -136,12 +157,107 @@ function sumarDias(fechaStr, dias){
   return d.toISOString().slice(0, 10);
 }
 const manana = sumarDias(hoyBogota(), 1);
-const elLlegada = document.getElementById("f_llegada");
-const elSalida = document.getElementById("f_salida");
-elLlegada.min = manana;
-elSalida.min = sumarDias(manana, 1);
-elLlegada.addEventListener("change", () => {
-  if (elLlegada.value) elSalida.min = sumarDias(elLlegada.value, 1);
+
+// Calendario propio (reemplaza <input type="date">): los selectores nativos
+// de iOS Safari no se pueden re-estilizar ni posicionar de forma confiable.
+const DOW = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
+const MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+const MESES_ABR = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+
+function fmtFechaCorta(fechaStr) {
+  const [y, m, d] = fechaStr.split("-").map(Number);
+  const dt = new Date(Date.UTC(y, m - 1, d));
+  return `${DOW[dt.getUTCDay()].toLowerCase()} ${d} ${MESES_ABR[m - 1]} ${y}`;
+}
+
+function crearCalendario(btnId, hiddenId, getMin, alCambiar) {
+  const btn = document.getElementById(btnId);
+  const hidden = document.getElementById(hiddenId);
+  const pop = document.createElement("div");
+  pop.className = "cal-pop";
+  btn.parentElement.appendChild(pop);
+  let vista = null;
+
+  function render() {
+    const minStr = getMin();
+    const [minY, minM] = minStr.split("-").map(Number);
+    if (!vista) vista = { y: minY, m: minM };
+    const primerDia = new Date(Date.UTC(vista.y, vista.m - 1, 1));
+    const diasEnMes = new Date(Date.UTC(vista.y, vista.m, 0)).getUTCDate();
+    const offset = primerDia.getUTCDay();
+
+    let celdas = "";
+    for (let i = 0; i < offset; i++) celdas += `<button type="button" class="vacia" disabled></button>`;
+    for (let d = 1; d <= diasEnMes; d++) {
+      const fechaStr = `${vista.y}-${String(vista.m).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+      const deshabilitado = fechaStr < minStr;
+      const seleccionada = fechaStr === hidden.value;
+      celdas += `<button type="button" data-fecha="${fechaStr}" ${deshabilitado ? "disabled" : ""} class="${seleccionada ? "sel" : ""}">${d}</button>`;
+    }
+
+    pop.innerHTML = `
+      <div class="cal-head">
+        <button type="button" class="cal-nav" data-nav="-1" aria-label="Mes anterior">‹</button>
+        <b>${MESES[vista.m - 1]} ${vista.y}</b>
+        <button type="button" class="cal-nav" data-nav="1" aria-label="Mes siguiente">›</button>
+      </div>
+      <div class="cal-grid">
+        ${DOW.map((d) => `<span class="dow">${d[0]}</span>`).join("")}
+        ${celdas}
+      </div>`;
+
+    pop.querySelectorAll("[data-nav]").forEach((b) => b.addEventListener("click", (e) => {
+      e.stopPropagation();
+      vista.m += Number(b.dataset.nav);
+      if (vista.m < 1) { vista.m = 12; vista.y--; }
+      if (vista.m > 12) { vista.m = 1; vista.y++; }
+      render();
+    }));
+    pop.querySelectorAll("[data-fecha]").forEach((b) => b.addEventListener("click", (e) => {
+      e.stopPropagation();
+      hidden.value = b.dataset.fecha;
+      btn.querySelector("span").textContent = fmtFechaCorta(b.dataset.fecha);
+      btn.classList.remove("vacio");
+      cerrar();
+      if (alCambiar) alCambiar(b.dataset.fecha);
+    }));
+  }
+
+  function abrir() {
+    document.querySelectorAll(".cal-pop.abierto").forEach((p) => { if (p !== pop) p.classList.remove("abierto"); });
+    vista = null;
+    if (hidden.value) {
+      const [y, m] = hidden.value.split("-").map(Number);
+      vista = { y, m };
+    }
+    render();
+    pop.classList.add("abierto");
+  }
+  function cerrar() { pop.classList.remove("abierto"); }
+
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    pop.classList.contains("abierto") ? cerrar() : abrir();
+  });
+
+  return { limpiar() {
+    hidden.value = "";
+    btn.querySelector("span").textContent = "Elegir fecha";
+    btn.classList.add("vacio");
+  } };
+}
+
+document.addEventListener("click", () => {
+  document.querySelectorAll(".cal-pop.abierto").forEach((p) => p.classList.remove("abierto"));
+});
+
+const calSalida = crearCalendario("f_salida_btn", "f_salida", () => {
+  const llegada = document.getElementById("f_llegada").value;
+  return llegada ? sumarDias(llegada, 1) : sumarDias(manana, 1);
+});
+crearCalendario("f_llegada_btn", "f_llegada", () => manana, (nuevaLlegada) => {
+  const salidaActual = document.getElementById("f_salida").value;
+  if (salidaActual && salidaActual <= nuevaLlegada) calSalida.limpiar();
 });
 
 document.getElementById("btn_buscar").addEventListener("click", async () => {
