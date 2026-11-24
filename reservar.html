@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reservar — Glamping La Kumbre (QA)</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root{--verde:#344536;--crema:#F6F1E8;--borde:#D7C4A5;--texto:#252A26;--mut:#5C5F58;--rojo:#A6533D;--ok:#2F7A4B}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Raleway,system-ui,sans-serif;background:var(--crema);color:var(--texto)}
+  h1,h2,h3{font-family:Georgia,serif;color:var(--verde);margin:0}
+  header{background:var(--verde);color:var(--crema);padding:16px 24px;display:flex;justify-content:space-between;align-items:center}
+  header b{font-size:18px}
+  .qa-banner{background:#A6533D;color:#fff;text-align:center;padding:6px;font-size:13px;font-weight:600}
+  main{max-width:960px;margin:0 auto;padding:24px}
+  .card{background:#fff;border:1px solid var(--borde);border-radius:14px;padding:20px;margin-bottom:20px}
+  .row{display:flex;gap:12px;flex-wrap:wrap}
+  .row > div{flex:1;min-width:140px}
+  label{display:block;font-size:13px;font-weight:700;color:var(--verde);margin-bottom:6px}
+  input,select{width:100%;border:1.5px solid var(--borde);border-radius:10px;padding:11px 12px;font-size:15px;background:#fff}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:16px;font-weight:600;color:var(--crema);background:var(--verde);border:none;border-radius:999px;padding:14px 26px;cursor:pointer}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  .glamping{display:flex;gap:14px;align-items:center;border:1px solid var(--borde);border-radius:12px;padding:12px;margin-bottom:10px}
+  .glamping.ok{cursor:pointer}
+  .glamping.ok:hover{border-color:var(--verde)}
+  .glamping.sel{border:2px solid var(--rojo);background:#FBF1EC}
+  .glamping.no{opacity:.5}
+  .chip{display:inline-block;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:600}
+  .chip.ok{background:#E4F0E6;color:var(--ok)}
+  .chip.no{background:#EFE9DC;color:#A8A99F}
+  .msg{padding:14px;border-radius:10px;font-size:14px;margin-top:12px}
+  .msg.err{background:#FBF1EC;color:var(--rojo);border:1px solid var(--rojo)}
+  .msg.warn{background:#FBF6EA;color:#8A5A1F;border:1px solid #D7C4A5}
+  .msg.ok{background:#E4F0E6;color:var(--ok);border:1px solid var(--ok)}
+  .paso{display:none}
+  .paso.activo{display:block}
+  .resumen .r{display:flex;justify-content:space-between;font-size:15px;padding:4px 0}
+  small.mut{color:var(--mut)}
+</style>
+</head>
+<body>
+<div class="qa-banner">Ambiente de pruebas QA — no es el sitio en producción</div>
+<header><b>Glamping La Kumbre</b><span style="font-size:13px">Reservar</span></header>
+<main>
+
+  <section class="paso activo" id="paso1">
+    <h1 style="font-size:28px">1 · Fechas y disponibilidad</h1>
+    <div class="card">
+      <div class="row">
+        <div><label>Llegada</label><input type="date" id="f_llegada"></div>
+        <div><label>Salida</label><input type="date" id="f_salida"></div>
+        <div><label>Personas</label><input type="number" id="f_personas" min="1" max="6" value="2"></div>
+        <div style="flex:0 0 auto;align-self:flex-end"><button class="btn" id="btn_buscar" type="button">Buscar disponibilidad</button></div>
+      </div>
+    </div>
+    <div id="lista_glampings"></div>
+    <div id="msg_paso1"></div>
+    <div style="text-align:right;margin-top:12px">
+      <button class="btn" id="btn_a_datos" type="button" disabled>Continuar →</button>
+    </div>
+  </section>
+
+  <section class="paso" id="paso2">
+    <h1 style="font-size:28px">2 · Tus datos</h1>
+    <div class="card">
+      <div class="row">
+        <div><label>Nombre completo</label><input type="text" id="d_nombre"></div>
+        <div><label>Correo</label><input type="email" id="d_correo"></div>
+      </div>
+      <div class="row" style="margin-top:12px">
+        <div><label>WhatsApp</label><input type="tel" id="d_whatsapp" placeholder="3XXXXXXXXX"></div>
+        <div><label>Hora estimada de llegada</label><input type="time" id="d_hora"></div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between">
+      <button class="btn" style="background:transparent;color:var(--verde);border:1.5px solid var(--verde)" id="btn_atras_1" type="button">← Volver</button>
+      <button class="btn" id="btn_a_pago" type="button">Continuar →</button>
+    </div>
+  </section>
+
+  <section class="paso" id="paso3">
+    <h1 style="font-size:28px">3 · Abono y pago (Wompi)</h1>
+    <div class="card resumen" id="resumen_reserva"></div>
+    <div class="card">
+      <label>¿Cuánto abonas hoy?</label>
+      <div class="row">
+        <div><button class="btn" style="width:100%;background:transparent;color:var(--verde);border:2px solid var(--verde)" data-abono="30" type="button">30% (mínimo)</button></div>
+        <div><button class="btn" style="width:100%;background:transparent;color:var(--verde);border:2px solid var(--borde)" data-abono="50" type="button">50%</button></div>
+        <div><button class="btn" style="width:100%;background:transparent;color:var(--verde);border:2px solid var(--borde)" data-abono="100" type="button">100%</button></div>
+      </div>
+      <label style="margin-top:16px;display:flex;gap:8px;align-items:flex-start;font-weight:400">
+        <input type="checkbox" id="d_acepta" style="width:auto;margin-top:3px">
+        <span style="font-size:14px">Acepto la política de cancelación y devolución: cancelar con 7 días o más de anticipación devuelve el abono menos comisión de Wompi, 4×1.000 y retención en la fuente. Con menos de 7 días no hay devolución.</span>
+      </label>
+      <div style="text-align:center;margin-top:16px" id="zona_pago">
+        <button class="btn" id="btn_pagar" type="button" style="font-size:17px;padding:16px 30px">Pagar abono →</button>
+      </div>
+      <div id="msg_paso3"></div>
+    </div>
+    <button class="btn" style="background:transparent;color:var(--verde);border:1.5px solid var(--verde)" id="btn_atras_2" type="button">← Volver</button>
+  </section>
+
+</main>
+
+<script>
+const API = "https://vjatjvkdxuagispadnkk.supabase.co/functions/v1";
+const estado = { disponibilidad: null, glamping: null, abono: 30, reserva: null };
+
+function fmtCOP(n){ return "$" + Number(n).toLocaleString("es-CO"); }
+function irA(paso){
+  document.querySelectorAll(".paso").forEach(p => p.classList.remove("activo"));
+  document.getElementById(paso).classList.add("activo");
+}
+
+document.getElementById("btn_buscar").addEventListener("click", async () => {
+  const desde = document.getElementById("f_llegada").value;
+  const hasta = document.getElementById("f_salida").value;
+  const personas = Number(document.getElementById("f_personas").value);
+  const msg = document.getElementById("msg_paso1");
+  msg.innerHTML = "";
+  if (!desde || !hasta || hasta <= desde) {
+    msg.innerHTML = '<div class="msg err">Elige fechas válidas (salida después de llegada).</div>';
+    return;
+  }
+
+  try {
+    const res = await fetch(`${API}/disponibilidad?desde=${desde}&hasta=${hasta}`);
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "Error consultando disponibilidad");
+    estado.disponibilidad = data;
+    estado.desde = desde; estado.hasta = hasta; estado.personas = personas;
+
+    const noches = Math.round((new Date(hasta) - new Date(desde)) / 86400000);
+    const cont = document.getElementById("lista_glampings");
+    cont.innerHTML = "";
+    for (const [slug, info] of Object.entries(data.glampings)) {
+      const bloqueado = info.fechas_bloqueadas_ical.length > 0 || info.reservas_propias.length > 0;
+      const disponible = !bloqueado && personas <= info.capacidad_max;
+      const div = document.createElement("div");
+      div.className = "glamping " + (disponible ? "ok" : "no");
+      div.innerHTML = `
+        <div style="flex:1">
+          <h3 style="font-size:18px">${info.nombre}</h3>
+          <span class="chip ${disponible ? 'ok' : 'no'}">${disponible ? '● Disponible' : 'No disponible'}</span>
+        </div>
+        <div style="text-align:right">
+          <b>${fmtCOP(info.precio_noche_cop * noches)}</b>
+          <div><small class="mut">${noches} noche(s) · ${personas} personas</small></div>
+        </div>`;
+      if (disponible) {
+        div.addEventListener("click", () => {
+          document.querySelectorAll(".glamping").forEach(g => g.classList.remove("sel"));
+          div.classList.add("sel");
+          estado.glamping = slug;
+          estado.precio_noche = info.precio_noche_cop;
+          estado.noches = noches;
+          document.getElementById("btn_a_datos").disabled = false;
+        });
+      }
+      cont.appendChild(div);
+    }
+  } catch (e) {
+    msg.innerHTML = `<div class="msg err">${e.message}</div>`;
+  }
+});
+
+document.getElementById("btn_a_datos").addEventListener("click", () => irA("paso2"));
+document.getElementById("btn_atras_1").addEventListener("click", () => irA("paso1"));
+document.getElementById("btn_atras_2").addEventListener("click", () => irA("paso2"));
+
+document.getElementById("btn_a_pago").addEventListener("click", () => {
+  estado.nombre = document.getElementById("d_nombre").value.trim();
+  estado.correo = document.getElementById("d_correo").value.trim();
+  estado.whatsapp = document.getElementById("d_whatsapp").value.trim();
+  estado.hora = document.getElementById("d_hora").value;
+  if (!estado.nombre || !estado.correo || !estado.whatsapp) {
+    alert("Completa nombre, correo y WhatsApp.");
+    return;
+  }
+  pintarResumen();
+  irA("paso3");
+});
+
+function pintarResumen() {
+  const total = estado.precio_noche * estado.noches;
+  const abonoMonto = Math.round(total * estado.abono / 100);
+  document.getElementById("resumen_reserva").innerHTML = `
+    <h3>${estado.glamping}</h3>
+    <div class="r"><span>${estado.desde} → ${estado.hasta}</span><span>${estado.noches} noche(s)</span></div>
+    <div class="r"><b>Total estadía</b><b>${fmtCOP(total)}</b></div>
+    <div class="r" style="color:var(--rojo);font-weight:700"><span>Abono hoy (${estado.abono}%)</span><span>${fmtCOP(abonoMonto)}</span></div>
+    <div class="r"><span>Saldo en el glamping</span><span>${fmtCOP(total - abonoMonto)}</span></div>
+  `;
+}
+
+document.querySelectorAll('[data-abono]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    estado.abono = Number(btn.dataset.abono);
+    document.querySelectorAll('[data-abono]').forEach(b => b.style.borderColor = 'var(--borde)');
+    btn.style.borderColor = 'var(--verde)';
+    pintarResumen();
+  });
+});
+
+document.getElementById("btn_pagar").addEventListener("click", async () => {
+  const msg = document.getElementById("msg_paso3");
+  msg.innerHTML = "";
+  if (!document.getElementById("d_acepta").checked) {
+    msg.innerHTML = '<div class="msg err">Debes aceptar la política de cancelación.</div>';
+    return;
+  }
+  const btn = document.getElementById("btn_pagar");
+  btn.disabled = true;
+  btn.textContent = "Creando tu reserva...";
+
+  try {
+    const res = await fetch(`${API}/crear-reserva`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        glamping: estado.glamping,
+        fecha_llegada: estado.desde,
+        fecha_salida: estado.hasta,
+        personas: estado.personas,
+        nombre: estado.nombre,
+        correo: estado.correo,
+        whatsapp: estado.whatsapp,
+        hora_llegada: estado.hora,
+        abono_porcentaje: estado.abono,
+      }),
+    });
+    const data = await res.json();
+
+    if (res.status === 503) {
+      msg.innerHTML = `<div class="msg warn">Reserva creada en estado de prueba (código ${data.codigo}), pero Wompi aún no tiene llaves reales configuradas en este ambiente QA. El backend funcionó correctamente hasta este punto.</div>`;
+      btn.textContent = "Pagar abono →";
+      btn.disabled = false;
+      return;
+    }
+    if (!res.ok) throw new Error(data.error || "No se pudo crear la reserva");
+
+    estado.reserva = data;
+    msg.innerHTML = `<div class="msg ok">Reserva ${data.codigo} creada. Retenida hasta ${new Date(data.retenido_hasta).toLocaleTimeString('es-CO')}. Abriendo Wompi…</div>`;
+
+    const zona = document.getElementById("zona_pago");
+    zona.innerHTML = "";
+    const form = document.createElement("form");
+    const script = document.createElement("script");
+    script.src = "https://checkout.wompi.co/widget.js";
+    script.setAttribute("data-render", "button");
+    script.setAttribute("data-public-key", data.wompi.public_key);
+    script.setAttribute("data-currency", data.wompi.currency);
+    script.setAttribute("data-amount-in-cents", data.wompi.amount_in_cents);
+    script.setAttribute("data-reference", data.wompi.reference);
+    script.setAttribute("data-signature:integrity", data.wompi.signature_integrity);
+    script.setAttribute("data-redirect-url", window.location.origin + "/reservar-confirmacion.html?codigo=" + data.codigo + "&token=" + data.token_gestion);
+    form.appendChild(script);
+    zona.appendChild(form);
+  } catch (e) {
+    msg.innerHTML = `<div class="msg err">${e.message}</div>`;
+    btn.disabled = false;
+    btn.textContent = "Pagar abono →";
+  }
+});
+</script>
+</body>
+</html>
