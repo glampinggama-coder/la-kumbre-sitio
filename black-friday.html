@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Black Friday · Glamping La Kumbre</title>
+<meta name="description" content="Black Friday en Glamping La Kumbre: 25% menos en noches de domingo a jueves, de enero a abril de 2027. Solo 30 reservas.">
+<meta property="og:title" content="Black Friday · Glamping La Kumbre">
+<meta property="og:description" content="25% menos en noches de domingo a jueves. Solo 30 reservas. Código BLACK26.">
+<meta property="og:image" content="img/bf/colorado-vista.webp">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="img/logo-bosque-v2.svg">
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Playfair+Display:ital,wght@0,600;1,400&family=Raleway:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--neon:#C6FF3D;--neon2:#8BD600;--negro:#0E100E;--bosque:#344536;--marfil:#F6F1E8;--arena:#D7C4A5;--rosa:#E8318F}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--negro);color:var(--marfil);font-family:Raleway,system-ui,sans-serif;line-height:1.5}
+a{color:inherit}
+img{max-width:100%}
+:focus-visible{outline:3px solid var(--neon);outline-offset:3px}
+button{font-family:inherit}
+/* fases: data-f="expectativa oferta agotado fin" */
+html:not([data-bf-fase]) [data-f]:not([data-f~="expectativa"]),
+html[data-bf-fase="expectativa"] [data-f]:not([data-f~="expectativa"]),
+html[data-bf-fase="oferta"] [data-f]:not([data-f~="oferta"]),
+html[data-bf-fase="agotado"] [data-f]:not([data-f~="agotado"]),
+html[data-bf-fase="fin"] [data-f]:not([data-f~="fin"]){display:none!important}
+.tabla{overflow-x:auto;border-radius:16px}
+/* encabezado */
+header{position:sticky;top:0;z-index:30;background:var(--bosque)}
+.hd{max-width:1160px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;background:var(--marfil);border-radius:6px;padding:6px 14px}.logo img{height:34px;display:block}
+.hd a.back{font-size:15px;font-weight:500;text-decoration:none;color:var(--marfil)}
+.btn-ghost{font-size:15px;font-weight:600;color:var(--bosque);background:var(--marfil);border-radius:999px;padding:12px 22px;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+/* hero */
+.hero{position:relative;overflow:hidden;background:var(--negro)}
+.hero-bg{position:absolute;inset:0;background:url(img/bf/colorado-vista.webp) center 60%/cover;opacity:.38}
+.hero-bg:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--negro) 15%,rgba(14,16,14,.35) 70%,var(--negro))}
+.hero-in{position:relative;max-width:1160px;margin:0 auto;padding:56px 24px 64px;display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:40px;align-items:center}
+.marco{border-radius:24px;padding:36px 40px;box-shadow:inset 0 0 0 3px var(--neon),0 0 30px rgba(198,255,61,.55),inset 0 0 36px rgba(198,255,61,.2);background:rgba(14,16,14,.72);animation:glow 1.8s ease-in-out infinite}
+.tag{display:inline-block;background:var(--rosa);color:#fff;font-size:14px;font-weight:800;letter-spacing:.1em;padding:5px 16px;transform:skew(-8deg)}
+.tit{display:flex;align-items:center;gap:24px;margin:18px 0 6px;flex-wrap:wrap}
+.bf{font-family:'Permanent Marker',cursive;font-size:104px;line-height:.9;color:var(--neon);transform:rotate(-4deg);display:inline-block;animation:flicker 3.2s infinite;margin:0}
+.pct{font-weight:900;font-size:138px;line-height:1;color:var(--neon);text-shadow:0 0 16px rgba(198,255,61,.7)}
+.sub{font-size:22px;line-height:30px;font-weight:600;margin:0 0 20px;max-width:560px}
+.sub b{color:var(--neon)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 26px;padding:0;list-style:none}
+.chips li{border:1.5px solid var(--neon);border-radius:999px;padding:5px 14px;font-size:14px;font-weight:700}
+.acciones{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.cta{font-size:20px;font-weight:900;color:var(--negro);background:var(--neon);border:0;border-radius:999px;padding:16px 32px;min-height:56px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:10px;animation:pulse 1.4s ease-in-out infinite}
+.cta:hover{background:#B4F01F}
+.sec{font-size:16px;font-weight:700;color:var(--marfil);text-decoration:underline;text-underline-offset:4px}
+.panel{display:flex;flex-direction:column;align-items:center;gap:14px;padding:28px 24px;border-radius:24px;background:rgba(14,16,14,.78);border:1px solid rgba(198,255,61,.35)}
+.term{margin:0;font-size:12px;font-weight:800;letter-spacing:.22em;color:var(--neon)}
+.cuenta{display:flex;gap:8px;font-variant-numeric:tabular-nums}
+.cuenta div{min-width:76px;text-align:center;border:2px solid var(--neon);border-radius:10px;padding:8px 4px}
+.cuenta b{display:block;font-size:40px;line-height:44px;font-weight:800;color:var(--neon)}
+.cuenta span{font-size:10px;font-weight:700;letter-spacing:.14em}
+.meter{width:100%}.meter i{display:block;height:9px;border-radius:99px;background:#2A2E2A;overflow:hidden}.meter u{display:block;height:9px;border-radius:99px;background:var(--neon);box-shadow:0 0 10px rgba(198,255,61,.9);width:100%}
+.meter p{margin:6px 0 0;text-align:center;font-size:13px;color:#BFC2B8}
+.sello{position:relative;width:128px;height:128px}.sello svg{width:100%;height:100%;animation:spin 12s linear infinite}.sello b{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:38px;font-weight:900;line-height:1;color:#fff}.sello i{font-style:normal;font-size:11px;letter-spacing:.12em}
+/* secciones */
+.wrap{max-width:1160px;margin:0 auto;padding:72px 24px}
+h2{font-family:'Playfair Display',Georgia,serif;font-size:38px;line-height:44px;font-weight:600;margin:0 0 28px}
+h2 em{font-style:italic;font-weight:400;color:var(--neon)}
+.claro{background:var(--marfil);color:#252A26}
+.claro h2{color:var(--bosque)}.claro h2 em{color:#A6533D}
+.pasos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;list-style:none;margin:0;padding:0;counter-reset:p}
+.pasos li{background:#fff;border:1px solid var(--arena);border-radius:16px;padding:28px 24px;counter-increment:p;position:relative}
+.pasos li:before{content:counter(p);position:absolute;top:-18px;left:22px;width:40px;height:40px;border-radius:50%;background:var(--negro);color:var(--neon);font-weight:900;font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 2px var(--neon)}
+.pasos h3{margin:6px 0 8px;font-family:'Playfair Display',serif;font-size:22px;color:var(--bosque)}
+.pasos p{margin:0;font-size:15px;color:#4A4E47}
+table{width:100%;border-collapse:collapse;background:var(--negro);border-radius:16px;overflow:hidden;font-variant-numeric:tabular-nums}
+th,td{padding:16px 18px;text-align:right;font-size:17px}
+th:first-child,td:first-child{text-align:left}
+th{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--neon);background:#161916}
+tr+tr td{border-top:1px solid #2A2E2A}
+td.off{color:var(--neon);font-weight:800}
+td.tot{font-weight:800;font-size:19px}
+.nota{font-size:14px;color:#BFC2B8;margin:14px 0 0}
+.cond{list-style:none;margin:0;padding:0;display:grid;gap:12px;max-width:820px}
+.cond li{padding-left:28px;position:relative;font-size:16px}
+.cond li:before{content:"";position:absolute;left:0;top:9px;width:10px;height:10px;border-radius:50%;background:var(--neon);box-shadow:0 0 8px var(--neon)}
+.cierre{background:var(--bosque);text-align:center}
+.cierre .wrap{padding:64px 24px}
+.cierre p{font-size:19px;max-width:620px;margin:0 auto 26px}
+footer{background:var(--arena);color:#252A26}
+.ft{max-width:1160px;margin:0 auto;padding:24px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;font-size:14px}
+.ft img{height:36px}
+.fin-msg{padding:96px 24px;text-align:center}
+.fin-msg h1{font-family:'Playfair Display',serif;font-size:44px;margin:0 0 16px}
+@keyframes flicker{0%,18%,22%,25%,53%,57%,100%{opacity:1;text-shadow:0 0 6px var(--neon),0 0 18px var(--neon),0 0 42px var(--neon2)}20%,24%,55%{opacity:.35;text-shadow:none}}
+@keyframes glow{0%,100%{box-shadow:inset 0 0 0 3px var(--neon),0 0 24px rgba(198,255,61,.5),inset 0 0 30px rgba(198,255,61,.18)}50%{box-shadow:inset 0 0 0 3px var(--neon),0 0 44px rgba(198,255,61,.9),inset 0 0 44px rgba(198,255,61,.35)}}
+@keyframes pulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(198,255,61,.7)}50%{transform:scale(1.04);box-shadow:0 0 0 14px rgba(198,255,61,0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (max-width:980px){.hero-in{grid-template-columns:1fr}.bf{font-size:84px}.pct{font-size:110px}.panel{max-width:520px}.pasos{grid-template-columns:1fr;gap:32px}}
+@media (max-width:620px){.hd a.back{display:none}.hero-in{padding:32px 16px 40px;gap:24px}.marco{padding:24px 20px}.bf{font-size:60px}.pct{font-size:76px}.tit{gap:14px}.sub{font-size:18px;line-height:26px}.cta{width:100%;justify-content:center;font-size:18px}.cuenta div{min-width:0;flex:1}.cuenta b{font-size:30px;line-height:34px}.wrap{padding:48px 16px}h2{font-size:30px;line-height:36px}th,td{padding:12px 8px;font-size:14px}th:last-child,td:last-child{display:none}.sello{display:none}.fin-msg h1{font-size:34px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body data-bf-landing>
+<header><div class="hd">
+<a class="logo" href="index.html" aria-label="La Kumbre, inicio"><img src="img/logo-bosque-v2.svg" alt="La Kumbre"></a>
+<a class="back" href="index.html">← Volver al sitio</a>
+<a class="btn-ghost" href="index.html#glampings">Ver glampings</a>
+</div></header>
+
+<main>
+<!-- Fin de campaña -->
+<section class="fin-msg" data-f="fin">
+<h1>El Black Friday de La Kumbre ya terminó</h1>
+<p>Gracias por acompañarnos. Mira nuestros precios y planes de entre semana.</p>
+<p><a class="cta" href="index.html#precios" style="animation:none">Ver precios →</a></p>
+</section>
+
+<div data-f="expectativa oferta agotado">
+<section class="hero">
+<div class="hero-bg" aria-hidden="true"></div>
+<div class="hero-in">
+<div class="marco">
+<span class="tag" data-f="expectativa">GLAMPING LA KUMBRE · SE DESTAPA EL MIÉRCOLES 25</span>
+<span class="tag" data-f="oferta">¡YA ESTÁ ABIERTA!</span>
+<span class="tag" data-f="agotado">CUPOS AGOTADOS</span>
+<div class="tit"><h1 class="bf">BLACK<br>FRIDAY</h1>
+<span class="pct" data-f="expectativa" aria-label="Hasta veinti-algo por ciento">2?%</span>
+<span class="pct" data-f="oferta agotado" aria-label="25 por ciento">25%</span></div>
+<p class="sub" data-f="expectativa">Noches de <b>domingo a jueves</b> en la montaña. Deja tu nombre y te avisamos <b>primero</b>, apenas abra.</p>
+<p class="sub" data-f="oferta agotado">Escapada <b>entre semana</b>: domingo a jueves, de enero a abril de 2027.</p>
+<ul class="chips"><li>Solo <span data-bf-total>30</span> reservas</li><li>Abono del 40%</li><li data-f="oferta agotado">Hasta el lunes 30 de nov</li><li data-f="expectativa">Código BLACK26</li></ul>
+<div class="acciones">
+<button type="button" class="cta" data-f="expectativa" data-bf="espera">Avísame primero <span aria-hidden="true">→</span></button>
+<button type="button" class="cta" data-f="oferta" data-bf="abrir">Cotiza y reserva ya <span aria-hidden="true">→</span></button>
+<button type="button" class="cta" data-f="agotado" data-bf="espera-agotado">Avísame si se libera <span aria-hidden="true">→</span></button>
+<a class="sec" href="#como">Cómo funciona</a>
+</div>
+</div>
+<aside class="panel" aria-label="Estado de la campaña">
+<p class="term" data-f="expectativa">SE DESTAPA EN</p><p class="term" data-f="oferta agotado">TERMINA EN</p>
+<div class="cuenta" role="timer"><div><b data-bf-d>0</b><span>DÍAS</span></div><div><b data-bf-h>00</b><span>HORAS</span></div><div><b data-bf-m>00</b><span>MIN</span></div><div><b data-bf-s>00</b><span>SEG</span></div></div>
+<div class="sello" aria-hidden="true"><svg viewBox="0 0 120 120"><defs><path id="cs" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs><circle cx="60" cy="60" r="58" fill="#E8318F"/><text font-family="Raleway,sans-serif" font-size="13" font-weight="800" fill="#fff"><textPath href="#cs" textLength="286" lengthAdjust="spacing">SOLO 30 RESERVAS · BLACK FRIDAY ·</textPath></text></svg><b><span data-bf-quedan>30</span><i>CUPOS</i></b></div>
+<div class="meter"><i><u data-bf-meter></u></i><p><span data-bf-quedan>30</span> de <span data-bf-total>30</span> cupos disponibles</p></div>
+</aside>
+</div>
+</section>
+
+<section class="claro" id="como"><div class="wrap">
+<h2>Así de <em>fácil</em></h2>
+<ol class="pasos">
+<li><h3 data-f="expectativa">Deja tu nombre</h3><h3 data-f="oferta agotado">Cotiza y reserva ya</h3><p data-f="expectativa">Escríbenos por WhatsApp con el código BLACK26 y te avisamos primero, antes de abrir al público.</p><p data-f="oferta agotado">Elige fechas, noches y personas: ves tu valor con el 25% en 20 segundos.</p></li>
+<li><h3>Asegura tu cupo</h3><p>Pagas el abono del 40% por WhatsApp y tu cupo queda asegurado. El 60% restante lo pagas en sitio.</p></li>
+<li><h3>Sube a la montaña</h3><p>Disfruta tu noche de domingo a jueves entre el 12 de enero y el 29 de abril de 2027, con desayuno y baño privado.</p></li>
+</ol>
+</div></section>
+
+<section data-f="oferta agotado"><div class="wrap">
+<h2>Cuánto <em>pagas</em></h2>
+<div class="tabla"><table>
+<thead><tr><th>Estadía</th><th>Valor normal</th><th>Descuento</th><th>Total</th><th>Abono 40%</th></tr></thead>
+<tbody>
+<tr><td>1 persona · 1 noche</td><td>$140.000</td><td class="off">−$35.000</td><td class="tot">$105.000</td><td>$42.000</td></tr>
+<tr><td>2 personas · 1 noche</td><td>$260.000</td><td class="off">−$65.000</td><td class="tot">$195.000</td><td>$78.000</td></tr>
+<tr><td>1 persona · 3 noches</td><td>$420.000</td><td class="off">−$105.000</td><td class="tot">$315.000</td><td>$126.000</td></tr>
+<tr><td>2 personas · 3 noches</td><td>$780.000</td><td class="off">−$195.000</td><td class="tot">$585.000</td><td>$234.000</td></tr>
+</tbody></table></div>
+<p class="nota">Para 3 a 6 personas te cotizamos por WhatsApp con el 25% incluido.</p>
+</div></section>
+
+<section class="claro"><div class="wrap">
+<h2>Condiciones de la <em>oferta</em></h2>
+<ul class="cond">
+<li><span data-bf-total>30</span> reservas en total, del 25 al 30 de noviembre de 2026 o hasta agotar cupos.</li>
+<li>Noches de domingo a jueves, del 12 de enero al 29 de abril de 2027. No aplica en Semana Santa ni puentes festivos.</li>
+<li>Hasta 3 noches y 6 personas por reserva.</li>
+<li>Abono del 40% al reservar; el 60% restante se paga en sitio.</li>
+<li>El abono es reembolsable si cancelas al menos 7 días antes de la fecha. Una sola reprogramación, hasta 7 días antes.</li>
+</ul>
+</div></section>
+
+<section class="cierre"><div class="wrap">
+<h2>Tu montaña te <em>espera</em></h2>
+<p data-f="expectativa">Deja tu nombre hoy y sé de los primeros en enterarte cuando abra la oferta.</p>
+<p data-f="oferta">Quedan <b data-bf-quedan style="color:var(--neon)">30</b> cupos. Calcula tu valor y reserva por WhatsApp.</p>
+<p data-f="agotado">Los 30 cupos se agotaron. Avísanos y te escribimos si se libera alguno.</p>
+<button type="button" class="cta" data-f="expectativa" data-bf="espera">Avísame primero <span aria-hidden="true">→</span></button>
+<button type="button" class="cta" data-f="oferta" data-bf="abrir">Cotiza y reserva ya <span aria-hidden="true">→</span></button>
+<button type="button" class="cta" data-f="agotado" data-bf="espera-agotado">Avísame si se libera <span aria-hidden="true">→</span></button>
+</div></section>
+</div>
+</main>
+
+<footer><div class="ft"><img src="img/logo-bosque-v2.svg" alt="La Kumbre"><span>WhatsApp (+57) 322 207 0120 · Km 1 vía La Meseta, Gama</span></div></footer>
+<script src="oferta-bf.js" defer></script>
+</body>
+</html>

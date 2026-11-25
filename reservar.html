@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reservar — Glamping La Kumbre</title>
+<meta name="robots" content="noindex, nofollow">
+<script src="https://checkout.wompi.co/widget.js"></script>
+<style>
+  :root{--verde:#344536;--crema:#F6F1E8;--borde:#D7C4A5;--texto:#252A26;--mut:#5C5F58;--rojo:#A6533D;--ok:#2F7A4B;--bf:#C6FF3D}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Raleway,system-ui,sans-serif;background:var(--crema);color:var(--texto)}
+  h1,h2,h3{font-family:Georgia,serif;color:var(--verde);margin:0}
+  header{background:var(--verde);color:var(--crema);padding:16px 24px;display:flex;justify-content:space-between;align-items:center}
+  header b{font-size:18px}
+  .bf-banner-mini{background:#0E100E;color:var(--bf);text-align:center;padding:9px 12px;font-size:13px;font-weight:800;letter-spacing:.02em}
+  .bf-badge-fila{display:none;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .bf-badge-fila.on{display:flex}
+  .bf-badge-fila .tag{background:#0E100E;color:var(--bf);font-weight:800;font-size:12px;letter-spacing:.06em;padding:4px 10px;border-radius:999px}
+  .bf-badge-fila .nota{font-size:12px;color:var(--mut)}
+  .precio-antes{color:var(--mut);text-decoration:line-through;font-size:13px;font-weight:400}
+  main{max-width:960px;margin:0 auto;padding:24px}
+  .card{background:#fff;border:1px solid var(--borde);border-radius:14px;padding:20px;margin-bottom:20px}
+  .row{display:flex;gap:12px;flex-wrap:wrap}
+  .row > div{flex:1;min-width:140px}
+  label{display:block;font-size:13px;font-weight:700;color:var(--verde);margin-bottom:6px}
+  input,select{width:100%;border:1.5px solid var(--borde);border-radius:10px;padding:11px 12px;font-size:16px;background:#fff}
+  main{padding-bottom:calc(24px + env(safe-area-inset-bottom))}
+  .fecha-btn{width:100%;border:1.5px solid var(--borde);border-radius:10px;padding:11px 12px;min-height:48px;font-size:16px;font-family:inherit;background:#fff;color:var(--texto);text-align:left;display:flex;align-items:center;justify-content:space-between;gap:8px;cursor:pointer}
+  .fecha-btn.vacio{color:#9B9B93}
+  .fecha-btn .ico{flex:0 0 auto;color:var(--verde)}
+  .cal-pop{position:absolute;top:calc(100% + 6px);left:0;z-index:40;background:#fff;border:1px solid var(--borde);border-radius:12px;box-shadow:0 12px 32px rgba(37,42,38,0.25);padding:14px;width:272px;display:none}
+  .cal-pop.abierto{display:block}
+  .cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+  .cal-head b{font-size:14px;color:var(--verde);text-transform:capitalize}
+  .cal-nav{border:0;background:transparent;color:var(--verde);font-size:18px;line-height:1;cursor:pointer;width:28px;height:28px;border-radius:6px}
+  .cal-nav:hover{background:#F1EADB}
+  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center}
+  .cal-grid .dow{font-size:11px;font-weight:700;color:var(--mut);padding:4px 0}
+  .cal-grid button{border:0;background:transparent;border-radius:8px;padding:8px 0;font-size:14px;font-family:inherit;cursor:pointer;color:var(--texto)}
+  .cal-grid button:hover:not(:disabled){background:#F1EADB}
+  .cal-grid button:disabled{color:#D2CFC4;cursor:not-allowed}
+  .cal-grid button.sel{background:var(--verde);color:#fff;font-weight:700}
+  .cal-grid button.vacia{visibility:hidden;cursor:default}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:16px;font-weight:600;color:var(--crema);background:var(--verde);border:none;border-radius:999px;padding:14px 26px;cursor:pointer}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  .glamping{display:flex;gap:14px;align-items:center;border:1px solid var(--borde);border-radius:12px;padding:12px;margin-bottom:10px}
+  .glamping.ok{cursor:pointer}
+  .glamping.ok:hover{border-color:var(--verde)}
+  .glamping.sel{border:2px solid var(--rojo);background:#FBF1EC}
+  .glamping.no{opacity:.5}
+  .chip{display:inline-block;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:600}
+  .chip.ok{background:#E4F0E6;color:var(--ok)}
+  .chip.no{background:#EFE9DC;color:#A8A99F}
+  .msg{padding:14px;border-radius:10px;font-size:14px;margin-top:12px}
+  .msg.err{background:#FBF1EC;color:var(--rojo);border:1px solid var(--rojo)}
+  .msg.warn{background:#FBF6EA;color:#8A5A1F;border:1px solid #D7C4A5}
+  .msg.ok{background:#E4F0E6;color:var(--ok);border:1px solid var(--ok)}
+  .paso{display:none}
+  .paso.activo{display:block}
+  .resumen .r{display:flex;justify-content:space-between;font-size:15px;padding:4px 0}
+  small.mut{color:var(--mut)}
+</style>
+</head>
+<body>
+<div class="bf-banner-mini" id="bf_banner_mini" style="display:none">Black Friday · 25% de descuento ya aplicado en estas fechas</div>
+<header id="header_propio"><b>Glamping La Kumbre</b><span style="font-size:13px">Reservar</span></header>
+<main>
+
+  <section class="paso activo" id="paso1">
+    <h1 style="font-size:28px">1 · Fechas y disponibilidad</h1>
+    <div class="bf-badge-fila" id="bf_badge_fila"><span class="tag">BLACK FRIDAY −25%</span><span class="nota" id="bf_nota_personas"></span></div>
+    <div class="card">
+      <div class="row">
+        <div style="position:relative">
+          <label>Llegada</label>
+          <button type="button" class="fecha-btn vacio" id="f_llegada_btn"><span>Elegir fecha</span><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></button>
+          <input type="hidden" id="f_llegada">
+        </div>
+        <div style="position:relative">
+          <label>Salida</label>
+          <button type="button" class="fecha-btn vacio" id="f_salida_btn"><span>Elegir fecha</span><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></button>
+          <input type="hidden" id="f_salida">
+        </div>
+        <div><label>Personas</label><select id="f_personas"><option value="1">1 persona</option><option value="2" selected>2 personas</option><option value="3">3 personas</option><option value="4">4 personas</option><option value="5">5 personas</option><option value="6">6 personas</option></select></div>
+        <div style="flex:0 0 auto;align-self:flex-end"><button class="btn" id="btn_buscar" type="button">Buscar disponibilidad</button></div>
+      </div>
+    </div>
+    <div id="lista_glampings"></div>
+    <div id="msg_paso1"></div>
+    <div style="text-align:right;margin-top:12px">
+      <button class="btn" id="btn_a_datos" type="button" disabled>Continuar →</button>
+    </div>
+  </section>
+
+  <section class="paso" id="paso2">
+    <h1 style="font-size:28px">2 · Tus datos</h1>
+    <div class="card">
+      <div class="row">
+        <div><label>Nombre completo</label><input type="text" id="d_nombre" autocomplete="name"></div>
+        <div><label>Correo</label><input type="email" id="d_correo" autocomplete="email" inputmode="email"></div>
+      </div>
+      <div class="row" style="margin-top:12px">
+        <div><label>WhatsApp</label><input type="tel" id="d_whatsapp" placeholder="3XXXXXXXXX" autocomplete="tel" inputmode="tel"></div>
+        <div><label>Hora estimada de llegada</label><select id="d_hora"><option value="14:00">2:00 p.m.</option><option value="15:00">3:00 p.m.</option><option value="16:00">4:00 p.m.</option><option value="17:00">5:00 p.m.</option><option value="18:00">6:00 p.m.</option><option value="19:00">7:00 p.m.</option><option value="20:00">8:00 p.m.</option></select></div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between">
+      <button class="btn" style="background:transparent;color:var(--verde);border:1.5px solid var(--verde)" id="btn_atras_1" type="button">← Volver</button>
+      <button class="btn" id="btn_a_pago" type="button">Continuar →</button>
+    </div>
+  </section>
+
+  <section class="paso" id="paso3">
+    <h1 style="font-size:28px">3 · Abono y pago (Wompi)</h1>
+    <div class="card resumen" id="resumen_reserva"></div>
+    <div class="card">
+      <label id="lbl_abono">¿Cuánto abonas hoy?</label>
+      <div class="row" id="fila_abono">
+        <div><button class="btn" style="width:100%;background:transparent;color:var(--verde);border:2px solid var(--verde)" data-abono="30" type="button">30% (mínimo)</button></div>
+        <div><button class="btn" style="width:100%;background:transparent;color:var(--verde);border:2px solid var(--borde)" data-abono="50" type="button">50%</button></div>
+        <div><button class="btn" style="width:100%;background:transparent;color:var(--verde);border:2px solid var(--borde)" data-abono="100" type="button">100%</button></div>
+      </div>
+      <label style="margin-top:16px;display:flex;gap:8px;align-items:flex-start;font-weight:400">
+        <input type="checkbox" id="d_acepta" style="width:auto;margin-top:3px">
+        <span style="font-size:14px">Acepto la política de cancelación y devolución: cancelar con 7 días o más de anticipación devuelve el abono menos comisión de Wompi, 4×1.000 y retención en la fuente. Con menos de 7 días no hay devolución.</span>
+      </label>
+      <div style="text-align:center;margin-top:16px" id="zona_pago">
+        <button class="btn" id="btn_pagar" type="button" style="font-size:18px;padding:18px 36px;box-shadow:0 8px 20px rgba(52,69,54,0.35);width:100%">Pagar abono →</button>
+      </div>
+      <div id="msg_paso3"></div>
+    </div>
+    <button class="btn" style="background:transparent;color:var(--verde);border:1.5px solid var(--verde)" id="btn_atras_2" type="button">← Volver</button>
+  </section>
+
+</main>
+
+<script>
+if (window.self !== window.top) {
+  // Dentro del popup flotante del home: el encabezado ya lo da el contenedor que nos embebe.
+  document.getElementById("header_propio").style.display = "none";
+}
+
+const API = "https://vjatjvkdxuagispadnkk.supabase.co/functions/v1";
+
+// ---------- Oferta Black Friday (?oferta=BLACK26) ----------
+const params0 = new URLSearchParams(window.location.search);
+const OFERTA = params0.get("oferta") === "BLACK26" ? "BLACK26" : null;
+const BF = {
+  descuento: 0.25,
+  abono: 40,
+  maxNoches: 3,
+  minFecha: "2027-01-12",
+  maxFecha: "2027-04-29",
+  ssInicio: "2027-03-21",
+  ssFin: "2027-03-28",
+};
+function nocheValidaBF(fechaStr){
+  if (fechaStr < BF.minFecha || fechaStr > BF.maxFecha) return false;
+  if (fechaStr >= BF.ssInicio && fechaStr <= BF.ssFin) return false;
+  const dow = new Date(fechaStr + "T00:00:00Z").getUTCDay();
+  return dow >= 0 && dow <= 4; // domingo(0) a jueves(4)
+}
+function maxSalidaBF(llegadaStr){
+  // Mayor fecha de salida (noches consecutivas todas dom-jue, dentro del
+  // rango de la oferta) a partir de una llegada ya válida, topado a maxNoches.
+  let maxSalida = llegadaStr;
+  for (let i = 1; i <= BF.maxNoches; i++) {
+    if (!nocheValidaBF(sumarDias(llegadaStr, i - 1))) break;
+    maxSalida = sumarDias(llegadaStr, i);
+  }
+  return maxSalida;
+}
+
+const estado = { disponibilidad: null, glamping: null, abono: OFERTA ? BF.abono : 30, reserva: null };
+
+function fmtCOP(n){ return "$" + Number(n).toLocaleString("es-CO"); }
+function irA(paso){
+  document.querySelectorAll(".paso").forEach(p => p.classList.remove("activo"));
+  document.getElementById(paso).classList.add("activo");
+}
+
+// Bogotá es UTC-5 todo el año. Fecha mínima de llegada: mañana.
+function hoyBogota(){
+  const ahora = new Date(Date.now() - 5 * 60 * 60 * 1000);
+  return ahora.toISOString().slice(0, 10);
+}
+function sumarDias(fechaStr, dias){
+  const d = new Date(fechaStr + "T00:00:00Z");
+  d.setUTCDate(d.getUTCDate() + dias);
+  return d.toISOString().slice(0, 10);
+}
+const manana = sumarDias(hoyBogota(), 1);
+
+// Calendario propio (reemplaza <input type="date">): los selectores nativos
+// de iOS Safari no se pueden re-estilizar ni posicionar de forma confiable.
+const DOW = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
+const MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+const MESES_ABR = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+
+function fmtFechaCorta(fechaStr) {
+  const [y, m, d] = fechaStr.split("-").map(Number);
+  const dt = new Date(Date.UTC(y, m - 1, d));
+  return `${DOW[dt.getUTCDay()].toLowerCase()} ${d} ${MESES_ABR[m - 1]} ${y}`;
+}
+
+function crearCalendario(btnId, hiddenId, getMin, alCambiar, opts) {
+  const btn = document.getElementById(btnId);
+  const hidden = document.getElementById(hiddenId);
+  const getMax = opts && opts.getMax;
+  const esInvalida = opts && opts.esInvalida;
+  const pop = document.createElement("div");
+  pop.className = "cal-pop";
+  btn.parentElement.appendChild(pop);
+  let vista = null;
+
+  function render() {
+    const minStr = getMin();
+    const maxStr = getMax ? getMax() : null;
+    const [minY, minM] = minStr.split("-").map(Number);
+    if (!vista) vista = { y: minY, m: minM };
+    const primerDia = new Date(Date.UTC(vista.y, vista.m - 1, 1));
+    const diasEnMes = new Date(Date.UTC(vista.y, vista.m, 0)).getUTCDate();
+    const offset = primerDia.getUTCDay();
+
+    let celdas = "";
+    for (let i = 0; i < offset; i++) celdas += `<button type="button" class="vacia" disabled></button>`;
+    for (let d = 1; d <= diasEnMes; d++) {
+      const fechaStr = `${vista.y}-${String(vista.m).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+      const deshabilitado = fechaStr < minStr || (maxStr && fechaStr > maxStr) || (esInvalida && esInvalida(fechaStr));
+      const seleccionada = fechaStr === hidden.value;
+      celdas += `<button type="button" data-fecha="${fechaStr}" ${deshabilitado ? "disabled" : ""} class="${seleccionada ? "sel" : ""}">${d}</button>`;
+    }
+
+    pop.innerHTML = `
+      <div class="cal-head">
+        <button type="button" class="cal-nav" data-nav="-1" aria-label="Mes anterior">‹</button>
+        <b>${MESES[vista.m - 1]} ${vista.y}</b>
+        <button type="button" class="cal-nav" data-nav="1" aria-label="Mes siguiente">›</button>
+      </div>
+      <div class="cal-grid">
+        ${DOW.map((d) => `<span class="dow">${d[0]}</span>`).join("")}
+        ${celdas}
+      </div>`;
+
+    pop.querySelectorAll("[data-nav]").forEach((b) => b.addEventListener("click", (e) => {
+      e.stopPropagation();
+      vista.m += Number(b.dataset.nav);
+      if (vista.m < 1) { vista.m = 12; vista.y--; }
+      if (vista.m > 12) { vista.m = 1; vista.y++; }
+      render();
+    }));
+    pop.querySelectorAll("[data-fecha]").forEach((b) => b.addEventListener("click", (e) => {
+      e.stopPropagation();
+      hidden.value = b.dataset.fecha;
+      btn.querySelector("span").textContent = fmtFechaCorta(b.dataset.fecha);
+      btn.classList.remove("vacio");
+      cerrar();
+      if (alCambiar) alCambiar(b.dataset.fecha);
+    }));
+  }
+
+  function abrir() {
+    document.querySelectorAll(".cal-pop.abierto").forEach((p) => { if (p !== pop) p.classList.remove("abierto"); });
+    vista = null;
+    if (hidden.value) {
+      const [y, m] = hidden.value.split("-").map(Number);
+      vista = { y, m };
+    }
+    render();
+    pop.classList.add("abierto");
+  }
+  function cerrar() { pop.classList.remove("abierto"); }
+
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    pop.classList.contains("abierto") ? cerrar() : abrir();
+  });
+
+  return { limpiar() {
+    hidden.value = "";
+    btn.querySelector("span").textContent = "Elegir fecha";
+    btn.classList.add("vacio");
+  } };
+}
+
+document.addEventListener("click", () => {
+  document.querySelectorAll(".cal-pop.abierto").forEach((p) => p.classList.remove("abierto"));
+});
+
+const llegadaMinima = OFERTA && manana < BF.minFecha ? BF.minFecha : manana;
+
+const calSalida = crearCalendario("f_salida_btn", "f_salida", () => {
+  const llegada = document.getElementById("f_llegada").value;
+  return llegada ? sumarDias(llegada, 1) : sumarDias(llegadaMinima, 1);
+}, null, OFERTA ? {
+  getMax: () => {
+    const llegada = document.getElementById("f_llegada").value;
+    return llegada ? maxSalidaBF(llegada) : BF.maxFecha;
+  },
+} : null);
+crearCalendario("f_llegada_btn", "f_llegada", () => llegadaMinima, (nuevaLlegada) => {
+  const salidaActual = document.getElementById("f_salida").value;
+  if (salidaActual && (salidaActual <= nuevaLlegada || (OFERTA && salidaActual > maxSalidaBF(nuevaLlegada)))) calSalida.limpiar();
+}, OFERTA ? { getMax: () => BF.maxFecha, esInvalida: (f) => !nocheValidaBF(f) } : null);
+
+if (OFERTA) {
+  document.getElementById("bf_banner_mini").style.display = "block";
+  document.getElementById("bf_badge_fila").classList.add("on");
+  document.getElementById("bf_nota_personas").innerHTML = 'Solo 1–2 personas, ' + BF.maxNoches + ' noches máx. · ¿Son más? <a href="https://wa.me/573222070120?text=Hola!%20Quiero%20cotizar%20la%20oferta%20Black%20Friday%20para%20m%C3%A1s%20de%202%20personas" target="_blank" rel="noopener">escríbenos por WhatsApp</a>';
+  const selPersonas = document.getElementById("f_personas");
+  Array.from(selPersonas.options).forEach((o) => { if (Number(o.value) > 2) o.disabled = true; });
+  document.getElementById("lbl_abono").textContent = "Abono de hoy (fijo en la oferta Black Friday)";
+  document.getElementById("fila_abono").style.display = "none";
+}
+
+document.getElementById("btn_buscar").addEventListener("click", async () => {
+  const desde = document.getElementById("f_llegada").value;
+  const hasta = document.getElementById("f_salida").value;
+  const personas = Number(document.getElementById("f_personas").value);
+  const msg = document.getElementById("msg_paso1");
+  msg.innerHTML = "";
+  if (!desde || !hasta || hasta <= desde) {
+    msg.innerHTML = '<div class="msg err">Elige fechas válidas (salida después de llegada).</div>';
+    return;
+  }
+  if (desde <= hoyBogota()) {
+    msg.innerHTML = '<div class="msg err">La llegada debe ser mínimo mañana, no se admiten reservas para hoy.</div>';
+    return;
+  }
+  if (OFERTA) {
+    const nochesPedidas = Math.round((new Date(hasta) - new Date(desde)) / 86400000);
+    if (personas > 2) {
+      msg.innerHTML = '<div class="msg err">La oferta Black Friday aplica para 1 o 2 personas. Para más, escríbenos por WhatsApp.</div>';
+      return;
+    }
+    if (nochesPedidas > BF.maxNoches) {
+      msg.innerHTML = `<div class="msg err">La oferta Black Friday aplica hasta ${BF.maxNoches} noches.</div>`;
+      return;
+    }
+    for (let i = 0; i < nochesPedidas; i++) {
+      if (!nocheValidaBF(sumarDias(desde, i))) {
+        msg.innerHTML = '<div class="msg err">Esas fechas no califican para la oferta Black Friday (domingo a jueves, del 12 ene al 29 abr de 2027, sin Semana Santa).</div>';
+        return;
+      }
+    }
+  }
+
+  try {
+    const res = await fetch(`${API}/disponibilidad?desde=${desde}&hasta=${hasta}`);
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "Error consultando disponibilidad");
+    estado.disponibilidad = data;
+    estado.desde = desde; estado.hasta = hasta; estado.personas = personas;
+
+    const noches = Math.round((new Date(hasta) - new Date(desde)) / 86400000);
+    const cont = document.getElementById("lista_glampings");
+    cont.innerHTML = "";
+    for (const [slug, info] of Object.entries(data.glampings)) {
+      const bloqueado = info.fechas_bloqueadas_ical.length > 0 || info.reservas_propias.length > 0;
+      const disponible = !bloqueado && personas <= info.capacidad_max;
+      const precioNocheNormal = personas === 1 ? info.precio_noche_1persona_cop : info.precio_noche_cop;
+      const aplicaOferta = OFERTA && personas <= 2;
+      const precioNoche = aplicaOferta ? Math.round(precioNocheNormal * (1 - BF.descuento)) : precioNocheNormal;
+      const div = document.createElement("div");
+      div.className = "glamping " + (disponible ? "ok" : "no");
+      div.innerHTML = `
+        <div style="flex:1">
+          <h3 style="font-size:18px">${info.nombre}</h3>
+          <span class="chip ${disponible ? 'ok' : 'no'}">${disponible ? '● Disponible' : 'No disponible'}</span>
+        </div>
+        <div style="text-align:right">
+          ${aplicaOferta ? `<div class="precio-antes">${fmtCOP(precioNocheNormal * noches)}</div>` : ''}
+          <b>${fmtCOP(precioNoche * noches)}</b>
+          <div><small class="mut">${noches} noche(s) · ${personas} persona(s)${personas === 1 ? ' · tarifa individual' : ''}${aplicaOferta ? ' · Black Friday −25%' : ''}</small></div>
+        </div>`;
+      if (disponible) {
+        div.addEventListener("click", () => {
+          document.querySelectorAll(".glamping").forEach(g => g.classList.remove("sel"));
+          div.classList.add("sel");
+          estado.glamping = slug;
+          estado.precio_noche = precioNoche;
+          estado.precio_noche_normal = precioNocheNormal;
+          estado.noches = noches;
+          document.getElementById("btn_a_datos").disabled = false;
+        });
+      }
+      cont.appendChild(div);
+    }
+  } catch (e) {
+    msg.innerHTML = `<div class="msg err">${e.message}</div>`;
+  }
+});
+
+document.getElementById("btn_a_datos").addEventListener("click", () => irA("paso2"));
+document.getElementById("btn_atras_1").addEventListener("click", () => irA("paso1"));
+document.getElementById("btn_atras_2").addEventListener("click", () => irA("paso2"));
+
+document.getElementById("btn_a_pago").addEventListener("click", () => {
+  estado.nombre = document.getElementById("d_nombre").value.trim();
+  estado.correo = document.getElementById("d_correo").value.trim();
+  estado.whatsapp = document.getElementById("d_whatsapp").value.trim();
+  estado.hora = document.getElementById("d_hora").value;
+  if (!estado.nombre || !estado.correo || !estado.whatsapp) {
+    alert("Completa nombre, correo y WhatsApp.");
+    return;
+  }
+  pintarResumen();
+  irA("paso3");
+});
+
+function pintarResumen() {
+  const total = estado.precio_noche * estado.noches;
+  const abonoMonto = Math.round(total * estado.abono / 100);
+  const aplicaOferta = OFERTA && estado.precio_noche_normal && estado.precio_noche_normal !== estado.precio_noche;
+  document.getElementById("resumen_reserva").innerHTML = `
+    <h3>${estado.glamping}</h3>
+    <div class="r"><span>${estado.desde} → ${estado.hasta}</span><span>${estado.noches} noche(s)</span></div>
+    ${aplicaOferta ? `
+    <div class="r"><span>Valor normal</span><span>${fmtCOP(estado.precio_noche_normal * estado.noches)}</span></div>
+    <div class="r" style="color:var(--rojo)"><span>Descuento Black Friday (25%)</span><span>−${fmtCOP((estado.precio_noche_normal - estado.precio_noche) * estado.noches)}</span></div>
+    ` : ''}
+    <div class="r"><b>Total estadía</b><b>${fmtCOP(total)}</b></div>
+    <div class="r" style="color:var(--rojo);font-weight:700"><span>Abono hoy (${estado.abono}%)</span><span>${fmtCOP(abonoMonto)}</span></div>
+    <div class="r"><span>Saldo en el glamping</span><span>${fmtCOP(total - abonoMonto)}</span></div>
+  `;
+}
+
+document.querySelectorAll('[data-abono]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    estado.abono = Number(btn.dataset.abono);
+    document.querySelectorAll('[data-abono]').forEach(b => b.style.borderColor = 'var(--borde)');
+    btn.style.borderColor = 'var(--verde)';
+    pintarResumen();
+  });
+});
+
+document.getElementById("btn_pagar").addEventListener("click", async () => {
+  const msg = document.getElementById("msg_paso3");
+  msg.innerHTML = "";
+  if (!document.getElementById("d_acepta").checked) {
+    msg.innerHTML = '<div class="msg err">Debes aceptar la política de cancelación.</div>';
+    return;
+  }
+  const btn = document.getElementById("btn_pagar");
+  btn.disabled = true;
+  btn.textContent = "Creando tu reserva...";
+
+  try {
+    const res = await fetch(`${API}/crear-reserva`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        glamping: estado.glamping,
+        fecha_llegada: estado.desde,
+        fecha_salida: estado.hasta,
+        personas: estado.personas,
+        nombre: estado.nombre,
+        correo: estado.correo,
+        whatsapp: estado.whatsapp,
+        hora_llegada: estado.hora,
+        abono_porcentaje: estado.abono,
+        oferta_codigo: OFERTA || undefined,
+      }),
+    });
+    const data = await res.json();
+
+    if (res.status === 503) {
+      msg.innerHTML = `<div class="msg warn">Reserva creada en estado de prueba (código ${data.codigo}), pero Wompi aún no tiene llaves configuradas. El backend funcionó correctamente hasta este punto.</div>`;
+      btn.textContent = "Pagar abono →";
+      btn.disabled = false;
+      return;
+    }
+    if (!res.ok) throw new Error(data.error || "No se pudo crear la reserva");
+
+    estado.reserva = data;
+    msg.innerHTML = `<div class="msg ok">Reserva ${data.codigo} creada. Retenida hasta ${new Date(data.retenido_hasta).toLocaleTimeString('es-CO')}.</div>`;
+    btn.textContent = "Pagar abono →";
+    btn.disabled = false;
+
+    if (typeof WidgetCheckout === "undefined") {
+      msg.innerHTML += '<div class="msg err">No se pudo cargar el widget de pago de Wompi (revisa tu conexión y vuelve a intentar).</div>';
+      return;
+    }
+
+    const checkout = new WidgetCheckout({
+      currency: data.wompi.currency,
+      amountInCents: data.wompi.amount_in_cents,
+      reference: data.wompi.reference,
+      publicKey: data.wompi.public_key,
+      signature: { integrity: data.wompi.signature_integrity },
+      redirectUrl: window.location.origin + "/reservar-confirmacion.html?codigo=" + encodeURIComponent(data.codigo) + "&token=" + encodeURIComponent(data.token_gestion),
+    });
+    checkout.open(function (result) {
+      const transaccion = result?.transaction;
+      if (transaccion?.status === "APPROVED") {
+        msg.innerHTML = `<div class="msg ok">¡Pago aprobado! Tu reserva ${data.codigo} quedó confirmada.</div>`;
+      } else if (transaccion?.status) {
+        msg.innerHTML = `<div class="msg err">El pago no se aprobó (estado: ${transaccion.status}). Puedes intentar de nuevo.</div>`;
+      }
+    });
+  } catch (e) {
+    msg.innerHTML = `<div class="msg err">${e.message}</div>`;
+    btn.disabled = false;
+    btn.textContent = "Pagar abono →";
+  }
+});
+</script>
+</body>
+</html>

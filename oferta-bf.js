@@ -82,11 +82,8 @@
 
   function waUrl(texto) { return 'https://wa.me/' + CFG.wa + '?text=' + encodeURIComponent(texto); }
   function abrirWA(texto) {
-    // Sin 'noopener' en las features: con él window.open devuelve siempre null y
-    // se navegaba también la pestaña original. Se corta el opener a mano.
-    var w = window.open(waUrl(texto), '_blank');
-    if (w) { try { w.opener = null; } catch (e) {} }
-    else location.href = waUrl(texto);
+    var w = window.open(waUrl(texto), '_blank', 'noopener');
+    if (!w) location.href = waUrl(texto);
   }
 
   // ---------- Reglas de la oferta ----------
@@ -145,37 +142,42 @@
     '.bf-btn:focus-visible,.bf-pill:focus-visible,.bf-x:focus-visible,.bf-root input:focus-visible,.bf-root select:focus-visible{outline:3px solid #129FB6;outline-offset:2px}' +
     '.bf-btn[disabled]{background:#8B8F86;cursor:not-allowed;box-shadow:none}' +
     '.bf-note{margin:0;font-size:14px;line-height:20px;color:#F6F1E8}' +
-    '.bf-neon{background:#0E100E;color:#F6F1E8;display:flex;align-items:stretch;min-height:300px}' +
+    '.bf-neon{background:#0E100E;color:#F6F1E8;display:flex;align-items:stretch;min-height:0}' +
     '.bf-neon:before,.bf-neon:after{content:none;display:none}' +
-    '.bf-neon-foto{position:relative;flex:0 0 290px}' +
-    '.bf-neon-foto img{width:100%;height:100%;min-height:300px;object-fit:cover;object-position:center 62%;display:block}' +
-    '.bf-neon-marco{flex:1 1 auto;margin:18px;border-radius:14px;display:flex;align-items:center;justify-content:space-between;gap:28px;padding:16px 36px;animation:bfGlow 1.6s ease-in-out infinite}' +
-    '.bf-neon-txt{display:flex;flex-direction:column;gap:10px;min-width:0}' +
-    '.bf-neon-tag{align-self:flex-start;padding:4px 14px;background:#E8318F;color:#fff;font-size:14px;font-weight:800;letter-spacing:.08em;transform:skew(-8deg)}' +
-    '.bf-neon-fila{display:flex;align-items:center;gap:22px;flex-wrap:nowrap}' +
-    '.bf-neon-titulo{font-family:"Permanent Marker",cursive;font-size:96px;line-height:.92;color:#C6FF3D;display:inline-block;transform:rotate(-4deg);animation:bfFlicker 3.2s infinite}' +
-    '.bf-neon-pct{font-family:Raleway,sans-serif;font-weight:900;font-size:128px;line-height:1;color:#C6FF3D;text-shadow:0 0 14px rgba(198,255,61,.7)}' +
-    '.bf-neon-sub{margin:0;font-size:19px;line-height:26px;font-weight:600;color:#F6F1E8}' +
-    '.bf-neon-cta{display:flex;flex-direction:column;align-items:center;gap:12px}' +
-    '.bf-neon .bf-count{margin:0;gap:6px}' +
-    '.bf-neon .bf-count div{min-width:74px;background:transparent;border:2px solid #C6FF3D;border-radius:8px;padding:6px 4px}' +
-    '.bf-neon .bf-count b{font-family:Raleway,sans-serif;font-weight:800;font-size:40px;line-height:44px;color:#C6FF3D;font-variant-numeric:tabular-nums}' +
-    '.bf-neon .bf-count span{font-size:10px;font-weight:700;letter-spacing:.14em}' +
+    '.bf-neon-foto{position:relative;flex:0 0 150px}' +
+    '.bf-neon-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 62%;display:block}' +
+    '.bf-neon-marco{flex:1 1 auto;min-width:0;margin:10px 14px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 22px;animation:bfGlow 1.6s ease-in-out infinite}' +
+    '.bf-neon-izq{display:flex;align-items:center;gap:18px;min-width:0}' +
+    '.bf-neon-titulo{font-family:"Permanent Marker",cursive;font-size:46px;line-height:1;color:#C6FF3D;white-space:nowrap;transform:rotate(-3deg);display:inline-block;animation:bfFlicker 3.2s infinite}' +
+    '.bf-neon-pct{font-family:Raleway,sans-serif;font-weight:900;font-size:56px;line-height:1;color:#C6FF3D;white-space:nowrap;text-shadow:0 0 12px rgba(198,255,61,.7)}' +
+    '.bf-neon-txt{display:flex;flex-direction:column;gap:4px;min-width:0}' +
+    '.bf-neon-tag{align-self:flex-start;padding:2px 10px;background:#E8318F;color:#fff;font-size:11px;font-weight:800;letter-spacing:.08em;transform:skew(-8deg);white-space:nowrap}' +
+    '.bf-neon-sub{margin:0;font-size:15px;line-height:20px;font-weight:600;color:#F6F1E8}' +
+    '.bf-neon-sub b{color:#C6FF3D}' +
+    '.bf-neon-der{display:flex;align-items:center;gap:16px;flex:0 0 auto}' +
+    '.bf-neon-cta{display:flex;flex-direction:column;align-items:center;gap:2px}' +
+    '.bf-neon-cuenta{display:flex;flex-direction:column;align-items:center;gap:3px}' +
+    '.bf-neon-term{margin:0;font-size:10px;font-weight:800;letter-spacing:.2em;color:#C6FF3D}' +
+    '.bf-neon .bf-count{margin:0;gap:5px}' +
+    '.bf-neon .bf-count div{min-width:50px;background:transparent;border:1.5px solid #C6FF3D;border-radius:7px;padding:3px 3px}' +
+    '.bf-neon .bf-count b{font-family:Raleway,sans-serif;font-weight:800;font-size:22px;line-height:24px;color:#C6FF3D;font-variant-numeric:tabular-nums}' +
+    '.bf-neon .bf-count span{font-size:8px;font-weight:700;letter-spacing:.12em}' +
+    '.bf-btn.bf-neon-btn{background:#C6FF3D;color:#0E100E;font-size:17px;font-weight:900;padding:11px 24px;min-height:46px;white-space:nowrap;animation:bfPulse 1.4s ease-in-out infinite}' +
+    '.bf-btn.bf-neon-btn:hover{background:#B4F01F}' +
+    '.bf-neon-nota{margin:0;font-size:11px;line-height:14px;color:#BFC2B8;white-space:nowrap}' +
+    '@media (max-width:1400px){.bf-neon-sub{display:none}.bf-neon-foto{flex-basis:110px}}' +
+    '@media (max-width:1180px){.bf-neon-txt{display:none}}' +
+    '@media (max-width:1100px){.bf-neon-foto{display:none}.bf-neon-titulo{font-size:38px}.bf-neon-pct{font-size:46px}.bf-neon .bf-count div{min-width:42px}.bf-neon-nota{display:none}}' +
+    '@media (max-width:860px){.bf-neon-marco{flex-direction:column;align-items:stretch;gap:10px;margin:8px;padding:12px 14px}.bf-neon-izq{flex-wrap:wrap;justify-content:space-between;row-gap:6px}.bf-neon-txt{display:flex;order:2;flex:1 1 100%}.bf-neon-sub{display:block;font-size:14px;line-height:19px}.bf-neon-der{flex-direction:column;align-items:stretch;gap:10px}.bf-neon-cuenta{flex-direction:row;justify-content:space-between}.bf-neon .bf-count{flex:1}.bf-neon .bf-count div{flex:1;min-width:0}.bf-neon-cta{align-items:stretch}.bf-btn.bf-neon-btn{justify-content:center}.bf-neon-nota{display:block;text-align:center}}' +
+    '@media (max-width:420px){.bf-neon-titulo{font-size:32px}.bf-neon-pct{font-size:40px}.bf-neon-izq{gap:10px}.bf-neon-term{display:none}}' +
     '.bf-btn.bf-neon-btn{background:#C6FF3D;color:#0E100E;font-size:21px;font-weight:900;animation:bfPulse 1.4s ease-in-out infinite}' +
     '.bf-btn.bf-neon-btn:hover{background:#B4F01F}' +
-    '.bf-neon-nota{margin:0;font-size:12px;line-height:16px;color:#BFC2B8}' +
-    '.bf-neon-sello{position:relative;flex:0 0 120px;width:120px;height:120px}' +
-    '.bf-neon-sello svg{position:absolute;inset:0;width:100%;height:100%;animation:bfSpin 12s linear infinite}' +
-    '.bf-neon-sello b{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:34px;line-height:1}' +
-    '.bf-neon-sello i{font-style:normal;font-size:11px;letter-spacing:.12em}' +
     '@keyframes bfFlicker{0%,18%,22%,25%,53%,57%,100%{opacity:1;text-shadow:0 0 6px #C6FF3D,0 0 18px #C6FF3D,0 0 42px #8BD600}20%,24%,55%{opacity:.35;text-shadow:none}}' +
     '@keyframes bfGlow{0%,100%{box-shadow:inset 0 0 0 2px #C6FF3D,0 0 18px rgba(198,255,61,.55),inset 0 0 22px rgba(198,255,61,.25)}50%{box-shadow:inset 0 0 0 2px #C6FF3D,0 0 34px rgba(198,255,61,.9),inset 0 0 34px rgba(198,255,61,.4)}}' +
     '@keyframes bfPulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(198,255,61,.7)}50%{transform:scale(1.05);box-shadow:0 0 0 14px rgba(198,255,61,0)}}' +
     '@keyframes bfSpin{to{transform:rotate(360deg)}}' +
-    '@media (max-width:1440px){.bf-neon-titulo{font-size:78px}.bf-neon-pct{font-size:100px}.bf-neon-sello{flex-basis:104px;width:104px;height:104px}}' +
-    '@media (max-width:1280px){.bf-neon-titulo{font-size:64px}.bf-neon-pct{font-size:82px}.bf-neon-marco{padding:16px 24px;gap:18px}.bf-neon-sello{display:none}}' +
-    '@media (max-width:760px){.bf-neon{flex-direction:column;position:relative;min-height:0}.bf-neon-foto{flex:none}.bf-neon-foto img{min-height:0;height:190px}.bf-neon-marco{margin:12px;flex-direction:column;align-items:stretch;padding:18px;gap:14px}.bf-neon-titulo{font-size:54px}.bf-neon-pct{font-size:64px}.bf-neon-sub{font-size:15px;line-height:21px}.bf-neon-fila{flex-wrap:wrap}.bf-neon-cta{align-items:stretch}.bf-neon .bf-count{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}.bf-neon .bf-count div{min-width:0}.bf-neon .bf-count b{font-size:26px;line-height:30px}.bf-btn.bf-neon-btn{justify-content:center;font-size:18px}.bf-neon-nota{text-align:center}.bf-neon-sello{display:block;position:absolute;right:14px;top:142px;width:96px;height:96px}.bf-neon-sello b{font-size:28px}}' +
-    '@media (prefers-reduced-motion:reduce){.bf-neon *{animation:none!important}}' +
+    '.bf-pill{background:#C6FF3D;color:#0E100E;font-weight:800;box-shadow:0 0 22px rgba(198,255,61,.6)}' +
+    '.bf-mh{background:#0E100E}.bf-mh p{color:#C6FF3D}' +
     '.bf-count{display:flex;gap:10px;margin:14px 0 0}' +
     '.bf-count div{min-width:64px;text-align:center;background:rgba(246,241,232,.16);border:1px solid rgba(246,241,232,.35);border-radius:12px;padding:8px 6px}' +
     '.bf-count b{display:block;font-family:"Playfair Display",Georgia,serif;font-size:28px;line-height:30px}' +
@@ -185,6 +187,9 @@
     '.bf-ov{position:fixed;inset:0;z-index:1000;background:rgba(37,42,38,.62);display:flex;align-items:center;justify-content:center;padding:16px}' +
     '.bf-ov[hidden]{display:none}' +
     '.bf-modal{position:relative;width:100%;max-width:540px;max-height:calc(100vh - 32px);overflow:auto;background:#F6F1E8;border-radius:20px;box-shadow:0 24px 60px rgba(0,0,0,.45)}' +
+    '.bf-modal-reserva{max-width:680px;height:calc(100vh - 32px);max-height:860px;overflow:hidden;display:flex}' +
+    '.bf-iframe{border:0;width:100%;height:100%;flex:1 1 auto;border-radius:20px}' +
+    '@media (max-width:640px){.bf-modal-reserva{height:100vh;max-height:none;border-radius:0}.bf-modal-reserva .bf-iframe{border-radius:0}}' +
     '.bf-mh{background:#344536;color:#F6F1E8;padding:22px 56px 18px 24px}' +
     '.bf-mh h2{margin:0;font-family:"Playfair Display",Georgia,serif;font-size:28px;line-height:34px;font-weight:600}' +
     '.bf-mh p{margin:4px 0 0;font-size:15px;line-height:22px;color:#D7C4A5}' +
@@ -227,52 +232,63 @@
   // ---------- Banner ----------
   var host, bannerEl, pillEl, ovEl, lastFocus, tick;
 
-  function cuenta() {
-    var ms = Math.max(0, CFG.launch - Date.now());
+  function cuenta(destino) {
+    var ms = Math.max(0, (destino || CFG.launch) - Date.now());
     var dd = Math.floor(ms / 864e5), hh = Math.floor(ms % 864e5 / 36e5), mm = Math.floor(ms % 36e5 / 6e4), ss = Math.floor(ms % 6e4 / 1e3);
     return '<div class="bf-count" role="timer" aria-label="Falta para el lanzamiento">' +
       '<div><b>' + dd + '</b><span>días</span></div><div><b>' + pad(hh) + '</b><span>horas</span></div><div><b>' + pad(mm) + '</b><span>min</span></div><div><b>' + pad(ss) + '</b><span>seg</span></div></div>';
   }
 
+  // ---------- Modo página de aterrizaje (black-friday.html con <body data-bf-landing>) ----------
+  function esLanding() { return !!(document.body && document.body.hasAttribute('data-bf-landing')); }
+  function pintarLanding() {
+    var de = document.documentElement;
+    var f = estado.fase;
+    de.setAttribute('data-bf-fase', f === 'oferta' && agotado() ? 'agotado' : f);
+    var ms = Math.max(0, (f === 'oferta' ? CFG.end : CFG.launch) - Date.now());
+    var v = { d: Math.floor(ms / 864e5), h: pad(Math.floor(ms % 864e5 / 36e5)), m: pad(Math.floor(ms % 36e5 / 6e4)), s: pad(Math.floor(ms % 6e4 / 1e3)) };
+    ['d', 'h', 'm', 's'].forEach(function (k) {
+      Array.prototype.forEach.call(document.querySelectorAll('[data-bf-' + k + ']'), function (el) { el.textContent = v[k]; });
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-bf-quedan]'), function (el) { el.textContent = quedan(); });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-bf-total]'), function (el) { el.textContent = CFG.cupos; });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-bf-meter]'), function (el) { el.style.width = Math.round(100 * quedan() / CFG.cupos) + '%'; });
+  }
+
+  function cargarFuente() {
+    if (document.getElementById('bf-font-neon')) return;
+    var lf = document.createElement('link'); lf.id = 'bf-font-neon'; lf.rel = 'stylesheet';
+    lf.href = 'https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap';
+    document.head.appendChild(lf);
+  }
+
   function pintarBanner() {
     var f = estado.fase;
-    if (f === 'fin') { if (host) host.remove(); host = null; return; }
+    if (f === 'fin') { if (host) host.remove(); host = null; if (esLanding()) pintarLanding(); return; }
     if (!host) {
       host = document.createElement('div');
       host.className = 'bf-root';
       document.body.insertBefore(host, document.body.firstChild);
     }
-    var html;
-    if (f === 'expectativa') {
-      if (!document.getElementById('bf-font-neon')) {
-        var lf = document.createElement('link'); lf.id = 'bf-font-neon'; lf.rel = 'stylesheet';
-        lf.href = 'https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap';
-        document.head.appendChild(lf);
-      }
-      var sello = '<span class="bf-neon-sello" aria-hidden="true"><svg viewBox="0 0 120 120"><defs><path id="bf-ca" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"></path></defs>' +
-        '<circle cx="60" cy="60" r="58" fill="#E8318F"></circle><text font-family="Raleway, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF">' +
-        '<textPath href="#bf-ca" textLength="286" lengthAdjust="spacing">SOLO ' + CFG.cupos + ' RESERVAS · BLACK FRIDAY ·</textPath></text></svg><b>' + CFG.cupos + '<i>CUPOS</i></b></span>';
-      html = '<section class="bf-banner bf-banner--expectativa bf-neon" aria-label="Black Friday en La Kumbre">' +
-        '<div class="bf-neon-foto"><img src="' + CFG.fotoExpectativa + '" alt="Glamping El Colorado con la cordillera de fondo"></div>' +
-        '<div class="bf-neon-marco"><div class="bf-neon-txt"><span class="bf-neon-tag">GLAMPING LA KUMBRE</span>' +
-        '<div class="bf-neon-fila"><span class="bf-neon-titulo">BLACK<br>FRIDAY</span><span class="bf-neon-pct" aria-label="Hasta veinti-algo por ciento">2?%</span></div>' +
-        '<p class="bf-neon-sub">Noches de <b>domingo a jueves</b> · se destapa el <b>miércoles 25</b></p></div>' +
-        '<div class="bf-neon-cta">' + cuenta() + '<button type="button" class="bf-btn bf-neon-btn" data-bf="espera">Avísame primero <span aria-hidden="true">→</span></button>' +
-        '<p class="bf-neon-nota">Te escribimos por WhatsApp · sin compromiso</p></div>' + sello + '</div></section>';
-    } else {
-      var ag = agotado();
-      html = '<section class="bf-banner" aria-label="Oferta Black Friday en La Kumbre"><div class="bf-wrap">' +
-        '<div class="bf-badge" aria-hidden="true"><b>25%</b><span>menos</span></div>' +
-        '<div class="bf-text"><p class="bf-kicker">Black Friday en La Kumbre</p>' +
-        '<h2 class="bf-title">Reserva ahora tu escapada <em>entre semana</em></h2>' +
-        '<p class="bf-sub">Noches de domingo a jueves, de enero a abril de 2027.</p>' +
-        '<ul class="bf-chips"><li>Solo ' + CFG.cupos + ' reservas</li><li>Abono del 40%</li><li>Hasta el lunes 30 de nov</li></ul></div>' +
-        '<div class="bf-cta-col">' +
-        (ag ? '<button type="button" class="bf-btn" data-bf="espera-agotado">Cupos agotados · avísame si se libera</button>'
-            : '<button type="button" class="bf-btn" data-bf="abrir">Simula tu reserva <span aria-hidden="true">→</span></button>' +
-              '<p class="bf-note">' + (quedan() <= 10 ? '<b>Quedan ' + quedan() + ' de ' + CFG.cupos + '</b> · ' : '') + 'Calcula tu valor en 20 segundos</p>') +
-        '</div></div></section>';
-    }
+    if (esLanding()) { host.innerHTML = '<style>' + CSS + '</style>'; bannerEl = null; pintarLanding(); return; }
+    cargarFuente();
+    var ex = f === 'expectativa', ag = !ex && agotado();
+    var tag = ex ? 'GLAMPING LA KUMBRE' : (ag ? 'CUPOS AGOTADOS' : '¡YA ESTÁ ABIERTA!');
+    var pct = ex ? '2?%' : '25%';
+    var sub = ex ? 'Noches de <b>domingo a jueves</b> · se destapa el <b>miércoles 25</b>'
+                 : 'Noches <b>entre semana</b> · domingo a jueves · ene–abr 2027 · solo ' + CFG.cupos + ' cupos';
+    var term = ex ? 'SE DESTAPA EN' : 'TERMINA EN';
+    var boton = ex ? '<button type="button" class="bf-btn bf-neon-btn" data-bf="espera">Avísame primero <span aria-hidden="true">→</span></button>'
+      : (ag ? '<button type="button" class="bf-btn bf-neon-btn" data-bf="espera-agotado">Avísame si se libera <span aria-hidden="true">→</span></button>'
+            : '<button type="button" class="bf-btn bf-neon-btn" data-bf="abrir">Cotiza y reserva ya <span aria-hidden="true">→</span></button>');
+    var nota = ex ? 'Te escribimos por WhatsApp · sin compromiso' : quedan() + ' de ' + CFG.cupos + ' cupos disponibles';
+    var html = '<section class="bf-banner bf-neon bf-neon--' + f + '" aria-label="' + (ex ? 'Black Friday en La Kumbre' : 'Oferta Black Friday en La Kumbre') + '">' +
+      '<div class="bf-neon-foto"><img src="' + CFG.fotoExpectativa + '" alt="Glamping El Colorado con la cordillera de fondo"></div>' +
+      '<div class="bf-neon-marco"><div class="bf-neon-izq"><div class="bf-neon-txt"><span class="bf-neon-tag">' + tag + '</span>' +
+      '<p class="bf-neon-sub">' + sub + '</p></div>' +
+      '<span class="bf-neon-titulo">BLACK FRIDAY</span><span class="bf-neon-pct"' + (ex ? ' aria-label="Hasta veinti-algo por ciento"' : ' aria-label="25 por ciento"') + '>' + pct + '</span></div>' +
+      '<div class="bf-neon-der"><div class="bf-neon-cuenta"><p class="bf-neon-term">' + term + '</p>' + cuenta(ex ? CFG.launch : CFG.end) + '</div>' +
+      '<div class="bf-neon-cta">' + boton + '<p class="bf-neon-nota">' + nota + '</p></div></div></div></section>';
     host.innerHTML = '<style>' + CSS + '</style>' + html;
     bannerEl = $('.bf-banner', host);
     pintarPill();
@@ -280,47 +296,25 @@
 
   function pintarPill() {
     if (pillEl) { pillEl.remove(); pillEl = null; }
-    if (estado.fase !== 'oferta' || agotado()) return;
+    if (estado.fase !== 'oferta' || agotado() || esLanding()) return;
     pillEl = document.createElement('button');
     pillEl.type = 'button';
     pillEl.className = 'bf-root bf-pill';
     pillEl.setAttribute('data-bf', 'abrir');
-    pillEl.innerHTML = '<span>25% entre semana</span><span aria-hidden="true">·</span><span>Simula tu reserva</span>';
+    pillEl.innerHTML = '<span>25% entre semana</span><span aria-hidden="true">·</span><span>Cotiza y reserva ya</span>';
     document.body.appendChild(pillEl);
     if ('IntersectionObserver' in window && bannerEl) {
       new IntersectionObserver(function (en) { pillEl && pillEl.classList.toggle('on', !en[0].isIntersecting); }, { threshold: 0 }).observe(bannerEl);
     } else { pillEl.classList.add('on'); }
   }
 
-  // ---------- Modal de simulación ----------
+  // ---------- Modal de reserva (calendario + pago, iframe sobre reservar.html) ----------
   function modalHTML() {
-    var min = iso(d(CFG.primeraNoche)), max = iso(d(CFG.ultimaNoche));
-    var noches = '', pers = '', gl = '';
-    for (var i = 1; i <= CFG.maxNoches; i++) noches += '<option value="' + i + '">' + i + (i === 1 ? ' noche' : ' noches') + '</option>';
-    for (var j = 1; j <= CFG.maxPersonas; j++) pers += '<option value="' + j + '"' + (j === 2 ? ' selected' : '') + '>' + j + (j === 1 ? ' persona' : ' personas') + '</option>';
-    CFG.glampings.forEach(function (g, k) { gl += '<option value="' + (k === 0 ? '' : esc(g)) + '">' + esc(g) + '</option>'; });
-    return '<div class="bf-modal" role="dialog" aria-modal="true" aria-labelledby="bf-t">' +
-      '<div class="bf-mh"><h2 id="bf-t">Simula tu reserva</h2><p>Black Friday · 25% de descuento entre semana</p>' +
-      '<button type="button" class="bf-x" data-bf="cerrar" aria-label="Cerrar">×</button></div>' +
-      '<form class="bf-mb" novalidate>' +
-      '<div class="bf-f"><label for="bf-nombre">Tu nombre</label><input id="bf-nombre" type="text" autocomplete="given-name" placeholder="¿Cómo te llamas?" maxlength="60"></div>' +
-      '<div class="bf-f"><label for="bf-fecha">Fecha de llegada (domingo a jueves)</label><input id="bf-fecha" type="date" min="' + min + '" max="' + max + '"></div>' +
-      '<div class="bf-row"><div class="bf-f"><label for="bf-noches">Noches</label><select id="bf-noches">' + noches + '</select></div>' +
-      '<div class="bf-f"><label for="bf-pers">Personas</label><select id="bf-pers">' + pers + '</select></div></div>' +
-      '<div class="bf-f"><label for="bf-gl">Glamping preferido</label><select id="bf-gl">' + gl + '</select></div>' +
-      '<div class="bf-f" role="group" aria-labelledby="bf-q"><span class="bf-lbl" id="bf-q">¿Ya pensabas venir entre semana antes de esta oferta?</span>' +
-      '<div class="bf-radios"><label><input type="radio" name="bf-prev" value="Sí"> Sí</label><label><input type="radio" name="bf-prev" value="No"> No</label></div></div>' +
-      '<p class="bf-err" id="bf-err" role="alert" aria-live="polite"></p>' +
-      '<div class="bf-sum" aria-live="polite"><dl id="bf-sum"></dl></div>' +
-      '<button type="submit" class="bf-btn bf-go" id="bf-go" disabled>Reservar por WhatsApp <span aria-hidden="true">→</span></button>' +
-      '<p class="bf-fine">Te confirmamos disponibilidad en el chat. Tu cupo queda asegurado cuando pagas el abono del 40%.</p>' +
-      '<details class="bf-cond"><summary>Condiciones de la oferta</summary><ul>' +
-      '<li>' + CFG.cupos + ' reservas en total, del 25 al 30 de noviembre de 2026 o hasta agotar cupos.</li>' +
-      '<li>Noches de domingo a jueves, del 12 de enero al 29 de abril de 2027. No aplica en Semana Santa ni puentes festivos.</li>' +
-      '<li>Hasta ' + CFG.maxNoches + ' noches y ' + CFG.maxPersonas + ' personas por reserva. Tarifa base por noche: $140.000 para 1 persona y $260.000 para 2 personas.</li>' +
-      '<li>Abono del 40% al reservar; el 60% restante se paga en sitio.</li>' +
-      '<li>El abono es reembolsable si cancelas al menos 7 días antes de la fecha. Una sola reprogramación, hasta 7 días antes.</li>' +
-      '</ul></details></form></div>';
+    var src = 'reservar.html?oferta=' + encodeURIComponent(CFG.code);
+    return '<div class="bf-modal bf-modal-reserva" role="dialog" aria-modal="true" aria-label="Cotiza y reserva ya — Black Friday">' +
+      '<button type="button" class="bf-x" data-bf="cerrar" aria-label="Cerrar">×</button>' +
+      '<iframe class="bf-iframe" src="' + src + '" title="Reservar con la oferta Black Friday"></iframe>' +
+      '</div>';
   }
 
   function abrirModal() {
@@ -331,19 +325,12 @@
       ovEl.hidden = true;
       ovEl.innerHTML = modalHTML();
       document.body.appendChild(ovEl);
-      var f = $('form', ovEl);
-      var nom = store('lk_nombre');
-      if (nom) $('#bf-nombre', ovEl).value = nom;
-      ['input', 'change'].forEach(function (ev) { f.addEventListener(ev, actualizar); });
-      f.addEventListener('submit', function (e) { e.preventDefault(); enviar(); });
       ovEl.addEventListener('mousedown', function (e) { if (e.target === ovEl) cerrarModal(); });
     }
     lastFocus = document.activeElement;
     ovEl.hidden = false;
     document.body.style.overflow = 'hidden';
-    actualizar();
-    setTimeout(function () { var n = $('#bf-nombre', ovEl); if (n) n.focus(); }, 30);
-    track('bf_abrir_simulador', { codigo: CFG.code });
+    track('bf_abrir_reserva', { codigo: CFG.code });
   }
 
   function cerrarModal() {
@@ -351,65 +338,6 @@
     ovEl.hidden = true;
     document.body.style.overflow = '';
     if (lastFocus && lastFocus.focus) lastFocus.focus();
-  }
-
-  var tocoSimulacion = false;
-  function leer() {
-    return {
-      nombre: $('#bf-nombre', ovEl).value.trim(),
-      fecha: $('#bf-fecha', ovEl).value,
-      noches: +$('#bf-noches', ovEl).value,
-      pers: +$('#bf-pers', ovEl).value,
-      gl: $('#bf-gl', ovEl).value,
-      prev: ($('input[name=bf-prev]:checked', ovEl) || {}).value || ''
-    };
-  }
-
-  function actualizar() {
-    var v = leer(), r = validar(v.fecha, v.noches), q = cotizar(v.pers, v.noches);
-    $('#bf-err', ovEl).textContent = r.msg || '';
-    var s = '';
-    if (r.ok) {
-      s += '<dd class="bf-dates">' + esc(fechaCorta(r.ini)) + ' → ' + esc(fechaCorta(r.fin)) + ' · ' + v.noches + (v.noches === 1 ? ' noche' : ' noches') + ' · ' + v.pers + (v.pers === 1 ? ' persona' : ' personas') + '</dd>';
-    } else {
-      s += '<dd class="bf-ph">Elige tu fecha de llegada para ver el valor de tu reserva.</dd>';
-    }
-    if (q) {
-      s += '<dt>Valor normal</dt><dd>' + pesos(q.lista) + '</dd>' +
-        '<dt>Descuento Black Friday (25%)</dt><dd class="bf-off">−' + pesos(q.desc) + '</dd>' +
-        '<div class="bf-total"><dt>Total con oferta</dt><dd>' + pesos(q.total) + '</dd></div>' +
-        '<div class="bf-abono"><dt>Abono hoy (40%)</dt><dd>' + pesos(q.abono) + '</dd></div>' +
-        '<dt>Saldo en sitio (60%)</dt><dd>' + pesos(q.saldo) + '</dd>';
-    } else {
-      s += '<dd class="bf-ph">Para ' + v.pers + ' personas te damos el valor exacto con el 25% por WhatsApp.</dd>';
-    }
-    $('#bf-sum', ovEl).innerHTML = s;
-    $('#bf-go', ovEl).disabled = !(r.ok && v.nombre.length >= 2);
-    if (r.ok && !tocoSimulacion) { tocoSimulacion = true; track('bf_simulacion', { codigo: CFG.code, noches: v.noches, personas: v.pers }); }
-  }
-
-  function enviar() {
-    var v = leer(), r = validar(v.fecha, v.noches);
-    if (!r.ok || v.nombre.length < 2) return;
-    var q = cotizar(v.pers, v.noches);
-    store('lk_nombre', v.nombre);
-    var t = '¡Hola! Quiero reservar con la oferta ' + CFG.code + ' (25% de descuento entre semana).\n\n' +
-      'Nombre: ' + v.nombre + '\n' +
-      'Llegada: ' + fecha(r.ini) + '\n' +
-      'Salida: ' + fecha(r.fin) + ' (' + v.noches + (v.noches === 1 ? ' noche' : ' noches') + ')\n' +
-      'Personas: ' + v.pers + '\n' +
-      'Glamping preferido: ' + (v.gl || 'el que haya disponible') + '\n\n' +
-      (q ? 'Valor normal: ' + pesos(q.lista) + '\n' +
-        'Descuento 25%: −' + pesos(q.desc) + '\n' +
-        'Total con oferta: ' + pesos(q.total) + '\n' +
-        'Abono 40%: ' + pesos(q.abono) + '\n' +
-        'Saldo 60% en sitio: ' + pesos(q.saldo) + '\n\n'
-        : 'Somos ' + v.pers + ' personas: ¿me cotizan con el 25% de descuento?\n\n') +
-      (v.prev ? '¿Ya pensaba venir entre semana antes de la oferta?: ' + v.prev + '\n' : '') +
-      'Origen: ' + origen() + '\n\n' +
-      '¿Me confirman disponibilidad para pagar el abono?';
-    track('bf_whatsapp', { codigo: CFG.code, noches: v.noches, personas: v.pers, valor: q ? Math.round(q.total) : 0 });
-    abrirWA(t);
   }
 
   function listaEspera() {
@@ -430,7 +358,7 @@
     if (!ovEl || ovEl.hidden) return;
     if (e.key === 'Escape') { cerrarModal(); return; }
     if (e.key === 'Tab') {
-      var els = Array.prototype.filter.call(ovEl.querySelectorAll('button,input,select,summary,a[href]'), function (x) { return !x.disabled && x.offsetParent !== null; });
+      var els = Array.prototype.filter.call(ovEl.querySelectorAll('button,input,select,summary,a[href],iframe'), function (x) { return !x.disabled && x.offsetParent !== null; });
       if (!els.length) return;
       var first = els[0], last = els[els.length - 1];
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
@@ -442,12 +370,13 @@
   function ciclo() {
     var nf = fase();
     if (nf !== estado.fase) { estado.fase = nf; pintarBanner(); }
-    else if (nf === 'expectativa' && host) { var c = $('.bf-count', host); if (c) c.outerHTML = cuenta(); }
+    else if (esLanding()) { pintarLanding(); }
+    else if (host) { var c = $('.bf-count', host); if (c) c.outerHTML = cuenta(nf === 'oferta' ? CFG.end : CFG.launch); }
   }
 
   function iniciar() {
     estado.fase = fase();
-    if (estado.fase === 'fin') return;
+    if (estado.fase === 'fin') { if (esLanding()) pintarLanding(); return; }
     pintarBanner();
     fetch('oferta-cupos.json?t=' + Date.now(), { cache: 'no-store' })
       .then(function (r) { return r.ok ? r.json() : null; })
@@ -457,7 +386,7 @@
         if (typeof j.vendidos === 'number') { estado.vendidos = j.vendidos; pintarBanner(); }
       })
       .catch(function () {});
-    tick = setInterval(ciclo, estado.fase === 'expectativa' ? 1000 : 30000);
+    tick = setInterval(ciclo, 1000);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', iniciar);
