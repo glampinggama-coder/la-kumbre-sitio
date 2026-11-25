@@ -489,7 +489,7 @@ document.getElementById("btn_pagar").addEventListener("click", async () => {
       reference: data.wompi.reference,
       publicKey: data.wompi.public_key,
       signature: { integrity: data.wompi.signature_integrity },
-      redirectUrl: window.location.origin + "/reservar-confirmacion.html?codigo=" + encodeURIComponent(data.codigo) + "&token=" + encodeURIComponent(data.token_gestion),
+      redirectUrl: window.location.origin + "/reservar-bf-confirmacion.html?codigo=" + encodeURIComponent(data.codigo) + "&token=" + encodeURIComponent(data.token_gestion),
     });
     checkout.open(function (result) {
       const transaccion = result?.transaction;

@@ -308,9 +308,9 @@
     } else { pillEl.classList.add('on'); }
   }
 
-  // ---------- Modal de reserva (calendario + pago, iframe sobre reservar.html) ----------
+  // ---------- Modal de reserva (calendario + pago, iframe sobre reservar-bf.html) ----------
   function modalHTML() {
-    var src = 'reservar.html?oferta=' + encodeURIComponent(CFG.code);
+    var src = 'reservar-bf.html?oferta=' + encodeURIComponent(CFG.code);
     return '<div class="bf-modal bf-modal-reserva" role="dialog" aria-modal="true" aria-label="Cotiza y reserva ya — Black Friday">' +
       '<button type="button" class="bf-x" data-bf="cerrar" aria-label="Cerrar">×</button>' +
       '<iframe class="bf-iframe" src="' + src + '" title="Reservar con la oferta Black Friday"></iframe>' +
