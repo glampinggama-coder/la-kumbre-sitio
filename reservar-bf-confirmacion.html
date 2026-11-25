@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Confirmación de reserva — Glamping La Kumbre</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  body{margin:0;font-family:Raleway,system-ui,sans-serif;background:#F6F1E8;color:#252A26;display:flex;min-height:100vh;align-items:center;justify-content:center}
+  .card{background:#fff;border:1px solid #D7C4A5;border-radius:16px;padding:32px;max-width:480px;text-align:center}
+  h1{font-family:Georgia,serif;color:#344536;font-size:24px}
+  a{color:#344536;font-weight:600}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>Gracias, estamos confirmando tu pago</h1>
+  <p id="texto">Wompi nos avisará en unos segundos si tu pago quedó aprobado. Guarda el código de tu reserva para hacerle seguimiento.</p>
+  <p id="codigo" style="font-size:18px;font-weight:700"></p>
+</div>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const codigo = params.get("codigo");
+  if (codigo) document.getElementById("codigo").textContent = "Reserva " + codigo;
+</script>
+</body>
+</html>
