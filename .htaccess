@@ -1,6 +1,21 @@
-# Redirecciones de las rutas del sitio anterior (WordPress)
+# Redirecciones 301 de las rutas del sitio anterior (WordPress) al sitio nuevo.
+# Mantener al menos 12 meses. Cuando existan páginas propias por glamping,
+# apuntar cada ruta vieja a su página nueva en lugar de la ancla de la home.
 RewriteEngine On
+
+# Evita la URL duplicada /index.html: todo va a la raíz
+RewriteCond %{THE_REQUEST} \s/index\.html[\s?]
+RewriteRule ^index\.html$ / [R=301,L]
+
+# Cabañas y listados de glampings -> sección Glampings
+RewriteRule ^(cabana-el-veterano|cabana-el-colorado|cabana-la-piedra|cabana-el-tomate|cabanas|glamping)/?$ /#glampings [R=301,NE,L]
+
+# Actividades -> sección "Un día en La Kumbre"
+RewriteRule ^actividades/?$ /#un-dia [R=301,NE,L]
+
+# Contacto y reservas -> sección Cómo llegar
+RewriteRule ^(contacto|reservar|reservas)/?$ /#llegar [R=301,NE,L]
+
+# Micrositios que sí existen en el sitio nuevo
 RewriteRule ^comidas/?$ /carta.html [R=301,L]
 RewriteRule ^guia-turistica/?$ /guia.html [R=301,L]
-RewriteRule ^glamping/?$ /index.html#glampings [R=301,NE,L]
-RewriteRule ^actividades/?$ /index.html#un-dia [R=301,NE,L]
