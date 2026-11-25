@@ -6,22 +6,85 @@
 <title>Confirmación de reserva — Glamping La Kumbre</title>
 <meta name="robots" content="noindex, nofollow">
 <style>
-  body{margin:0;font-family:Raleway,system-ui,sans-serif;background:#F6F1E8;color:#252A26;display:flex;min-height:100vh;align-items:center;justify-content:center}
-  .card{background:#fff;border:1px solid #D7C4A5;border-radius:16px;padding:32px;max-width:480px;text-align:center}
-  h1{font-family:Georgia,serif;color:#344536;font-size:24px}
-  a{color:#344536;font-weight:600}
+  :root{--verde:#344536;--crema:#F6F1E8;--borde:#D7C4A5;--texto:#252A26;--mut:#5C5F58;--rojo:#A6533D;--ok:#2F7A4B}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Raleway,system-ui,sans-serif;background:var(--crema);color:var(--texto);display:flex;min-height:100vh;align-items:center;justify-content:center;padding:24px}
+  .card{background:#fff;border:1px solid var(--borde);border-radius:16px;padding:32px;max-width:460px;width:100%}
+  h1{font-family:Georgia,serif;color:var(--verde);font-size:24px;margin:0 0 8px;text-align:center}
+  p.sub{text-align:center;color:var(--mut);margin:0 0 20px;font-size:15px}
+  .chip{display:inline-block;border-radius:999px;padding:4px 12px;font-size:12px;font-weight:700;margin-bottom:16px}
+  .chip.ok{background:#E4F0E6;color:var(--ok)}
+  .chip.warn{background:#FBF6EA;color:#8A5A1F}
+  .chip.err{background:#FBF1EC;color:var(--rojo)}
+  .resumen{border:1px solid var(--borde);border-radius:12px;padding:16px}
+  .r{display:flex;justify-content:space-between;font-size:15px;padding:4px 0}
+  .r b{font-weight:700}
+  a.wa{display:block;text-align:center;margin-top:20px;color:var(--verde);font-weight:600}
+  #cargando{text-align:center;color:var(--mut)}
 </style>
 </head>
 <body>
 <div class="card">
-  <h1>Gracias, estamos confirmando tu pago</h1>
-  <p id="texto">Wompi nos avisará en unos segundos si tu pago quedó aprobado. Guarda el código de tu reserva para hacerle seguimiento.</p>
-  <p id="codigo" style="font-size:18px;font-weight:700"></p>
+  <div id="cargando"><h1>Gracias, estamos confirmando tu pago</h1><p class="sub">Un momento, estamos consultando el estado de tu reserva…</p></div>
+  <div id="contenido" style="display:none"></div>
+  <a class="wa" href="https://wa.me/573222070120" target="_blank" rel="noopener">¿Dudas? Escríbenos por WhatsApp</a>
 </div>
 <script>
-  const params = new URLSearchParams(window.location.search);
-  const codigo = params.get("codigo");
-  if (codigo) document.getElementById("codigo").textContent = "Reserva " + codigo;
+const API = "https://vjatjvkdxuagispadnkk.supabase.co/functions/v1";
+const params = new URLSearchParams(window.location.search);
+const codigo = params.get("codigo");
+const token = params.get("token");
+
+function fmtCOP(n){ return "$" + Number(n).toLocaleString("es-CO"); }
+function fmtFecha(f){
+  const [y,m,d] = f.split("-").map(Number);
+  return new Date(Date.UTC(y, m-1, d)).toLocaleDateString("es-CO", { timeZone: "UTC", weekday: "short", day: "numeric", month: "short", year: "numeric" });
+}
+
+function pintar(data){
+  document.getElementById("cargando").style.display = "none";
+  const cont = document.getElementById("contenido");
+  cont.style.display = "block";
+  let chip = '<span class="chip warn">Verificando pago…</span>';
+  let titulo = "Estamos confirmando tu pago";
+  if (data.estado === "confirmada") { chip = '<span class="chip ok">Reserva confirmada</span>'; titulo = "¡Gracias, " + data.nombre + "!"; }
+  else if (data.estado === "rechazada") { chip = '<span class="chip err">Pago rechazado</span>'; titulo = "El pago no se completó"; }
+
+  cont.innerHTML = `
+    <h1 style="text-align:center">${titulo}</h1>
+    <p class="sub" style="margin-bottom:12px">Reserva <b>${data.codigo}</b></p>
+    <div style="text-align:center">${chip}</div>
+    <div class="resumen">
+      <div class="r"><span>Glamping</span><b>${data.glamping}</b></div>
+      <div class="r"><span>${fmtFecha(data.fecha_llegada)} → ${fmtFecha(data.fecha_salida)}</span><span>${data.noches} noche(s)</span></div>
+      <div class="r"><span>Personas</span><span>${data.personas}</span></div>
+      ${data.oferta_codigo ? `<div class="r" style="color:var(--rojo)"><span>Descuento Black Friday (${data.descuento_pct}%)</span><span>Aplicado</span></div>` : ""}
+      <div class="r"><b>Total estadía</b><b>${fmtCOP(data.precio_total_cop)}</b></div>
+      <div class="r" style="color:var(--rojo);font-weight:700"><span>Abono pagado (${data.abono_porcentaje}%)</span><span>${fmtCOP(data.abono_monto_cop)}</span></div>
+      <div class="r"><span>Saldo en el glamping</span><span>${fmtCOP(data.saldo_cop)}</span></div>
+    </div>
+    ${data.estado !== "confirmada" ? '<p class="sub" style="margin-top:16px">Si ya pagaste y esto no se actualiza en un minuto, escríbenos por WhatsApp con tu código de reserva.</p>' : ""}
+  `;
+}
+
+async function consultar(intento){
+  if (!codigo || !token) {
+    document.getElementById("cargando").innerHTML = '<h1>Falta información</h1><p class="sub">No encontramos los datos de tu reserva en el enlace. Escríbenos por WhatsApp con tu código.</p>';
+    return;
+  }
+  try {
+    const res = await fetch(`${API}/consultar-reserva?codigo=${encodeURIComponent(codigo)}&token=${encodeURIComponent(token)}`);
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "No se pudo consultar la reserva");
+    pintar(data);
+    if (data.estado !== "confirmada" && data.estado !== "rechazada" && intento < 8) {
+      setTimeout(() => consultar(intento + 1), 3000);
+    }
+  } catch (e) {
+    document.getElementById("cargando").innerHTML = `<h1>No pudimos cargar tu reserva</h1><p class="sub">${e.message}. Guarda el código <b>${codigo || ""}</b> y escríbenos por WhatsApp.</p>`;
+  }
+}
+consultar(0);
 </script>
 </body>
 </html>
